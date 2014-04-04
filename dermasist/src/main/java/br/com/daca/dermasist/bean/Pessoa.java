@@ -7,7 +7,6 @@ public class Pessoa {
     private char sexo;
     private String cpf;
     private String rg;
-    private String telefone;
 
     
     public Pessoa(String nome, String dataDeNascimento, char sexo, String cpf, String rg, String telefone) {
@@ -16,7 +15,6 @@ public class Pessoa {
         this.sexo = sexo;
         this.cpf = cpf;
         this.rg = rg;
-        this.telefone = telefone;
     }
 
     public String getNome() {
@@ -58,17 +56,4 @@ public class Pessoa {
     public void setRg(String rg) {
         this.rg = rg;
     }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    
-    
-    
-    
 }

@@ -8,19 +8,23 @@ public class Paciente {
     private Pessoa pessoa;
     private Endereco endereco;
     private String nomeDaMae;
-    private char tipoSanguineo;
+    private String tipoSanguineo;
     private String cor;
+    private String telefone;
     private String contatoEmergencia;
     private String convenio;
     private String cartaoSus;
-    
 
-    public Paciente(Pessoa pessoa, Endereco endereco, String nomeDaMae, char tipoSanguineo, String cor, String contatoEmergencia, String convenio, String cartaoSus) {
+    public Paciente() {
+    }
+
+    public Paciente(Pessoa pessoa, Endereco endereco, String nomeDaMae, String tipoSanguineo, String cor, String telefone, String contatoEmergencia, String convenio, String cartaoSus) {
         this.pessoa = pessoa;
         this.endereco = endereco;
         this.nomeDaMae = nomeDaMae;
         this.tipoSanguineo = tipoSanguineo;
         this.cor = cor;
+        this.telefone = telefone;
         this.contatoEmergencia = contatoEmergencia;
         this.convenio = convenio;
         this.cartaoSus = cartaoSus;
@@ -50,11 +54,11 @@ public class Paciente {
         this.nomeDaMae = nomeDaMae;
     }
 
-    public char getTipoSanguineo() {
+    public String getTipoSanguineo() {
         return tipoSanguineo;
     }
 
-    public void setTipoSanguineo(char tipoSanguineo) {
+    public void setTipoSanguineo(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
 
@@ -64,6 +68,14 @@ public class Paciente {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getContatoEmergencia() {

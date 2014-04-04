@@ -5,24 +5,24 @@ package br.com.daca.dermasist.bean;
  */
 public class Endereco {
     
-    private String endereco;
+    private String rua;
     private String cidade;
     private String bairro;
     private String cep;
 
     public Endereco(String endereco, String cidade, String bairro, String cep) {
-        this.endereco = endereco;
+        this.rua = endereco;
         this.cidade = cidade;
         this.bairro = bairro;
         this.cep = cep;
     }
 
     public String getEndereco() {
-        return endereco;
+        return rua;
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        this.rua = endereco;
     }
 
     public String getCidade() {
