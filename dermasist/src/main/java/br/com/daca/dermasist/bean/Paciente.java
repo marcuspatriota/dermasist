@@ -6,7 +6,6 @@ package br.com.daca.dermasist.bean;
 public class Paciente {
     
     private Pessoa pessoa;
-    private Endereco endereco;
     private String nomeDaMae;
     private String tipoSanguineo;
     private String cor;
@@ -14,13 +13,14 @@ public class Paciente {
     private String contatoEmergencia;
     private String convenio;
     private String cartaoSus;
+    private int peso;
+    private float altura;
 
     public Paciente() {
     }
 
-    public Paciente(Pessoa pessoa, Endereco endereco, String nomeDaMae, String tipoSanguineo, String cor, String telefone, String contatoEmergencia, String convenio, String cartaoSus) {
+    public Paciente(Pessoa pessoa, String nomeDaMae, String tipoSanguineo, String cor, String telefone, String contatoEmergencia, String convenio, String cartaoSus, int peso, float altura) {
         this.pessoa = pessoa;
-        this.endereco = endereco;
         this.nomeDaMae = nomeDaMae;
         this.tipoSanguineo = tipoSanguineo;
         this.cor = cor;
@@ -28,6 +28,8 @@ public class Paciente {
         this.contatoEmergencia = contatoEmergencia;
         this.convenio = convenio;
         this.cartaoSus = cartaoSus;
+        this.peso = peso;
+        this.altura = altura;
     }
 
     public Pessoa getPessoa() {
@@ -36,14 +38,6 @@ public class Paciente {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     public String getNomeDaMae() {
@@ -101,4 +95,21 @@ public class Paciente {
     public void setCartaoSus(String cartaoSus) {
         this.cartaoSus = cartaoSus;
     }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public void setPeso(int peso) {
+        this.peso = peso;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(float altura) {
+        this.altura = altura;
+    }
+
 }
