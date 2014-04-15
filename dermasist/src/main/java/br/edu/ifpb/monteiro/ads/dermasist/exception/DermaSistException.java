@@ -1,4 +1,4 @@
-package br.com.daca.dermasist.exception;
+package br.edu.ifpb.monteiro.ads.dermasist.exception;
 
 /**
  *

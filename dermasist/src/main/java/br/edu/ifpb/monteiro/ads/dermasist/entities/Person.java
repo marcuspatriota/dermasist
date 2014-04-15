@@ -1,6 +1,6 @@
-package br.com.daca.dermasist.bean;
+package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
-public class Pessoa {
+public class Person extends Identifiable{
     
     private String nome;
     private String dataDeNascimento;
@@ -8,22 +8,14 @@ public class Pessoa {
     private String cpf;
     private String rg;
     private String rua;
+    private String numero;
     private String cidade;
     private String bairro;
     private String estado;
+    private String celular;
+    private String telefone;
 
-    public Pessoa(String nome, String dataDeNascimento, char sexo, String cpf, String rg, String rua, String cidade, String bairro, String estado) {
-        this.nome = nome;
-        this.dataDeNascimento = dataDeNascimento;
-        this.sexo = sexo;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.rua = rua;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.estado = estado;
-    }
-
+   
     public String getNome() {
         return nome;
     }

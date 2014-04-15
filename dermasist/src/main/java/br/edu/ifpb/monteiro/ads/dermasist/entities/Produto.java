@@ -1,4 +1,4 @@
-package br.com.daca.dermasist.bean;
+package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import java.util.Date;
 

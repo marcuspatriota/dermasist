@@ -1,4 +1,4 @@
-package br.com.daca.dermasist.util;
+package br.edu.ifpb.monteiro.ads.dermasist.util;
 
 /**
  *

@@ -1,11 +1,11 @@
-package br.com.daca.dermasist.bean;
+package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 /**
  * @author Elisângela
  */
-public class Paciente {
+public class Paciente extends Person{
     
-    private Pessoa pessoa;
+    private Person pessoa;
     private String nomeDaMae;
     private String tipoSanguineo;
     private String cor;
@@ -19,7 +19,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(Pessoa pessoa, String nomeDaMae, String tipoSanguineo, String cor, String telefone, String contatoEmergencia, String convenio, String cartaoSus, int peso, float altura) {
+    public Paciente(Person pessoa, String nomeDaMae, String tipoSanguineo, String cor, String telefone, String contatoEmergencia, String convenio, String cartaoSus, int peso, float altura) {
         this.pessoa = pessoa;
         this.nomeDaMae = nomeDaMae;
         this.tipoSanguineo = tipoSanguineo;
@@ -32,11 +32,11 @@ public class Paciente {
         this.altura = altura;
     }
 
-    public Pessoa getPessoa() {
+    public Person getPessoa() {
         return pessoa;
     }
 
-    public void setPessoa(Pessoa pessoa) {
+    public void setPessoa(Person pessoa) {
         this.pessoa = pessoa;
     }
 

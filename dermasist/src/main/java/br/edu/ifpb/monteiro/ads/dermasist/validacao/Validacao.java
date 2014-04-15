@@ -1,4 +1,4 @@
-package br.com.daca.dermasist.validacao;
+package br.edu.ifpb.monteiro.ads.dermasist.validacao;
 
 /**
  *

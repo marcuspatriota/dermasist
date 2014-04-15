@@ -1,4 +1,4 @@
-package br.com.daca.dermasist.dao;
+package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +14,8 @@ public interface DaoIF<T> {
     public void remove (T entity);
     public void merge(T entity);
     public T getEntity(Serializable id);
-    public T getEntityByDetachedCriteria(DetachedCriteria criteria);
+//    public T getEntityByDetachedCriteria(DetachedCriteria criteria);
     public List<T> getEntitys();
-    public List<T> getListEntityByDetachedCriteria(DetachedCriteria criteria);
+//    public List<T> getListEntityByDetachedCriteria(DetachedCriteria criteria);
       
 }
