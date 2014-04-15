@@ -4,10 +4,9 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
  *
  * @author Markus
  */
-public class Secretaria extends Person{
+public class Service extends Identifiable{
     
-    private float salario;
-    private String funcao;
+    private String name;
+    private float value;
     
-     
 }
