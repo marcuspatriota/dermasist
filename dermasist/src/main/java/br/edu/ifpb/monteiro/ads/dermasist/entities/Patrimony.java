@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
