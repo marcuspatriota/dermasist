@@ -4,6 +4,7 @@ import java.security.Timestamp;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,6 +15,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="SCHEDULING")
 public class Scheduling extends Identifiable {
+    
+    @Column(name="FK_PAYMENT")
+    @ManyToMany
+    private Scheduling fk_payment;
     
     @Column(name="DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -48,6 +53,14 @@ public class Scheduling extends Identifiable {
 
     public void setTimetable(Timestamp timetable) {
         this.timetable = timetable;
+    }
+
+    public Scheduling getFk_payment() {
+        return fk_payment;
+    }
+
+    public void setFk_payment(Scheduling fk_payment) {
+        this.fk_payment = fk_payment;
     }
     
     

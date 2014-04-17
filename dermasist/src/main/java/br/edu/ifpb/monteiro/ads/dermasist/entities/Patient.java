@@ -2,6 +2,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -11,7 +12,8 @@ import javax.persistence.Table;
 @Table(name="PATIENT")
 public class Patient extends Person {
     
-    @Column(name="PERSON")
+    @Column(name="PK_PERSON")
+    @OneToMany 
     private Person person;
     
     @Column(name="MOTHER_IS_NAME")
@@ -22,10 +24,7 @@ public class Patient extends Person {
     
     @Column(name="FLESH_TONE")
     private String fleshTone; // cor da pele
-    
-    @Column(name="PHONE")
-    private String phone;
-    
+        
     @Column(name="EMERGENCY_CONTACT")
     private String emergencyContact;
     
@@ -73,14 +72,6 @@ public class Patient extends Person {
 
     public void setFleshTone(String fleshTone) {
         this.fleshTone = fleshTone;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getEmergencyContact() {

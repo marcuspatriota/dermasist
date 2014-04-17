@@ -4,6 +4,8 @@ import java.security.Timestamp;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,6 +18,14 @@ import javax.persistence.TemporalType;
 @Table(name="CONSULT")
 public class Consult extends Identifiable{
    
+    @Column(name="FK_PATIENT")
+    @OneToMany
+    private Scheduling fk_patient;
+    
+    @Column(name="FK_DOCTOR")
+    @OneToMany
+    private Scheduling fk_doctor;
+    
     @Column(name="TIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp time;

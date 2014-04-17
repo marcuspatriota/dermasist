@@ -2,6 +2,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -11,6 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="PROVIDER")
 public class Provider extends Identifiable{
+    
+    @Column(name="FK_PRODUCT")
+    @ManyToMany 
+    private Provider fk_product;
     
     @Column(name="NAME")
     private String name;
@@ -88,6 +93,14 @@ public class Provider extends Identifiable{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Provider getFk_product() {
+        return fk_product;
+    }
+
+    public void setFk_product(Provider fk_product) {
+        this.fk_product = fk_product;
     }
     
     

@@ -3,11 +3,18 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="PRODUCT")
 public class Product extends Identifiable {
+    
+    @Column(name="FK_PROVIDER")
+    @ManyToMany 
+    private Provider fk_provider;
     
     @Column(name="NAME")
     private String name;
@@ -16,9 +23,11 @@ public class Product extends Identifiable {
     private float value;
     
     @Column(name="DATE_OF_PURCHASE")
+    @Temporal(TemporalType.DATE)
     private Date dateOfPurchase;
     
     @Column(name="EXPIRATIONS_DATE")
+    @Temporal(TemporalType.DATE)
     private Date expirationDate;
     
     @Column(name="FINALITY")
@@ -62,6 +71,14 @@ public class Product extends Identifiable {
 
     public void setFinality(String finality) {
         this.finality = finality;
+    }
+
+    public Provider getFk_provider() {
+        return fk_provider;
+    }
+
+    public void setFk_provider(Provider fk_provider) {
+        this.fk_provider = fk_provider;
     }
  
     
