@@ -140,7 +140,5 @@ public class Person extends Identifiable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-   
-   
+ 
 }

@@ -18,7 +18,7 @@ public class Scheduling extends Identifiable {
     
     @Column(name="FK_PAYMENT")
     @ManyToMany
-    private Scheduling fk_payment;
+    private Payment pk_payment;
     
     @Column(name="DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -55,12 +55,12 @@ public class Scheduling extends Identifiable {
         this.timetable = timetable;
     }
 
-    public Scheduling getFk_payment() {
-        return fk_payment;
+    public Payment getPk_payment() {
+        return pk_payment;
     }
 
-    public void setFk_payment(Scheduling fk_payment) {
-        this.fk_payment = fk_payment;
+    public void setPk_payment(Payment pk_payment) {
+        this.pk_payment = pk_payment;
     }
     
     
