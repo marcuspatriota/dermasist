@@ -3,6 +3,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 public class Identifiable implements Serializable{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
 
     public long getID() {

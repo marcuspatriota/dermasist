@@ -46,5 +46,5 @@ public class Secretary extends Person{
     public void setFk_person(Person fk_person) {
         this.fk_person = fk_person;
     }
-       
+  
 }
