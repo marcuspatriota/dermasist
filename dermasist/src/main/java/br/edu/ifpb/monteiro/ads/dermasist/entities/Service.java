@@ -9,12 +9,13 @@ import javax.persistence.Table;
  *
  * @author Markus
  */
+
 @Entity
 @Table(name="SERVICE")
 public class Service extends Identifiable{
     
     @Column(name="PK_ADMISTRATOR")
-    @OneToMany
+    @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
     private Administrator pk_admistrator;
     
     @Column(name="NAME")
@@ -22,19 +23,19 @@ public class Service extends Identifiable{
     
     @Column(name="VALUE")
     private float value;
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public float getValue() {
         return value;
     }
-
+    
     public void setValue(float value) {
         this.value = value;
     }

@@ -8,37 +8,37 @@ import javax.persistence.Table;
 @Table(name="PERSON")
 public class Person extends Identifiable {
     
-    @Column(name="NAME")
+    @Column(name="NAME",nullable = false)
     private String name;
     
-    @Column(name="DATE_OF_BIRTH")
+    @Column(name="DATE_OF_BIRTH",nullable = false)
     private String dateOfBirth;
     
-    @Column(name="SEX")
+    @Column(name="SEX",nullable = false)
     private char sex;
     
-    @Column(name="CPF")
+    @Column(name="CPF",nullable = false)
     private String cpf;
     
-    @Column(name="RG")
+    @Column(name="RG",nullable = false)
     private String rg;
     
-    @Column(name="STREET")
+    @Column(name="STREET",nullable = false)
     private String street;
     
-    @Column(name="NUMBER")
+    @Column(name="NUMBER",nullable = false)
     private String number;
     
-    @Column(name="CITY")
+    @Column(name="CITY",nullable = false)
     private String city;
     
-    @Column(name="NEIGHBORHOOD")
+    @Column(name="NEIGHBORHOOD",nullable = false)//BAIRRO
     private String neighborhood;
     
-    @Column(name="STATE")
+    @Column(name="STATE",nullable = false)
     private String state;
     
-    @Column(name="CELLULAR")
+    @Column(name="CELLULAR",nullable = false)
     private String cellular;
     
     @Column(name="PHONE")

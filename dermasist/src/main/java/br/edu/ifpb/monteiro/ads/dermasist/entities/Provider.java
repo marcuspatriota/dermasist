@@ -14,8 +14,8 @@ import javax.persistence.Table;
 public class Provider extends Identifiable{
     
     @Column(name="FK_PRODUCT")
-    @ManyToMany 
-    private Provider fk_product;
+    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Product.class, mappedBy = "ID")
+    private Product fk_product;
     
     @Column(name="NAME")
     private String name;
@@ -95,11 +95,11 @@ public class Provider extends Identifiable{
         this.phone = phone;
     }
 
-    public Provider getFk_product() {
+    public Product getFk_product() {
         return fk_product;
     }
 
-    public void setFk_product(Provider fk_product) {
+    public void setFk_product(Product fk_product) {
         this.fk_product = fk_product;
     }
     

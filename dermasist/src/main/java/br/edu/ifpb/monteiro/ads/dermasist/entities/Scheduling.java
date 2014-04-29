@@ -4,6 +4,8 @@ import java.security.Timestamp;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,8 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name="SCHEDULING")
 public class Scheduling extends Identifiable {
     
-    @Column(name="FK_PAYMENT")
-    @ManyToMany
+    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Payment.class)
     private Payment pk_payment;
     
     @Column(name="DATE")

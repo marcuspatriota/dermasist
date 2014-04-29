@@ -18,11 +18,11 @@ import javax.persistence.TemporalType;
 public class Consult extends Identifiable{
    
     @Column(name="FK_PATIENT")
-    @OneToMany
+    @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Patient.class)
     private Scheduling fk_patient;
     
     @Column(name="FK_DOCTOR")
-    @OneToMany
+    @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Doctor.class)
     private Scheduling fk_doctor;
     
     @Column(name="TIME")

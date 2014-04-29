@@ -2,7 +2,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Patient extends Person {
     
     @Column(name="PK_PERSON")
-    @OneToMany 
+    @OneToOne
     private Person person;
     
     @Column(name="MOTHER_IS_NAME")

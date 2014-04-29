@@ -3,7 +3,9 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,8 +15,12 @@ import javax.persistence.TemporalType;
 public class Product extends Identifiable {
     
     @Column(name="FK_PROVIDER")
-    @ManyToMany 
+    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Provider.class) 
     private Provider fk_provider;
+    
+    @Column(name="FK_ADMISTRATOR")
+    @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class) 
+    private Administrator fk_administrator;
     
     @Column(name="NAME")
     private String name;
