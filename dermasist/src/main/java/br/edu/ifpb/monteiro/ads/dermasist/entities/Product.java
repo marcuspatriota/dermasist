@@ -1,9 +1,9 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,16 +14,15 @@ import javax.persistence.TemporalType;
 @Table(name="PRODUCT")
 public class Product extends Identifiable {
     
-    @Column(name="FK_PROVIDER")
     @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Provider.class) 
-    private Provider fk_provider;
+    private Collection<Provider> fk_provider;
     
-    @Column(name="FK_ADMISTRATOR")
-    @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class) 
-    private Administrator fk_administrator;
+    @OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class) 
+    private Collection<Administrator> fk_administrator;
     
     @Column(name="NAME")
     private String name;
+    
     
     @Column(name="VALUE")
     private float value;
@@ -79,14 +78,20 @@ public class Product extends Identifiable {
         this.finality = finality;
     }
 
-    public Provider getFk_provider() {
+    public Collection<Provider> getFk_provider() {
         return fk_provider;
     }
 
-    public void setFk_provider(Provider fk_provider) {
+    public void setFk_provider(Collection<Provider> fk_provider) {
         this.fk_provider = fk_provider;
     }
- 
-    
-    
+
+    public Collection<Administrator> getFk_administrator() {
+        return fk_administrator;
+    }
+
+    public void setFk_administrator(Collection<Administrator> fk_administrator) {
+        this.fk_administrator = fk_administrator;
+    }
+      
 }

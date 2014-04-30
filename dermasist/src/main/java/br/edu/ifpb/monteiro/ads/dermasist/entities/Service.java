@@ -1,5 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -14,9 +15,8 @@ import javax.persistence.Table;
 @Table(name="SERVICE")
 public class Service extends Identifiable{
     
-    @Column(name="PK_ADMISTRATOR")
     @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
-    private Administrator pk_admistrator;
+    private Collection<Administrator> pk_admistrator;
     
     @Column(name="NAME")
     private String name;
@@ -40,6 +40,5 @@ public class Service extends Identifiable{
         this.value = value;
     }
     
-    
-    
+   
 }

@@ -1,5 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.TemporalType;
 public class Payment extends Identifiable {
     
     @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Scheduling.class, mappedBy = "ID")
-    private Scheduling fk_scheduling;
+    private Collection<Scheduling> fk_scheduling;
     
     @Column(name="INTEREST")
     private int interest;
@@ -77,13 +78,14 @@ public class Payment extends Identifiable {
     public void setValue(float value) {
         this.value = value;
     }
-    
-    public Scheduling getFk_scheduling() {
+
+    public Collection<Scheduling> getFk_scheduling() {
         return fk_scheduling;
     }
-    
-    public void setFk_scheduling(Scheduling fk_scheduling) {
+
+    public void setFk_scheduling(Collection<Scheduling> fk_scheduling) {
         this.fk_scheduling = fk_scheduling;
     }
     
+       
 }

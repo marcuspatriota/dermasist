@@ -1,11 +1,10 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import java.security.Timestamp;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,7 +18,7 @@ import javax.persistence.TemporalType;
 public class Scheduling extends Identifiable {
     
     @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Payment.class)
-    private Payment pk_payment;
+    private Collection<Payment> pk_payment;
     
     @Column(name="DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,13 +55,15 @@ public class Scheduling extends Identifiable {
         this.timetable = timetable;
     }
 
-    public Payment getPk_payment() {
+    public Collection<Payment> getPk_payment() {
         return pk_payment;
     }
 
-    public void setPk_payment(Payment pk_payment) {
+    public void setPk_payment(Collection<Payment> pk_payment) {
         this.pk_payment = pk_payment;
     }
+
+  
     
     
 }

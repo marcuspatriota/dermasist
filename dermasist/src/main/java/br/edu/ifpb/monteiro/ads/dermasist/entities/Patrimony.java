@@ -1,5 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -14,9 +15,8 @@ import javax.persistence.Table;
 @Table(name="PATRIMONY")
 public class Patrimony extends Identifiable{
     
-    @Column(name="FK_ADMISTRATOR")
     @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
-    private Administrator fk_admistrator;
+    private Collection<Administrator> fk_admistrator;
     
     @Column(name="DESCRIPTION")
     private String description;
@@ -40,7 +40,5 @@ public class Patrimony extends Identifiable{
     public void setObservations(String observations) {
         this.observations = observations;
     }
-    
-    
-    
+            
 }

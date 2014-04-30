@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Table(name="ADMINISTRATOR")
 public class Administrator extends Person{
   
-    @Column(name="FK_PERSON")
     @OneToOne() 
     private Person fk_person;
 

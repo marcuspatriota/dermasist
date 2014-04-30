@@ -1,7 +1,8 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
-import java.security.Timestamp;
+import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -17,18 +18,16 @@ import javax.persistence.TemporalType;
 @Table(name="CONSULT")
 public class Consult extends Identifiable{
    
-    @Column(name="FK_PATIENT")
     @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Patient.class)
-    private Scheduling fk_patient;
+    private Collection<Scheduling> fk_patient;
     
-    @Column(name="FK_DOCTOR")
     @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Doctor.class)
-    private Scheduling fk_doctor;
-    
+    private Collection<Doctor> fk_doctor;
+        
     @Column(name="TIME")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp time;
-    
+    @Temporal(TemporalType.DATE)
+    private GregorianCalendar time;
+       
     @Column(name="DIAGNOSIS")
     private String diagnosis;
     
@@ -42,11 +41,11 @@ public class Consult extends Identifiable{
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    public Timestamp getTime() {
+    public GregorianCalendar getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(GregorianCalendar time) {
         this.time = time;
     }
 

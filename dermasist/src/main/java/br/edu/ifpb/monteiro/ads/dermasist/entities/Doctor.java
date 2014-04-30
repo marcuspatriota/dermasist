@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name="DOCTOR")
 public class Doctor extends Person {
     
-    @Column(name="FK_PERSON")
     @OneToOne
     private Person fk_person;
     

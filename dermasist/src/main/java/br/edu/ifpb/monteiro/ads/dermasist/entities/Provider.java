@@ -1,5 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -13,10 +14,9 @@ import javax.persistence.Table;
 @Table(name="PROVIDER")
 public class Provider extends Identifiable{
     
-    @Column(name="FK_PRODUCT")
     @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Product.class, mappedBy = "ID")
-    private Product fk_product;
-    
+    private Collection<Product> fk_product;
+        
     @Column(name="NAME")
     private String name;
     
@@ -95,14 +95,14 @@ public class Provider extends Identifiable{
         this.phone = phone;
     }
 
-    public Product getFk_product() {
+    public Collection<Product> getFk_product() {
         return fk_product;
     }
 
-    public void setFk_product(Product fk_product) {
+    public void setFk_product(Collection<Product> fk_product) {
         this.fk_product = fk_product;
     }
-    
+ 
     
     
 }
