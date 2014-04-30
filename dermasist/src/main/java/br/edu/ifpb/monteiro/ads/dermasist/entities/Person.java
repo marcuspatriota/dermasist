@@ -1,12 +1,17 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PERSON")
-public class Person extends Identifiable {
+public class Person implements Identifiable, Serializable {
+    
+    @Id
+    private Long ID;
     
     @Column(name="NAME",nullable = false)
     private String name;
@@ -139,6 +144,16 @@ public class Person extends Identifiable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public Serializable getID() {
+       return this.ID;
+    }
+
+    @Override
+    public void setID(Serializable id) {
+      this.ID=(Long) id;
     }
  
 }

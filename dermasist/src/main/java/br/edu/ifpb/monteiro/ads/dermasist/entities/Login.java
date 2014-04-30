@@ -1,7 +1,9 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -11,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="LOGIN")
-public class Login extends Identifiable{
+public class Login implements Identifiable{
+    @Id
+    private Long ID;
    
     @Column(name="LOGIN")
     private String login;
@@ -34,6 +38,16 @@ public class Login extends Identifiable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public Serializable getID() {
+      return this.ID;
+    }
+
+    @Override
+    public void setID(Serializable id) {
+       this.ID=(Long) id;
     }
     
     

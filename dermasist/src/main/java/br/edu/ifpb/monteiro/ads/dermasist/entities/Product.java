@@ -1,9 +1,13 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -12,10 +16,15 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="PRODUCT")
-public class Product extends Identifiable {
+public class Product implements Identifiable, Serializable {
     
-    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Provider.class) 
-    private Collection<Provider> fk_provider;
+    @Id
+    private Long ID;
+    
+    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Provider.class)
+    @JoinTable(name="PRODUCT_PROVIDER",joinColumns = @JoinColumn(name="FK_PRODUCT"), 
+            inverseJoinColumns = @JoinColumn(name="FK_PROVIDER"))
+    private Collection<Provider> provider;
     
     @OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class) 
     private Collection<Administrator> fk_administrator;
@@ -78,20 +87,26 @@ public class Product extends Identifiable {
         this.finality = finality;
     }
 
-    public Collection<Provider> getFk_provider() {
-        return fk_provider;
-    }
-
-    public void setFk_provider(Collection<Provider> fk_provider) {
-        this.fk_provider = fk_provider;
-    }
-
     public Collection<Administrator> getFk_administrator() {
         return fk_administrator;
     }
 
-    public void setFk_administrator(Collection<Administrator> fk_administrator) {
-        this.fk_administrator = fk_administrator;
+
+    public Collection<Provider> getProvider() {
+        return provider;
     }
+
+    @Override
+    public Serializable getID() {
+        return ID;
+    }
+
+    @Override
+    public void setID(Serializable id) {
+            this.ID=(Long) id;
+        
+    }
+    
+    
       
 }

@@ -1,23 +1,29 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
-import java.util.Collection;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  *
  * @author Markus
  */
+
 @Entity
 @Table(name="PATRIMONY")
-public class Patrimony extends Identifiable{
+public class Patrimony implements Identifiable, Serializable{
     
-    @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
-    private Collection<Administrator> fk_admistrator;
+    @Id
+    private Long ID;
     
+    @ManyToOne (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
+    @JoinColumn(name="FK_ADMISTRADTR")
+    private Administrator fk_admistrator;
+   
     @Column(name="DESCRIPTION")
     private String description;
     
@@ -39,6 +45,16 @@ public class Patrimony extends Identifiable{
 
     public void setObservations(String observations) {
         this.observations = observations;
+    }
+
+    @Override
+    public Serializable getID() {
+        return this.ID;
+    }
+
+    @Override
+    public void setID(Serializable id) {
+        this.ID=(Long) id;
     }
             
 }

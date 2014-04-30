@@ -1,10 +1,12 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,7 +18,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="CONSULT")
-public class Consult extends Identifiable{
+public class Consult implements Identifiable, Serializable{
+   
+    @Id
+    private Long ID;
    
     @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Patient.class)
     private Collection<Scheduling> fk_patient;
@@ -80,7 +85,15 @@ public class Consult extends Identifiable{
     public void setDate(Date date) {
         this.date = date;
     }
-    
-    
-        
+
+    @Override
+    public Serializable getID() {
+      return this.ID;
+    }
+
+    @Override
+    public void setID(Serializable id) {
+       this.ID=(Long) id;
+    }
+ 
 }

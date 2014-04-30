@@ -1,25 +1,26 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import java.security.Timestamp;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * @author Elisângela
+ * @author ElisÃ¢ngela
  */
 @Entity
 @Table(name="SCHEDULING")
-public class Scheduling extends Identifiable {
+public class Scheduling implements Identifiable, Serializable {
     
-    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Payment.class)
-    private Collection<Payment> pk_payment;
+    @Id
+    private Long ID;
     
+        
     @Column(name="DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
@@ -55,15 +56,14 @@ public class Scheduling extends Identifiable {
         this.timetable = timetable;
     }
 
-    public Collection<Payment> getPk_payment() {
-        return pk_payment;
+    @Override
+    public Serializable getID() {
+     return this.ID;
     }
 
-    public void setPk_payment(Collection<Payment> pk_payment) {
-        this.pk_payment = pk_payment;
+    @Override
+    public void setID(Serializable id) {
+       this.ID=(Long) id; 
     }
-
-  
-    
     
 }

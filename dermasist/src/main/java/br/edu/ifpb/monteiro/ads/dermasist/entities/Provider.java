@@ -1,8 +1,12 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -12,11 +16,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="PROVIDER")
-public class Provider extends Identifiable{
+public class Provider implements Identifiable, Serializable{
     
-    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Product.class, mappedBy = "ID")
-    private Collection<Product> fk_product;
-        
+    @Id
+    private Long ID;
+      
     @Column(name="NAME")
     private String name;
     
@@ -95,14 +99,14 @@ public class Provider extends Identifiable{
         this.phone = phone;
     }
 
-    public Collection<Product> getFk_product() {
-        return fk_product;
+    @Override
+    public Serializable getID() {
+     return this.ID;
     }
 
-    public void setFk_product(Collection<Product> fk_product) {
-        this.fk_product = fk_product;
+    @Override
+    public void setID(Serializable id) {
+      this.ID=(Long) id;
     }
- 
-    
     
 }

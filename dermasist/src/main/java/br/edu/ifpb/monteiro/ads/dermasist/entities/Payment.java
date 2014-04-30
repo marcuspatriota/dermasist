@@ -1,9 +1,11 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -16,10 +18,15 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="PAYMENT")
-public class Payment extends Identifiable {
+public class Payment implements Identifiable, Serializable {
     
-    @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Scheduling.class, mappedBy = "ID")
-    private Collection<Scheduling> fk_scheduling;
+    @Id
+    private Long ID;
+    
+    @ManyToMany
+    @JoinTable(name="PAYMENT_SCHEDULING",joinColumns = @JoinColumn(name="FK_PAYMENT"), 
+            inverseJoinColumns = @JoinColumn(name="FK_SCHEDULING"))
+    private Collection<Scheduling> scheduling;
     
     @Column(name="INTEREST")
     private int interest;
@@ -79,13 +86,19 @@ public class Payment extends Identifiable {
         this.value = value;
     }
 
-    public Collection<Scheduling> getFk_scheduling() {
-        return fk_scheduling;
+    public Collection<Scheduling> getScheduling() {
+        return scheduling;
     }
 
-    public void setFk_scheduling(Collection<Scheduling> fk_scheduling) {
-        this.fk_scheduling = fk_scheduling;
+    @Override
+    public Serializable getID() {
+       return ID;
+        
     }
-    
-       
+
+    @Override
+    public void setID(Serializable id) {
+        this.ID=(Long) id;
+    }
+         
 }
