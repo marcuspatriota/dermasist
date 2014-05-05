@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,14 +17,14 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="SCHEDULING")
-public class Scheduling implements Identifiable, Serializable {
+public class Scheduling implements IdentifiableIF, Serializable {
     
     @Id
     private Long ID;
     
         
     @Column(name="DATE")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date date;
     
     @Column(name="TYPE_OF_SCHEDULING")
@@ -31,6 +33,10 @@ public class Scheduling implements Identifiable, Serializable {
     @Column(name="TIMETABLE")
     private Timestamp timetable;
 
+    @ManyToOne
+    @JoinColumn(name="FK_PATIENT")
+    private Patient fk_patient;
+    
     
     public Date getDate() {
         return date;
@@ -56,6 +62,10 @@ public class Scheduling implements Identifiable, Serializable {
         this.timetable = timetable;
     }
 
+    public Patient getFk_patient() {
+        return fk_patient;
+    }
+    
     @Override
     public Serializable getID() {
      return this.ID;
@@ -66,4 +76,4 @@ public class Scheduling implements Identifiable, Serializable {
        this.ID=(Long) id; 
     }
     
-}
+ }

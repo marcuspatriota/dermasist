@@ -18,9 +18,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="PAYMENT")
-public class Payment implements Identifiable, Serializable {
+public class Payment implements IdentifiableIF, Serializable {
     
     @Id
+    @Column(name="PK_PAYMENT")
     private Long ID;
     
     @ManyToMany

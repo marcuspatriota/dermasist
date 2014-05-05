@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="LOGIN")
-public class Login implements Identifiable{
+public class Login implements IdentifiableIF{
     @Id
     private Long ID;
    

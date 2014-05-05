@@ -1,11 +1,10 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,13 +14,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="SERVICE")
-public class Service implements Identifiable, Serializable{
+public class Service implements IdentifiableIF, Serializable{
     
     @Id
     private Long ID;
     
-    @ OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
-    private Collection<Administrator> pk_admistrator;
+    @ManyToOne(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
+    private Administrator pk_admistrator;
     
     @Column(name="NAME")
     private String name;
@@ -45,6 +44,10 @@ public class Service implements Identifiable, Serializable{
         this.value = value;
     }
 
+    public Administrator getPk_admistrator() {
+        return pk_admistrator;
+    }
+    
     @Override
     public Serializable getID() {
        return this.ID;
@@ -54,5 +57,7 @@ public class Service implements Identifiable, Serializable{
     public void setID(Serializable id) {
         this.ID=(Long) id;   
     }
+    
+    
        
 }

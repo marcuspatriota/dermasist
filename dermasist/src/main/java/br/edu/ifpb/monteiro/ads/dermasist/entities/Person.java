@@ -4,13 +4,17 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PERSON")
-public class Person implements Identifiable, Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Person implements IdentifiableIF, Serializable {
     
     @Id
+    @Column(name="ID",nullable = false)
     private Long ID;
     
     @Column(name="NAME",nullable = false)

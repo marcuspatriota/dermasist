@@ -2,6 +2,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 public class Secretary extends Person{
     
     @OneToOne
+    @JoinColumn(name="FK_PERSON")
     private Person fk_person;
     
     @Column(name="SALARY")

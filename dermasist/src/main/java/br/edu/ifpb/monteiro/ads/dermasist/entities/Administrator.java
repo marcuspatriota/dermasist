@@ -1,9 +1,9 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import java.util.Objects;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @Table(name="ADMINISTRATOR")
 public class Administrator extends Person{
   
-    @OneToOne() 
+    @ManyToOne
+    @JoinColumn(name="FK_PERSON")
     private Person fk_person;
 
     public Person getFk_person() {

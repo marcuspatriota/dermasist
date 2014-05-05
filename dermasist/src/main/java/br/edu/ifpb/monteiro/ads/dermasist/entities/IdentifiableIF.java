@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Markus
  * @param <PK>
  */
-public interface Identifiable <PK extends Serializable>{
+public interface IdentifiableIF <PK extends Serializable>{
 
       public PK getID();
       public void setID(PK id);

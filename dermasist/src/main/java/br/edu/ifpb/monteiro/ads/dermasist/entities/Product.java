@@ -9,16 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="PRODUCT")
-public class Product implements Identifiable, Serializable {
+public class Product implements IdentifiableIF, Serializable {
     
     @Id
+    @Column(name="PK_PRODUCT")
     private Long ID;
     
     @ManyToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Provider.class)
@@ -26,8 +27,9 @@ public class Product implements Identifiable, Serializable {
             inverseJoinColumns = @JoinColumn(name="FK_PROVIDER"))
     private Collection<Provider> provider;
     
-    @OneToMany (targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class) 
-    private Collection<Administrator> fk_administrator;
+    @ManyToOne(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator.class)
+    @JoinColumn(name="FK_ADMINISTRATOR")
+    private Administrator fk_administrator;
     
     @Column(name="NAME")
     private String name;
@@ -87,11 +89,10 @@ public class Product implements Identifiable, Serializable {
         this.finality = finality;
     }
 
-    public Collection<Administrator> getFk_administrator() {
+    public Administrator getFk_administrator() {
         return fk_administrator;
     }
-
-
+    
     public Collection<Provider> getProvider() {
         return provider;
     }

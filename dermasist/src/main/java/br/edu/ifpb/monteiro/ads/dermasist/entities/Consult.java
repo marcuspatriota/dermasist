@@ -1,13 +1,14 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,16 +19,19 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="CONSULT")
-public class Consult implements Identifiable, Serializable{
+public class Consult implements IdentifiableIF, Serializable{
    
     @Id
+    @Column(name="PK_CONSULT")
     private Long ID;
    
-    @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Patient.class)
-    private Collection<Scheduling> fk_patient;
+    @ManyToOne(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Patient.class)
+    @JoinColumn(name="FK_PATIENT")
+    private Scheduling fk_patient;
     
-    @OneToMany(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Doctor.class)
-    private Collection<Doctor> fk_doctor;
+    @ManyToOne(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Doctor.class)
+    @JoinColumn(name="FK_DOCTOR")
+    private Doctor fk_doctor;
         
     @Column(name="TIME")
     @Temporal(TemporalType.DATE)
@@ -95,5 +99,22 @@ public class Consult implements Identifiable, Serializable{
     public void setID(Serializable id) {
        this.ID=(Long) id;
     }
- 
+
+    public Scheduling getFk_patient() {
+        return fk_patient;
+    }
+
+    public void setFk_patient(Scheduling fk_patient) {
+        this.fk_patient = fk_patient;
+    }
+
+    public Doctor getFk_doctor() {
+        return fk_doctor;
+    }
+
+    public void setFk_doctor(Doctor fk_doctor) {
+        this.fk_doctor = fk_doctor;
+    }
+  
+    
 }

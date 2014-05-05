@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="PATRIMONY")
-public class Patrimony implements Identifiable, Serializable{
+public class Patrimony implements IdentifiableIF, Serializable{
     
     @Id
     private Long ID;
