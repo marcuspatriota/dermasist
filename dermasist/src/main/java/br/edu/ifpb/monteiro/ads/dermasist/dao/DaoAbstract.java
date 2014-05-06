@@ -4,17 +4,28 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
- *
+ * Abstract class for persisting data with the database, which contains methods to persist,
+ * delete, update, Search by id, search all, multiple search and counting.
+ * 
  * @author Markus
  * @param <T>
  */
-public abstract class Dao<T> {
+public abstract class DaoAbstract<T> {
     private Class<T> entityClass;
 
-    public Dao(Class<T> entityClass) {
+    /**
+     * O construtor da classe recebe com paramento a entitate que vai ser 
+     * persistida no banco de dados.
+     * @param entityClass 
+     */
+    public DaoAbstract(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
+    /**
+     * Método abstrator para recuperar o EntityManager 
+     * @return 
+     */
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
@@ -55,5 +66,5 @@ public abstract class Dao<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
- 
+    
 }

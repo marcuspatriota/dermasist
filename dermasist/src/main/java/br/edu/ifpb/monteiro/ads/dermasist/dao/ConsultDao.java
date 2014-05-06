@@ -1,18 +1,16 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
+import br.edu.ifpb.monteiro.ads.dermasist.entities.Consult;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 
 /**
  *
  * @author Markus
- * 
  */
-
-
-public class DaoIFImpl extends Dao<DaoIFImpl> {
-    
+@Stateless
+public class ConsultDao extends DaoAbstract<Consult> {
     @PersistenceContext(unitName = "dermasist_PU")
     private EntityManager em;
 
@@ -21,8 +19,8 @@ public class DaoIFImpl extends Dao<DaoIFImpl> {
         return em;
     }
 
-    public DaoIFImpl() {
-        super(DaoIFImpl.class);
+    public ConsultDao() {
+        super(Consult.class);
     }
-      
+    
 }
