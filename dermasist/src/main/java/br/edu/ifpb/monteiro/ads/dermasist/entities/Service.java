@@ -57,7 +57,5 @@ public class Service implements IdentifiableIF, Serializable{
     public void setID(Serializable id) {
         this.ID=(Long) id;   
     }
-    
-    
-       
+        
 }
