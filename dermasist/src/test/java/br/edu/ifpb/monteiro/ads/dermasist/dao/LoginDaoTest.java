@@ -26,7 +26,7 @@ public class LoginDaoTest {
      */
     @Test
     public void testCreate() throws Exception {
-       
+        
     }
 
     /**
@@ -34,7 +34,7 @@ public class LoginDaoTest {
      */
     @Test
     public void testEdit() throws Exception {
-      
+   
     }
 
     /**
@@ -58,7 +58,7 @@ public class LoginDaoTest {
      */
     @Test
     public void testFindAll() throws Exception {
-       
+        
     }
 
     /**
@@ -66,7 +66,7 @@ public class LoginDaoTest {
      */
     @Test
     public void testFindRange() throws Exception {
-       
+      
     }
 
     /**
@@ -74,6 +74,7 @@ public class LoginDaoTest {
      */
     @Test
     public void testCount() throws Exception {
+      
     }
     
 }
