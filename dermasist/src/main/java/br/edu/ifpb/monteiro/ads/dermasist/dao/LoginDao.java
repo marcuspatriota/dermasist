@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
  * @author Markus
  */
 @Stateless
-public class LoginDao extends DaoAbstract<Login> {
+public class LoginDao extends DaoAbstract<Login>{
     @PersistenceContext(unitName = "dermasist_PU")
     private EntityManager em;
 
