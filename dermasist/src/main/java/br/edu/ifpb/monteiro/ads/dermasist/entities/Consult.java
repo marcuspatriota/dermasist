@@ -3,9 +3,9 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * Entidade de Consult contém atribudos e métodos de criação de uma 
+ * consult.
  * @author Markus
  */
 @Entity
@@ -49,7 +50,9 @@ public class Consult implements IdentifiableIF, Serializable{
     @Column(name="DATE")
     @Temporal(TemporalType.DATE)
     private Date date;
-
+   
+    // Get's and Set's
+    
     public GregorianCalendar getTime() {
         return time;
     }
@@ -115,6 +118,32 @@ public class Consult implements IdentifiableIF, Serializable{
     public void setFk_doctor(Doctor fk_doctor) {
         this.fk_doctor = fk_doctor;
     }
-  
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.ID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Consult other = (Consult) obj;
+        if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Consult{" + "ID=" + ID + ", fk_patient=" + fk_patient + ", fk_doctor=" + fk_doctor + ", time=" + time + ", diagnosis=" + diagnosis + ", exam=" + exam + ", medication=" + medication + ", date=" + date + '}';
+    }
     
 }

@@ -7,7 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Entidade de admisnistrator contém atribudos e métodos de criação de uma 
+ * administrator. 
  * @author Markus
  */
 @Entity
@@ -18,6 +19,7 @@ public class Administrator extends Person{
     @JoinColumn(name="FK_PERSON")
     private Person fk_person;
 
+    //Get's and Set's
     public Person getFk_person() {
         return fk_person;
     }
