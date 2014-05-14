@@ -3,7 +3,8 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 import java.io.Serializable;
 
 /**
- *
+ * Interface de intentificação das entidades contendo apenas o método de recuperação 
+ * e um método de criação. 
  * @author Markus
  * @param <PK>
  */

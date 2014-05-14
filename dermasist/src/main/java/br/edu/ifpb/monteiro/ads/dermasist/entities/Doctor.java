@@ -1,5 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -7,7 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Entidade de douctor contém atribudos e métodos de criação de uma 
+ * douctor.
  * @author Markus
  */
 @Entity
@@ -60,4 +62,31 @@ public class Doctor extends Person{
         this.fk_person = fk_person;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.fk_person);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Doctor other = (Doctor) obj;
+        if (!Objects.equals(this.fk_person, other.fk_person)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" + "fk_person=" + fk_person + ", specialty=" + specialty + ", registrationCode=" + registrationCode + ", salary=" + salary + '}';
+    }
+    
 }

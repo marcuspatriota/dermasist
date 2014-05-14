@@ -3,6 +3,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.entities;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
+ * Entidade de payment contém atribudos e métodos de criação de uma 
+ * payment.
  * @author Elisângela
  */
 @Entity
@@ -46,6 +49,7 @@ public class Payment implements IdentifiableIF, Serializable {
     @Column(name="VALUE")
     private float value;
     
+    //Get's e Set's
     
     public int getInterest() {
         return interest;
@@ -100,6 +104,33 @@ public class Payment implements IdentifiableIF, Serializable {
     @Override
     public void setID(Serializable id) {
         this.ID=(Long) id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.ID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Payment other = (Payment) obj;
+        if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" + "ID=" + ID + ", scheduling=" + scheduling + ", interest=" + interest + ", expirationDate=" + expirationDate + ", typeOfPayment=" + typeOfPayment + ", dateOfPayment=" + dateOfPayment + ", value=" + value + '}';
     }
          
 }

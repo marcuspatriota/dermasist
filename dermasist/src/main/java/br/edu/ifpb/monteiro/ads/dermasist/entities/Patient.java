@@ -1,5 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.entities;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -7,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
+ * Entidade de patient contém atribudos e métodos de criação de uma 
+ * patient.
  * @author Elisângela
  */
 @Entity
@@ -41,7 +44,7 @@ public class Patient extends Person {
     @Column(name="HEIGHT")
     private float height;
 
-    
+    // Get's e Set's
     
     public Person getPerson() {
         return person;
@@ -115,8 +118,32 @@ public class Patient extends Person {
         this.height = height;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.person);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Patient other = (Patient) obj;
+        if (!Objects.equals(this.person, other.person)) {
+            return false;
+        }
+        return true;
+    }
 
+    @Override
+    public String toString() {
+        return "Patient{" + "person=" + person + ", motherIsName=" + motherIsName + ", bloodType=" + bloodType + ", fleshTone=" + fleshTone + ", emergencyContact=" + emergencyContact + ", healthPlan=" + healthPlan + ", susCard=" + susCard + ", weight=" + weight + ", height=" + height + '}';
+    }
     
     
 }
