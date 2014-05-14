@@ -14,9 +14,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * Class Product
+ * @author Elisângela
+ */
+
 @Entity
 @Table(name="PRODUCT")
 public class Product implements IdentifiableIF, Serializable {
+    
+    /**
+     * Atributos e suas respectivas anotações e relacionamentos para
+     * persistência no banco.
+     */
     
     @Id
     @Column(name="PK_PRODUCT")
@@ -49,6 +59,11 @@ public class Product implements IdentifiableIF, Serializable {
     @Column(name="FINALITY")
     private String finality;
 
+    /**
+     * Getters and Setters
+     * @return 
+     */
+    
     public String getName() {
         return name;
     }

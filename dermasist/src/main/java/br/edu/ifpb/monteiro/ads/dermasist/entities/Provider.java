@@ -7,12 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
+ * Class Provider
  * @author Markus
  */
 @Entity
 @Table(name="PROVIDER")
 public class Provider implements IdentifiableIF, Serializable{
+    
+    /**
+     * Atributos e suas respectivas anotações para
+     * persistência no banco.
+     */
     
     @Id
     private Long ID;
@@ -38,6 +43,10 @@ public class Provider implements IdentifiableIF, Serializable{
     @Column(name="PHONE")
     private String phone;
 
+    /**
+     * Getters and Setters
+     * @return atributo
+     */
     
     public String getName() {
         return name;

@@ -7,12 +7,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Class Secretary
  * @author Markus
  */
 @Entity
 @Table(name="SECRETARY")
 public class Secretary extends Person{
+    
+    /**
+     * Atributos e suas respectivas anotações para
+     * persistência no banco.
+     */
     
     @OneToOne
     @JoinColumn(name="FK_PERSON")
@@ -24,6 +29,11 @@ public class Secretary extends Person{
     @Column(name="ROLE")
     private String role;
 
+    /**
+     * Getters and Setters
+     * @return atributo
+     */
+    
     public float getSalary() {
         return salary;
     }

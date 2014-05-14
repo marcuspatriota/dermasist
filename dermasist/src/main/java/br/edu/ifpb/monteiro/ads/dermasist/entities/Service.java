@@ -8,13 +8,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Class Service
  * @author Markus
  */
 
 @Entity
 @Table(name="SERVICE")
 public class Service implements IdentifiableIF, Serializable{
+    
+    /** 
+     * Atributos e suas respectivas anotações para
+     * persistência no banco.
+     */
     
     @Id
     private Long ID;
@@ -27,6 +32,11 @@ public class Service implements IdentifiableIF, Serializable{
     
     @Column(name="VALUE")
     private float value;
+    
+    /**
+     * Getters and Setters
+     * @return atributo
+     */
     
     public String getName() {
         return name;
