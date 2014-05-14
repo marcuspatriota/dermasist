@@ -61,7 +61,7 @@ public class Product implements IdentifiableIF, Serializable {
 
     /**
      * Getters and Setters
-     * @return 
+     * @return atribute
      */
     
     public String getName() {

@@ -35,7 +35,7 @@ public class Service implements IdentifiableIF, Serializable{
     
     /**
      * Getters and Setters
-     * @return atributo
+     * @return atribute
      */
     
     public String getName() {

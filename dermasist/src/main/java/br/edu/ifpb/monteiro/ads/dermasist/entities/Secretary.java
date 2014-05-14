@@ -31,7 +31,7 @@ public class Secretary extends Person{
 
     /**
      * Getters and Setters
-     * @return atributo
+     * @return atribute
      */
     
     public float getSalary() {
