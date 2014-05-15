@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Entidade de patient contém atribudos e métodos de criação de uma 
+ * Entity atribudos pacientecontém and methods of creating a 
  * patient.
  * @author Elisângela
  */

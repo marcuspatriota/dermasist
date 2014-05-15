@@ -7,12 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
+ * Provider entity contains the creation of supplier attributes and methods.
  * @author Markus
  */
 @Entity
 @Table(name="PROVIDER")
 public class Provider implements IdentifiableIF, Serializable{
+    
+    /**
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
+     */
     
     @Id
     private Long ID;
@@ -38,6 +43,10 @@ public class Provider implements IdentifiableIF, Serializable{
     @Column(name="PHONE")
     private String phone;
 
+    /**
+     * Getters and Setters
+     * @return atribute
+     */
     
     public String getName() {
         return name;

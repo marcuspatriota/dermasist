@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Entidade de patrimony contém atribudos e métodos de criação de uma 
- * patrymony.
+ * Entidade de patrimony atribudos and contains methods for creating 
+ * patrimony.
  * @author Markus
  */
 

@@ -13,15 +13,20 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * @author ElisÃ¢ngela
+ * Scheduling entity contains the creation of scheduling attributes and methods.
+ * @author Elisângela
  */
 @Entity
 @Table(name="SCHEDULING")
 public class Scheduling implements IdentifiableIF, Serializable {
     
+    /**
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
+     */
+    
     @Id
     private Long ID;
-    
         
     @Column(name="DATE")
     @Temporal(TemporalType.DATE)
@@ -37,6 +42,10 @@ public class Scheduling implements IdentifiableIF, Serializable {
     @JoinColumn(name="FK_PATIENT")
     private Patient fk_patient;
     
+    /**
+     * Getters and Setters
+     * @return atribute
+     */
     
     public Date getDate() {
         return date;

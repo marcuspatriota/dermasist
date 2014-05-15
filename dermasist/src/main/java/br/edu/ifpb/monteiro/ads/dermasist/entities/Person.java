@@ -8,10 +8,20 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+/**
+ * Person entity has atributes that will be inherited by classes:
+ * Administrator, Doctor, Patient and Secretary.
+ * @author Elisângela
+ */
 @Entity
 @Table(name="PERSON")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person implements IdentifiableIF, Serializable {
+    
+    /**
+     * Attributes and their respective annotations 
+     * for persistence in stock
+     */
     
     @Id
     @Column(name="ID",nullable = false)
@@ -53,6 +63,10 @@ public class Person implements IdentifiableIF, Serializable {
     @Column(name="PHONE")
     private String phone;
 
+    /**
+     * Getters and Setters
+     * @return atribute
+     */
     
     public String getName() {
         return name;

@@ -14,8 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Entidade de Consult contém atribudos e métodos de criação de uma 
- * consult.
+ * Consult Entity contains atribudos and methods of creating a 
+ * consultation
  * @author Markus
  */
 @Entity

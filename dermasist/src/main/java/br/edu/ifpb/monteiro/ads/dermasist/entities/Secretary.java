@@ -7,12 +7,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Secretary entity inherits the attributes of the Person entity 
+ * beyond the actual attributes secretary.
  * @author Markus
  */
 @Entity
 @Table(name="SECRETARY")
 public class Secretary extends Person{
+    
+    /**
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
+     */
     
     @OneToOne
     @JoinColumn(name="FK_PERSON")
@@ -24,6 +30,11 @@ public class Secretary extends Person{
     @Column(name="ROLE")
     private String role;
 
+    /**
+     * Getters and Setters
+     * @return atribute
+     */
+    
     public float getSalary() {
         return salary;
     }

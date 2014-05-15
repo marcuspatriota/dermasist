@@ -8,13 +8,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *
+ * Service entity contains attributes and methods for creating services.
  * @author Markus
  */
 
 @Entity
 @Table(name="SERVICE")
 public class Service implements IdentifiableIF, Serializable{
+    
+    /** 
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
+     */
     
     @Id
     private Long ID;
@@ -27,6 +32,11 @@ public class Service implements IdentifiableIF, Serializable{
     
     @Column(name="VALUE")
     private float value;
+    
+    /**
+     * Getters and Setters
+     * @return atribute
+     */
     
     public String getName() {
         return name;

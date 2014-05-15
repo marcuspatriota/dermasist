@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Entidade de Login contém atribudos e métodos de criação de uma 
+ * Login entity contains atribudos and methods of creating a 
  * login.
  * @author Markus
  */
