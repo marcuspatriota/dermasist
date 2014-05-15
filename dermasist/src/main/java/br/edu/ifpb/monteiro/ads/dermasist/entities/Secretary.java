@@ -7,7 +7,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * Class Secretary
+ * Secretary entity inherits the attributes of the Person entity 
+ * beyond the actual attributes secretary.
  * @author Markus
  */
 @Entity
@@ -15,8 +16,8 @@ import javax.persistence.Table;
 public class Secretary extends Person{
     
     /**
-     * Atributos e suas respectivas anotações para
-     * persistência no banco.
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
      */
     
     @OneToOne

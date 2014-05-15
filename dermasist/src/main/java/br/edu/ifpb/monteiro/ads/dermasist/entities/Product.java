@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Class Product
+ * Product entity contains attributes and methods of product creation.
  * @author Elisângela
  */
 
@@ -24,8 +24,8 @@ import javax.persistence.TemporalType;
 public class Product implements IdentifiableIF, Serializable {
     
     /**
-     * Atributos e suas respectivas anotações e relacionamentos para
-     * persistência no banco.
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
      */
     
     @Id

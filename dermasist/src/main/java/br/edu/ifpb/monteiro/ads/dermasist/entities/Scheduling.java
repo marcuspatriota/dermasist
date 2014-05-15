@@ -13,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Class Scheduling
+ * Scheduling entity contains the creation of scheduling attributes and methods.
  * @author Elisângela
  */
 @Entity
@@ -21,8 +21,8 @@ import javax.persistence.TemporalType;
 public class Scheduling implements IdentifiableIF, Serializable {
     
     /**
-     * Atributos e suas respectivas anotações para
-     * persistência no banco.
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
      */
     
     @Id

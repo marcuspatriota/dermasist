@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Class Provider
+ * Provider entity contains the creation of supplier attributes and methods.
  * @author Markus
  */
 @Entity
@@ -15,8 +15,8 @@ import javax.persistence.Table;
 public class Provider implements IdentifiableIF, Serializable{
     
     /**
-     * Atributos e suas respectivas anotações para
-     * persistência no banco.
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
      */
     
     @Id

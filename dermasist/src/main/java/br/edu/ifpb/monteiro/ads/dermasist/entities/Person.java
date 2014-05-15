@@ -9,8 +9,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
- * Class Person
- * 
+ * Person entity has atributes that will be inherited by classes:
+ * Administrator, Doctor, Patient and Secretary.
  * @author Elisângela
  */
 @Entity
@@ -19,8 +19,8 @@ import javax.persistence.Table;
 public class Person implements IdentifiableIF, Serializable {
     
     /**
-     * Atributos e suas respectivas anotações para
-     * persistência no banco.
+     * Attributes and their respective annotations 
+     * for persistence in stock
      */
     
     @Id

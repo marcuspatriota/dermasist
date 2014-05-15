@@ -8,8 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Entidade de douctor contém atribudos e métodos de criação de uma 
- * douctor.
+ * Doctor entity contains atribudos and methods of creating a 
+ * Doctor.
  * @author Markus
  */
 @Entity

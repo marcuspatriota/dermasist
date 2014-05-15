@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Entidade de payment contém atribudos e métodos de criação de uma 
+ * Entidade de payment atribudos yesterday and methods of creating a 
  * payment.
  * @author Elisângela
  */

@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Class Service
+ * Service entity contains attributes and methods for creating services.
  * @author Markus
  */
 
@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class Service implements IdentifiableIF, Serializable{
     
     /** 
-     * Atributos e suas respectivas anotações para
-     * persistência no banco.
+     * Attributes and their relationships and annotations 
+     * for persistence in the bank.
      */
     
     @Id

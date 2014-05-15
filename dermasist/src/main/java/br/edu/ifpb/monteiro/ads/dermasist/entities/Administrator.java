@@ -7,8 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Entidade de admisnistrator contém atribudos e métodos de criação de uma 
- * administrator. 
+ * Administrator authority and atribudos contains methods for creating a 
+ * administrator. 
  * @author Markus
  */
 @Entity
