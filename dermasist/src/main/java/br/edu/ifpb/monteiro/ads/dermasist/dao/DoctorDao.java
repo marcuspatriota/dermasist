@@ -5,6 +5,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+
+
 /**
  * Class for persisting data with the database, which contains methods to persist,
  * delete, update, Search by id, search all, multiple search and counting
