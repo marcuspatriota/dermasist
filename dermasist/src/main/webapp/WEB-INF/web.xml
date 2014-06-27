@@ -1,57 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    
-    <!--Development stage returns an stack trace more detailed-->
-    
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
     
-    <!--Application theme selection-->
-    
     <context-param>  
-        <param-name>primefaces.THEME</param-name>  
-        <param-value>south-street</param-value>  
+    <param-name>primefaces.THEME</param-name>  
+    <param-value>south-street</param-value>  
     </context-param> 
-    
     
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    
-    <!-- Defines the page extension. Can be any other, including names (*.faces, etc)-->
-    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    
-    <!--Time of active session (in minutes)-->
-    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-    <!--File name to be searched at start the application-->
-    
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    
-    <!--This constraint don't show the source-code of app to final user-->
-    
-    <security-constraint>
-        <display-name>Block the access of browser for xhtml files</display-name>
-        <web-resource-collection>
-            <web-resource-name>Xhtml Files</web-resource-name>
-            <url-pattern>*.xhtml</url-pattern>
-        </web-resource-collection>
-        <auth-constraint/>
-    </security-constraint>
-    
 </web-app>
