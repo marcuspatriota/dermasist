@@ -9,56 +9,40 @@
         <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
         <title>DermaSist - Sistema de Gestão de Clínicas Dermatológicas</title>
         <link rel="stylesheet" href="css/pages.css"/>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+
+
     </h:head>
 
     <h:body>
+      
+        <h:form> 
+            <p:growl id="messages"/>
 
-        <div id="top">
+            <!-- First Menu Item -->
+            <p:menubar>
+                <p:submenu label="Cadastros" >
+                    <p:submenu label="Funcionários" icon="ui-icon-note">
+                        <p:menuitem value="Médico" url="#" icon=">"/>
+                        <p:menuitem value="Secretário" url="#" icon=">"/>
+                        <p:menuitem value="Servidor" url="#" icon=">"/>
+                    </p:submenu>
+                    <p:menuitem value="Serviço" url="#" icon=">"/>
+                    <p:menuitem value="Produto" url="#" icon=">"/>
+                    <p:menuitem value="Patrimônio" url="#" icon=">"/>
+                </p:submenu>
 
-            <div id="text1" style="margin-top: 200px"/>
-
-        </div>
-            
-            <h:form> 
-                <p:growl id="messages"/>
-
-                <!-- First Menu Item -->
-                <p:menubar>
-                    <p:submenu label="Cadastros" >
-                        <p:submenu label="Funcionários" icon="ui-icon-note">
-                            <p:menuitem value="Médico" url="#" icon=">"/>
-                            <p:menuitem value="Secretário" url="#" icon=">"/>
-                            <p:menuitem value="Servidor" url="#" icon=">"/>
-                        </p:submenu>
-                        <p:menuitem value="Serviço" url="#" icon=">"/>
-                        <p:menuitem value="Produto" url="#" icon=">"/>
-                        <p:menuitem value="Patrimônio" url="#" icon=">"/>
+                <p:submenu label="Financeiro" icon="ui-icon-calculator">
+                    <p:submenu label="Contas a pagar" icon="ui-icon-pencil">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Consultar" url="#" icon=">"/>
                     </p:submenu>
 
-                    <p:submenu label="Financeiro" icon="ui-icon-calculator">
-                        <p:submenu label="Contas a pagar" icon="ui-icon-pencil">
-                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Consultar" url="#" icon=">"/>
-                        </p:submenu>
-
-                        <p:submenu label="Contas a receber" icon="ui-icon-pencil">
-                            <p:menuitem value="Cadastrar" url="#" />
-                            <p:menuitem value="Consultar" url="#" icon=">"/>
-                        </p:submenu>
+                    <p:submenu label="Contas a receber" icon="ui-icon-pencil">
+                        <p:menuitem value="Cadastrar" url="#" />
+                        <p:menuitem value="Consultar" url="#" icon=">"/>
                     </p:submenu>
-                </p:menubar>
-            </h:form>
-
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
-
-        <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </div>
-
-
+                </p:submenu>
+            </p:menubar>
+        </h:form>
     </h:body>
 </html>

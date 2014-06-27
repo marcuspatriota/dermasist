@@ -15,6 +15,8 @@
 // */
 //public class PhaseListnerFilter implements PhaseListener {
 //
+//    private static final String RESTRICTION_PATTERN = "^/restrict/.*";
+//
 //    @Override
 //    public void afterPhase(PhaseEvent phaseEvent) {
 //        FacesContext facesContext = phaseEvent.getFacesContext();
@@ -32,11 +34,32 @@
 //
 //    @Override
 //    public void beforePhase(PhaseEvent phaseEvent) {
+//        if(phaseEvent.getPhaseId().equals(PhaseId.RESTORE_VIEW)){
+//            
+//            Session session = 
+//            
+//        }
 //        
+////        FacesContext facesContext = phaseEvent.getFacesContext();  
+////        //nessa linha debaixo ta dando o NULL pointer quando chamo o getViewRoot ele me retorna nulo...  
+////        String currentPage = facesContext.getViewRoot().getViewId();  
+////  
+////        boolean isLoginPage = (currentPage.lastIndexOf("loginGUI.jsf") > -1);  
+////  
+////        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);  
+////  
+////        //recupero meu managed bean de sessao com os dados do usuario  
+////        UsuarioBean currentUser = (UsuarioBean) session.getAttribute("UsuarioBean");  
+////  
+////        //valida, se não for a pagina de login E o usuario não estiver logado, manda ele de volta pro login...  
+////        if (!isLoginPage && !currentUser.isIsLogado()) {  
+////            NavigationHandler nh = facesContext.getApplication().getNavigationHandler();  
+////            nh.handleNavigation(facesContext, null, "gotoLogin");  
+////        }  
 //    }
 //
 //    @Override
 //    public PhaseId getPhaseId() {
-//        return PhaseId.RESTORE_VIEW;
+//        return PhaseId.ANY_PHASE;
 //    }
 //}
