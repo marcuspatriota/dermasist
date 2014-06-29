@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      > 
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./restrict/css/default.css"/>
+        <h:outputStylesheet name="./restrict/css/pages.css"/>
+        <title>DermaSist - Sistema de Gestão de Clínicas Dermatológicas</title>
+        <!--Falta o FAVICON-->
+    </h:head>
+
+    <h:body>
+        <div id="header">
+            <ui:insert name="header"></ui:insert>
+            <a href="http://localhost:8080/dermasist" >
+                <div id="logo">
+                    <p:graphicImage library="./restrict/images" name="logo-mini.png"></p:graphicImage>
+                </div>
+            </a>
+
+            <div id="text-login">
+                <a href="http://localhost:8080/dermasist/login.xhtml">LogOut</a>
+            </div>
+        </div>
+
+        <h:form> 
+            <p:growl id="messages"/>
+
+            <!-- First Menu Item -->
+            <p:menubar>
+                <p:submenu label="Cadastros" icon="ui-icon-folder-collapsed">
+                    <p:submenu label="Funcionários" icon="ui-icon-folder-open">
+                        <p:submenu label="Médico" icon="ui-icon-folder-open">
+                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                            <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                        </p:submenu>    
+                        <p:submenu label="Secretário" icon="ui-icon-folder-open">
+                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                            <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                        </p:submenu>
+                        <p:submenu label="Servidor" icon="ui-icon-folder-open">
+                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                            <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                        </p:submenu>
+                    </p:submenu>
+                    <p:submenu label="Pacientes" icon="ui-icon-folder-open" >
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu label="Serviços" icon="ui-icon-folder-open">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu label="Produtos" icon="ui-icon-folder-open">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu label="Patrimônio" icon="ui-icon-folder-open">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                    <p:submenu label="Fornecedor" icon="ui-icon-folder-open">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                </p:submenu>
+
+                <p:submenu label="Financeiro" icon="ui-icon-calculator">
+                    <p:submenu label="Contas a pagar" icon="ui-icon-pencil">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+
+                    <p:submenu label="Contas a receber" icon="ui-icon-pencil">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                </p:submenu>
+
+                <p:submenu label="Agendamentos" icon="ui-icon-calculator">
+                    <p:submenu label="Consultas" icon="ui-icon-pencil">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+
+                    <p:submenu label="Horários" icon="ui-icon-pencil">
+                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                    </p:submenu>
+                </p:submenu>
+
+            </p:menubar>
+        </h:form>
+
+        <div id="content" class="center_content">
+            <ui:insert name="cotent">
+
+            </ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">Bottom de teste</ui:insert>
+        </div>
+    </h:body>
+
+</html>

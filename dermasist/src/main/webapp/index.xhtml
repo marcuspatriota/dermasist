@@ -1,64 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"> 
-
-    <h:head>
-        <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-        <title>DermaSist - Sistema de Gestão de Clínicas Dermatológicas</title>
-        <link rel="stylesheet" href="css/pages.css"/>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-    </h:head>
-
-    <h:body>
-
-        <div id="top">
-
-            <div id="text1" style="margin-top: 200px"/>
-
-        </div>
-            
-            <h:form> 
-                <p:growl id="messages"/>
-
-                <!-- First Menu Item -->
-                <p:menubar>
-                    <p:submenu label="Cadastros" >
-                        <p:submenu label="Funcionários" icon="ui-icon-note">
-                            <p:menuitem value="Médico" url="#" icon=">"/>
-                            <p:menuitem value="Secretário" url="#" icon=">"/>
-                            <p:menuitem value="Servidor" url="#" icon=">"/>
-                        </p:submenu>
-                        <p:menuitem value="Serviço" url="#" icon=">"/>
-                        <p:menuitem value="Produto" url="#" icon=">"/>
-                        <p:menuitem value="Patrimônio" url="#" icon=">"/>
-                    </p:submenu>
-
-                    <p:submenu label="Financeiro" icon="ui-icon-calculator">
-                        <p:submenu label="Contas a pagar" icon="ui-icon-pencil">
-                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Consultar" url="#" icon=">"/>
-                        </p:submenu>
-
-                        <p:submenu label="Contas a receber" icon="ui-icon-pencil">
-                            <p:menuitem value="Cadastrar" url="#" />
-                            <p:menuitem value="Consultar" url="#" icon=">"/>
-                        </p:submenu>
-                    </p:submenu>
-                </p:menubar>
-            </h:form>
-
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
-        </div>
-
-        <div id="bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </div>
-
-
-    </h:body>
+<html>
+    <!--This code redirects the page to login.xhtml-->
+    <head>
+        <meta http-equiv="refresh" content="0;url=login.xhtml"></meta>
+    </head>
+    
 </html>

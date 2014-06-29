@@ -9,9 +9,12 @@
     </h:head>
 
     <h:body>
+        <div id="logo-login">
+            <p:graphicImage library="./restrict/images/" name="logo-mini.png"></p:graphicImage>
+        </div>
         <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="420">
             <center>
-                <!--<h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>-->
+                <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
             </center>
             <h:form>
                 <h:panelGrid columns="2" cellpadding="5">

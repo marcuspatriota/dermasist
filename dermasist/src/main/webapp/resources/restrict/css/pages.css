@@ -1,2 +1,112 @@
-/* Settings for Index page */
 
+/*#header {
+    position: relative;
+    height: 120px;
+    background-color: #036fab;
+    color: white;
+    padding: 1px;
+    margin: 0px 0px 0px 0px;
+}*/
+
+#header{
+    position: relative;
+    height: 120px;
+    background-color: #036fab;
+    color: white;
+    padding: 1px;
+    margin: 0px 0px 0px 0px;
+    background: #b4ddb4; /* Old browsers */
+    background: -moz-linear-gradient(left, #b4ddb4 0%, #83c783 17%, #52b152 33%, #008a00 100%, #005700 100%, #002400 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#b4ddb4), color-stop(17%,#83c783), color-stop(33%,#52b152), color-stop(100%,#008a00), color-stop(100%,#005700), color-stop(100%,#002400)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* IE10+ */
+    background: linear-gradient(to right, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 100%,#005700 100%,#002400 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-9 */
+}
+
+#text-login{
+    float: right;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#logo{
+    float: left; 
+    /*background-color: red;*/ 
+    width: 100px; 
+    height: 110px; 
+    margin: 5px
+}
+
+#logo-login{
+    float: left; 
+    width: 200px; 
+    height: 124px; 
+    position: relative;
+    text-align: center;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+    position:fixed; 
+    bottom:0; 
+    z-index:999999;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 10px 10px 0px 10px;
+    /*height: 420px;*/
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#text-login a{
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+
+#text-login a:link, #text-login a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#text-login a:link:hover, #text-login a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
