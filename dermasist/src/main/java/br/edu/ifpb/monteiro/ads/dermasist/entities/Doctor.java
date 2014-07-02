@@ -20,8 +20,8 @@ public class Doctor extends Person{
     @JoinColumn(name="FK_PERSON")
     private Person fk_person;
     
-    @Column(name="SPECIALTY")
-    private String specialty;
+    @Column(name="SPECIALITY")
+    private String speciality;
     
     @Column (name="REGISTRATION_CODE")
     private String registrationCode;
@@ -30,13 +30,6 @@ public class Doctor extends Person{
     private float salary;
 
     
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
 
     public String getRegistrationCode() {
         return registrationCode;
@@ -86,7 +79,21 @@ public class Doctor extends Person{
 
     @Override
     public String toString() {
-        return "Doctor{" + "fk_person=" + fk_person + ", specialty=" + specialty + ", registrationCode=" + registrationCode + ", salary=" + salary + '}';
+        return "Doctor{" + "fk_person=" + fk_person + ", specialty=" + speciality + ", registrationCode=" + registrationCode + ", salary=" + salary + '}';
+    }
+
+    /**
+     * @return the speciality
+     */
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    /**
+     * @param speciality the speciality to set
+     */
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
     
 }

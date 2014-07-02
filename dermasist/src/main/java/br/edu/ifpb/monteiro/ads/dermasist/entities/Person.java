@@ -57,8 +57,8 @@ public class Person implements IdentifiableIF, Serializable {
     @Column(name="STATE",nullable = false)
     private String state;
     
-    @Column(name="CELLULAR",nullable = false)
-    private String cellular;
+    @Column(name="MOBILE",nullable = false)
+    private String mobile;
     
     @Column(name="PHONE")
     private String phone;
@@ -148,13 +148,20 @@ public class Person implements IdentifiableIF, Serializable {
         this.state = state;
     }
 
-    public String getCellular() {
-        return cellular;
+    /**
+     * @return the mobile
+     */
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setCellular(String cellular) {
-        this.cellular = cellular;
+    /**
+     * @param mobile the mobile to set
+     */
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
+
 
     public String getPhone() {
         return phone;

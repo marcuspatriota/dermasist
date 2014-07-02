@@ -5,26 +5,33 @@
       xmlns:p="http://primefaces.org/ui"> 
 
     <h:head>
-        <title>Bem vindo ao DermaSist!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./restrict/css/pages.css"/>
+        <title>DermaSist - Login</title>
+        <link rel="shortcut icon" href="./restric/images/favicon.ico" />
+        <!--Falta o FAVICON-->
     </h:head>
 
     <h:body>
-        <div id="logo-login">
-            <p:graphicImage library="./restrict/images/" name="logo-mini.png"></p:graphicImage>
-        </div>
-        <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="420">
-            <center>
-                <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
-            </center>
-            <h:form>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="username" value="Username: *" /> 
-                    <h:inputText id="username" required="true"/>
-                    <h:outputLabel for="password" value="Password: * " />
-                    <h:inputSecret id="password" required="true"/>
-                    <h:commandButton value="Login"/>
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
+        <center>
+            <div id="logo-login">
+                <p:graphicImage library="./restrict/images/" name="logo450.png"></p:graphicImage>
+            </div>
+            <p:dialog header="Entre com seus dados de acesso" visible="true" closable="false" draggable="false" resizable="false" width="400">
+                <center>
+                    <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
+                </center>
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="Usuario: *" /> 
+                        <h:inputText id="username" required="true"/>
+                        <h:outputLabel for="password" value="Senha: * " />
+                        <h:inputSecret id="password" required="true"/>
+                        <h:commandButton value="Entrar"/>
+                        <a href="home.xhtml"><div id="lostPassword">Esqueci minha senha</div></a>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
+        </center>
     </h:body>
 </html>
