@@ -4,59 +4,105 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
                 template="../resources/template.xhtml">
+
+    <h:head>
+        <!-- Code to change calendar primefaces component to pt_BR -->
+        <script>
+            PrimeFaces.locales['pt'] = {
+                closeText: 'Fechar',
+                prevText: 'Anterior',
+                nextText: 'Próximo',
+                currentText: 'Começo',
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Só Horas',
+                timeText: 'Tempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                ampm: false,
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia',
+                allDayText: 'Todo o Dia'
+            };
+        </script>
+    </h:head>
 
     <ui:define name="content">
 
         <p:fieldset legend="Médico" id="fieldSetFormTitle">
             <p:tabView dynamic="true" id="tabViewRegisterDoctor">
                 <p:tab title="Cadastrar" id="tabRegister">
-                    <h:form>
+                    <h:form id="formRegisterDoctor">
                         <p:growl id="msgDoctorForm" showDetail="true" sticky="true" />
                         <h:panelGrid columns="2" cellpadding="2">
-                            <p:outputLabel value="Campos com * são obrigatórios" id="labelRequiredInfo" style="color: #D20005"/>
+                            <p:outputLabel value="Campos com * são obrigatórios" id="labelRequiredInfo" style="color: #D20005; font-size: 12px; font-weight: bold;"/>
                             <p:outputLabel/>
+
                             <p:outputLabel/>
                             <h:inputHidden id="idDoctor"/>
 
-                            <p:outputLabel for="registrationCode" value="Código de matrícula: "/>
-                            <p:inputText id="registrationCode" />
+                            <p:outputLabel for="registrationCode" value="Matrícula/CRM: "/>
+                            <p:inputText id="registrationCode" placeholder="Nº de matrícula ou CRM"/>
 
                             <p:outputLabel for="name" value="Nome: "/>
-                            <p:inputText id="name" required="true" requiredMessage="O campo [Nome] é obrigatório." size="30"/>
+                            <p:inputText id="name" required="true" requiredMessage="O campo [Nome] é obrigatório." size="30" 
+                                         placeholder="Nome completo"/>
 
                             <p:outputLabel for="street" value="Rua: "/>
-                            <p:inputText id="street" required="true" requiredMessage="O campo [Rua] é obrigatório." size="30"/>
+                            <p:inputText id="street" required="true" requiredMessage="O campo [Rua] é obrigatório." size="30" 
+                                         placeholder="Nome da Rua" />
 
                             <p:outputLabel for="number" value="Nº: "/>
-                            <p:inputText id="number" required="true" requiredMessage="O campo [Nº] é obrigatório." size="30"/>
+                            <p:inputText id="number" required="true" requiredMessage="O campo [Nº] é obrigatório." size="30" 
+                                         placeholder="Nº da casa"/>
+
 
                             <p:outputLabel for="neighborhood" value="Bairro: "/>
-                            <p:inputText id="neighborhood" required="true" requiredMessage="O campo [Bairro] é obrigatório." size="30"/>
+                            <p:inputText id="neighborhood" required="true" requiredMessage="O campo [Bairro] é obrigatório." 
+                                         size="30" placeholder="Nome do bairro"/>
 
                             <p:outputLabel for="city" value="Cidade: "/>
-                            <p:inputText id="city" required="true" requiredMessage="O campo [Cidade] é obrigatório." size="30"/>
+                            <p:inputText id="city" required="true" requiredMessage="O campo [Cidade] é obrigatório." 
+                                         size="30" placeholder="Nome da cidade"/>
 
                             <p:outputLabel for="state" value="Estado: "/>
-                            <p:inputText id="state" required="true" requiredMessage="O campo [Estado] é obrigatório." size="30"/>
-
-                            <p:outputLabel for="phone" value="Telefone fixo: "/>
-                            <p:inputText id="phone" />
+                            <p:inputText id="state" required="true" requiredMessage="O campo [Estado] é obrigatório." 
+                                         size="30" placeholder="Nome do  estado"/>
 
                             <p:outputLabel for="mobile" value="Celular: "/>
-                            <p:inputText id="mobile" required="true" requiredMessage="O campo [Celular] é obrigatório."/>
+                            <p:inputText id="mobile" required="true" requiredMessage="O campo [Celular] é obrigatório." 
+                                         placeholder="Número do celular">
+
+                            </p:inputText>
+
+                            <p:outputLabel for="phone" value="Telefone: "/>
+                            <p:inputText id="phone" placeholder="Telefone fixo ou outro celular"/>
 
                             <p:outputLabel for="birthOfDate" value="Data de nascimento: "/>
-                            <p:calendar id="birthOfDate" navigator="true"  locale="pt_BR" effect="explode" 
+                            <p:calendar id="birthOfDate" navigator="true"  locale="pt" effect="explode" 
                                         required="true" requiredMessage="O campo [Data de nascimento] é obrigatório."
-                                        pattern="dd/MM/yyyy"/>
+                                        pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data de nascimento" 
+                                        readonly="true"/>
 
                             <p:outputLabel for="cpf" value="CPF: "/>
-                            <p:inputMask id="cpf" value="CPF: " mask="999.999.999-99" required="true" 
-                                         requiredMessage="O campo [CPF] é obrigatório."/>
+                            <p:inputMask id="cpf" mask="999.999.999-99" required="true" 
+                                         requiredMessage="O campo [CPF] é obrigatório." placeholder="Número do CPF"/>
 
                             <p:outputLabel for="rg" value="RG: "/>
-                            <p:inputText id="rg" required="true"  requiredMessage="O campo [RG] é obrigatório."/>
+                            <p:inputText id="rg" required="true"  requiredMessage="O campo [RG] é obrigatório." 
+                                         placeholder="Número do RG" />
 
                             <p:outputLabel for="sex" value="Sexo: " />
                             <p:selectOneMenu id="sex" label="Sexo: " effect="slide" editable="true" required="true" 
@@ -67,15 +113,17 @@
                             </p:selectOneMenu>
 
                             <p:outputLabel for="speciality" value="Especialidade "/>
-                            <p:inputText id="speciality"/>
+                            <p:inputText id="speciality" placeholder="Especialidade"/>
 
                             <p:outputLabel for="salary" value="Salário: "/>
-                            <p:inputText id="salary"/>
+                            <p:inputMask id="salary" mask="?999.999.999,99" placeholder="Valor do salário" />
 
-                            <p:panel id="panelButtonsDoctor">
-                                <p:commandButton value="Cadastrar" id="register" update="@form" icon="ui-icon ui-icon-disk"/>
-                                <p:commandButton value="Cancelar" id="cancel" update="@form" icon="ui-icon ui-icon-close"/>
-                            </p:panel>
+                            <h:panelGroup id="panelButtonsDoctor">
+                                <p:commandButton style="font-size: 13px; right: 2px; bottom: 3px;" value="Cadastrar" id="register" update="@form" icon="ui-icon ui-icon-disk"/>
+                                <p:commandButton style="font-size: 13px; bottom: 3px;" value="Cancelar" id="cancel" update="@form" type="cancel" icon="ui-icon ui-icon-close"/>
+                                <br />
+                                <p:commandButton style="font-size: 13px;" value="Limpar todos os campos" id="reset" type="reset" icon="ui-icon ui-icon-trash"/>
+                            </h:panelGroup>
                         </h:panelGrid>
 
                     </h:form>
@@ -88,8 +136,15 @@
                 <p:growl id="msgTableRegisterDoctor"/>
                 <p:dataTable id="tableDoctorDB" var="doctorName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15">
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20">
                     <f:facet name="header">Lista de médicos</f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Matrícula"/>
+                        </f:facet>
+                        <h:outputText/>
+                    </p:column>
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Nome"/>
@@ -99,7 +154,14 @@
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Matrícula"/>
+                            <h:outputText value="Especialidade"/>
+                        </f:facet>
+                        <h:outputText/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Celular"/>
                         </f:facet>
                         <h:outputText/>
                     </p:column>
