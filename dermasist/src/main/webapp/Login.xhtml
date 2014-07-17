@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"> 
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="style.css"/>
+        <title>DermaSist - Login</title>
+    </h:head>
+
+    <h:body>
+        <div style="float: none; padding-top: 50px; position: relative; text-align: center;">
+            <p:graphicImage library="images" name="logo450.png"></p:graphicImage>
+        </div>
+        <p:dialog header="Entre com seus dados de acesso" visible="true" closable="false" draggable="false" resizable="false" width="380">
+            <center>
+                <h:outputText value="Usuário ou senha incorretos!" style="color: darkred"/>
+            </center>
+            <h:form>
+                <p:growl/>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="username" value="Usuario:" /> 
+                    <p:inputText id="username" required="true" size="35"/>
+
+                    <p:outputLabel for="password" value="Senha:" />
+                    <p:password id="password" required="true" size="35"/>
+
+                    <p:commandButton value="Entrar" style="font-size: 14px;" update="@form"/>
+                    <h:link outcome="Home" value="Entrar sem login ^^" id="lostPassword"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog> 
+    </h:body>
+</html>
