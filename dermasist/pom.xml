@@ -15,6 +15,15 @@
     </properties>
     
     <dependencies>
+        
+        <!--######## Mojarra (JSF Implementation) #######-->
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        
         <!--######## JUnit #######-->
         <dependency>
             <groupId>junit</groupId>
@@ -91,28 +100,21 @@
         </dependency>
         
         <!--###### Selenium #######-->
-       <dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>2.42.2</version>
-       </dependency> 
+        </dependency> 
         
-<!--        
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-extensions</artifactId>
-            <version>2.0.0</version>
-        </dependency>-->
-
     </dependencies>
-    <!--
-         <repositories>  
-               <repository>  
-                    <id>m2-openqa.org</id>  
-                    <url>http://nexus.openqa.org/content/repositories/releases</url>  
-                </repository>  
-        </repositories> 
-    -->
+    
+    <repositories>  
+        <repository>  
+            <id>m2-openqa.org</id>  
+            <url>http://nexus.openqa.org/content/repositories/releases</url>  
+        </repository>  
+    </repositories> 
+    
     <build>
         <plugins>
             <plugin>
