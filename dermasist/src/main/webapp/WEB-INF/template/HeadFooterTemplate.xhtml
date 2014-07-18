@@ -11,6 +11,7 @@
         <h:outputStylesheet library="css" name="style.css"/>
         <h:outputScript library="js" name="jquery.maskmoney.js" />
         <h:outputScript library="js" name="jquery.mask.min.js" />
+        <h:outputScript library="js" name="primefacesCalendarLocale.js" />
         <title><ui:insert name="title"> DermaSist - Sistema de Gestão de Clínicas Dermatológicas</ui:insert></title>
     </h:head>
 
@@ -37,25 +38,25 @@
                         </p:submenu>   
 
                         <p:submenu label="Secretário" icon="ui-icon-folder-open">
-                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                            <p:menuitem value="Cadastrar" url="/secretary/CadastreSecretary.xhtml" icon="ui-icon-pencil"/>
+                            <p:menuitem value="Procurar" url="/secretary/SearchSecretary.xhtml" icon="ui-icon-search"/>
                         </p:submenu>
 
                         <p:submenu label="Servidor" icon="ui-icon-folder-open">
-                            <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                            <p:menuitem value="Cadastrar" url="/servent/CadastreServent.xhtml" icon="ui-icon-pencil"/>
+                            <p:menuitem value="Procurar" url="/servent/SearchServent.xhtml" icon="ui-icon-search"/>
                         </p:submenu>
 
                     </p:submenu>
 
                     <p:submenu label="Pacientes" icon="ui-icon-folder-open" >
-                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                        <p:menuitem value="Cadastrar" url="/patient/CadastrePatient.xhtml" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="/patient/SearchPatient.xhtml" icon="ui-icon-search"/>
                     </p:submenu>
 
                     <p:submenu label="Serviços" icon="ui-icon-folder-open">
-                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                        <p:menuitem value="Cadastrar" url="/services/CadastreService.xhtml" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="/services/SearchService.xhtml" icon="ui-icon-search"/>
                     </p:submenu>
 
                     <p:submenu label="Produtos" icon="ui-icon-folder-open">
