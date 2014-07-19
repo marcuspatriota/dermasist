@@ -20,7 +20,7 @@
                     <h:inputHidden id="idServent"/>
 
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" size="50" placeholder="Nome completo" 
+                    <p:inputText id="name" size="50" placeholder="Nome ou parte dele" 
                                  validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
@@ -36,7 +36,7 @@
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">
-                        <p:button value="Novo cadastro" id="newRegister" outcome="/servent/CadastreServent" icon="ui-icon ui-icon-pencil"/>
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/employees/servent/CadastreServent" icon="ui-icon ui-icon-pencil"/>
                     </p:toolbarGroup>
                 </p:toolbar>
 
@@ -46,7 +46,7 @@
                 <p:growl id="msgTableSearchServent"/>
                 <p:dataTable id="tableServentDB" var="serventName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20">
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de servidores</f:facet>
                     <p:column>
                         <f:facet name="header">
