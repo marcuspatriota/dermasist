@@ -12,49 +12,47 @@
     </h:head>
 
     <ui:define name="content">
-        <p:fieldset legend="Busca de serviços" id="fieldSetFormTitle">
-            <h:form id="formSearchPatient">
-                <p:growl id="msgPatientForm" showDetail="true" sticky="true" />
+        <p:fieldset legend="Busca de patrimônio" id="fieldSetFormTitle">
+            <h:form id="formSearchPatrimony">
+                <p:growl id="msgPatrimonyForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2">
                     <p:outputLabel/>
-                    <h:inputHidden id="idPatient"/>
+                    <h:inputHidden id="idPatrimony"/>
 
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" size="50" placeholder="Nome completo"
-                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
-                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
-                    </p:inputText>
+                    <p:inputText id="name" maxlength="50" placeholder="Nome"/>
 
                 </h:panelGrid>
 
-                <p:toolbar id="panelButtonsPatient">
+                <p:toolbar id="panelButtonsPatrimony">
                     <p:toolbarGroup>
                         <p:button style="font-size: 13px;" value="Pesquisar" id="search" icon="ui-icon ui-icon-search"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">
-                        <p:button value="Novo cadastro" id="newRegister" outcome="/services/CadastreService" icon="ui-icon ui-icon-pencil"/>
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/patrimony/CadastrePatrimony" icon="ui-icon ui-icon-pencil"/>
                     </p:toolbarGroup>
                 </p:toolbar>
 
             </h:form>
             
-            <h:form id="formTableSearchPatient">
-                <p:growl id="msgTableSearchPatient"/>
-                <p:dataTable id="tablePatientDB" var="patientName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+            <h:form id="formTableSearchPatrimony">
+                <p:growl id="msgTableSearchPatrimony"/>
+                <p:dataTable id="tablePatrimonyDB" var="patrimonyName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20">
-                    <f:facet name="header">Lista de serviços</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Serviço"/>
-                        </f:facet>
-                        <h:outputText/>
-                    </p:column>
+                    <f:facet name="header">Lista de patrimônios</f:facet>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Valor"/>
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descrição"/>
                         </f:facet>
                         <h:outputText/>
                     </p:column>

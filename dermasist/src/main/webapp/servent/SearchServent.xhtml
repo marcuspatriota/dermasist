@@ -20,14 +20,13 @@
                     <h:inputHidden id="idServent"/>
 
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" required="true" requiredMessage="O campo [Nome] é obrigatório." size="30" 
-                                 placeholder="Nome completo" validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                    <p:inputText id="name" size="50" placeholder="Nome completo" 
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
 
                     <p:outputLabel for="cpf" value="CPF: "/>
-                    <p:inputMask id="cpf" mask="999.999.999-99" required="true" 
-                                 requiredMessage="O campo [CPF] é obrigatório." placeholder="Número do CPF"/>
+                    <p:inputMask id="cpf" mask="999.999.999-99" placeholder="Número do CPF"/>
                    
                 </h:panelGrid>
 
@@ -48,7 +47,7 @@
                 <p:dataTable id="tableServentDB" var="serventName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20">
-                    <f:facet name="header">Lista de secretários</f:facet>
+                    <f:facet name="header">Lista de servidores</f:facet>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Matrícula"/>

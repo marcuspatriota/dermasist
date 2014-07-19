@@ -12,55 +12,42 @@
     </h:head>
 
     <ui:define name="content">
-        <p:fieldset legend="Busca de médico" id="fieldSetFormTitle">
-            <h:form id="formSearchDoctor">
-                <p:growl id="msgDoctorForm" showDetail="true" sticky="true" />
+        <p:fieldset legend="Busca de fornecedor" id="fieldSetFormTitle">
+            <h:form id="formSearchProvider">
+                <p:growl id="msgProviderForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2">
                     <p:outputLabel/>
-                    <h:inputHidden id="idDoctor"/>
-
-                    <p:outputLabel for="registrationCode" value="Matrícula/CRM: "/>
-                    <p:inputText id="registrationCode" placeholder="Nº de matrícula ou CRM"/>
+                    <h:inputHidden id="idProvider"/>
 
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" size="50" placeholder="Nome completo"
+                    <p:inputText id="name" maxlength="50" placeholder="Nome fornecedor"
                                  validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
 
-                    <p:outputLabel for="cpf" value="CPF: "/>
-                    <p:inputMask id="cpf" mask="999.999.999-99" placeholder="Número do CPF"/>
-
+                   <p:outputLabel for="cnpj" value="CNPJ: "/>
+                    <p:inputMask id="cnpj" mask="99.999.999/9999-99" placeholder="Número do CNPJ"/>
                    
-                    <p:outputLabel for="speciality" value="Especialidade "/>
-                    <p:inputText id="speciality" placeholder="Especialidade"/>
-
                 </h:panelGrid>
 
-                <p:toolbar id="panelButtonsDoctor">
+                <p:toolbar id="panelButtonsProvider">
                     <p:toolbarGroup>
                         <p:button style="font-size: 13px;" value="Pesquisar" id="search" icon="ui-icon ui-icon-search"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">
-                        <p:button value="Novo cadastro" id="newRegister" outcome="/doctor/CadastreDoctor" icon="ui-icon ui-icon-pencil"/>
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/provider/CadastreProvider" icon="ui-icon ui-icon-pencil"/>
                     </p:toolbarGroup>
                 </p:toolbar>
 
             </h:form>
             
-            <h:form id="formTableSearchDoctor">
-                <p:growl id="msgTableSearchDoctor"/>
-                <p:dataTable id="tableDoctorDB" var="doctorName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+            <h:form id="formTableSearchProvider">
+                <p:growl id="msgTableSearchProvider"/>
+                <p:dataTable id="tableProviderDB" var="providerName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20">
-                    <f:facet name="header">Lista de médicos</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Matrícula"/>
-                        </f:facet>
-                        <h:outputText/>
-                    </p:column>
+                    <f:facet name="header">Lista de fornecedors</f:facet>
 
                     <p:column>
                         <f:facet name="header">
@@ -71,14 +58,7 @@
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Especialidade"/>
-                        </f:facet>
-                        <h:outputText/>
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Celular"/>
+                            <h:outputText value="Telefone"/>
                         </f:facet>
                         <h:outputText/>
                     </p:column>

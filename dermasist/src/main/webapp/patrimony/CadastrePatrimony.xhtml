@@ -12,30 +12,30 @@
     </h:head>
 
     <ui:define name="content">
-        <p:fieldset legend="Cadastro de serviços" id="fieldSetFormTitle" >
-            <h:form id="formRegisterService">
-                <p:growl id="msgServiceForm" showDetail="true" sticky="true" />
+        <p:fieldset legend="Cadastro de patrimonio" id="fieldSetFormTitle" >
+            <h:form id="formRegisterPatrimony">
+                <p:growl id="msgPatrimonyForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2" >
 
                     <p:outputLabel/>
-                    <h:inputHidden id="idService"/>
+                    <h:inputHidden id="idPatrimony"/>
 
-                    <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" maxlength="50" placeholder="Nome do serviço"/>
-
-                    <p:outputLabel for="value" value="Valor: "/>
-                    <p:inputText id="value" placeholder="Valor do serviço" styleClass="money" maxlength="15"/>
-
+                    <p:outputLabel for="description" value="Descrição: "/>
+                    <p:inputText id="description" maxlength="100" placeholder="Descrição"/>
+                    
+                    <p:outputLabel for="observations" value="Observações: "/>
+                    <p:inputText id="observations"  maxlength="150" placeholder="Observações"/>
+                    
                 </h:panelGrid>
 
-                <p:toolbar id="panelButtonsService" style="margin-top: 10px;">
+                <p:toolbar id="panelButtonsPatrimony" style="margin-top: 10px;">
                     <p:toolbarGroup>
                         <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">
-                        <p:button value="Novo cadastro" id="newRegister" outcome="/services/CadastreService.xhtml" icon="ui-icon ui-icon-pencil"/>
-                        <p:button style="font-size: 13px;" value="Pesquisar" outcome="/services/SearchService.xhtml" id="search" icon="ui-icon ui-icon-search"/>
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/patrimony/CadastrePatrimony" icon="ui-icon ui-icon-pencil"/>
+                        <p:button style="font-size: 13px;" value="Pesquisar" outcome="/patrimony/SearchPatrimony" id="search" icon="ui-icon ui-icon-search"/>
                     </p:toolbarGroup>
                 </p:toolbar> 
             </h:form>
