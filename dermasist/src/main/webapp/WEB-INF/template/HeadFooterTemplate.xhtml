@@ -12,15 +12,24 @@
         <h:outputScript library="js" name="jquery.maskmoney.js" />
         <h:outputScript library="js" name="jquery.mask.min.js" />
         <h:outputScript library="js" name="primefacesCalendarLocale.js" />
-        <title><ui:insert name="title"> DermaSist - Sistema de Gestão de Clínicas Dermatológicas</ui:insert></title>
+        <title><ui:insert name="title">DermaSist - Sistema de Gestão de Clínicas Dermatológicas</ui:insert></title>
     </h:head>
 
     <h:body>
 
         <header>
-            <div>
-                <h:link>
+            <div style="float: left;">
+                <h:link outcome="/Home">
                     <h:graphicImage library="images" name="logo-mini.png" styleClass="logo"/>
+                </h:link>
+            </div>
+
+            <div style="float: right;" >
+
+                <span id="logged-user-top-message">Olá usuário!</span>
+
+                <h:link outcome="/Login">
+                    <p:button style="float: right; margin: 15px;" value="Sair"/>
                 </h:link>
             </div>
         </header>
@@ -138,12 +147,12 @@
         <script>
 
             function validatePhone() {
-                
+
                 var masks = ['(00) 00000-0000', '(00) 0000-00009'],
-                    maskBehavior = function(val, e, field, options) {
-                        return val.length > 14 ? masks[0] : masks[1];
-                    };
-                
+                        maskBehavior = function(val, e, field, options) {
+                            return val.length > 14 ? masks[0] : masks[1];
+                        };
+
                 $('.phone').mask(maskBehavior, {onKeyPress:
                             function(val, e, field, options) {
                                 field.mask(maskBehavior(val, e, field, options), options);
