@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      > 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -16,16 +15,16 @@
     </h:head>
 
     <h:body>
-
         <header>
+            <!--Call the logo image of the system-->
             <div style="float: left;">
                 <h:link outcome="/Home">
                     <h:graphicImage library="images" name="logo-mini.png" styleClass="logo"/>
                 </h:link>
             </div>
 
+            <!--Greeting message to the logged user and 'Exit' button to logout the page-->
             <div style="float: right;" >
-
                 <span id="logged-user-top-message">Olá usuário!</span>
 
                 <h:link outcome="/Login">
@@ -34,96 +33,16 @@
             </div>
         </header>
 
-        <h:form> 
-            <p:growl id="messages"/>
+        <!--This code calling the menu, coded inside 'MainMenuTemplate.xhtml' file-->
+        <ui:include src="/WEB-INF/template/MainMenuTemplate.xhtml"/>
 
-            <p:menubar>
-                <p:submenu label="Cadastros" icon="ui-icon-folder-collapsed">
-                    <p:submenu label="Funcionários" icon="ui-icon-person">
-
-                        <p:submenu label="Médico" icon="ui-icon-person">
-                            <p:menuitem value="Cadastrar" url="/employees/doctor/CadastreDoctor.xhtml" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Procurar" url="/employees/doctor/SearchDoctor.xhtml" icon="ui-icon-search"/>
-                        </p:submenu>   
-
-                        <p:submenu label="Secretário" icon="ui-icon-person">
-                            <p:menuitem value="Cadastrar" url="/employees/secretary/CadastreSecretary.xhtml" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Procurar" url="/employees/secretary/SearchSecretary.xhtml" icon="ui-icon-search"/>
-                        </p:submenu>
-
-                        <p:submenu label="Servidor" icon="ui-icon-person">
-                            <p:menuitem value="Cadastrar" url="/employees/servent/CadastreServent.xhtml" icon="ui-icon-pencil"/>
-                            <p:menuitem value="Procurar" url="/employees/servent/SearchServent.xhtml" icon="ui-icon-search"/>
-                        </p:submenu>
-
-                    </p:submenu>
-
-                    <p:submenu label="Pacientes" icon="ui-icon-person" >
-                        <p:menuitem value="Cadastrar" url="/patient/CadastrePatient.xhtml" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="/patient/SearchPatient.xhtml" icon="ui-icon-search"/>
-                    </p:submenu>
-
-                    <p:submenu label="Serviços" icon="ui-icon-wrench">
-                        <p:menuitem value="Cadastrar" url="/services/CadastreService.xhtml" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="/services/SearchService.xhtml" icon="ui-icon-search"/>
-                    </p:submenu>
-
-                    <p:submenu label="Produtos" icon="ui-icon-cart">
-                        <p:menuitem value="Cadastrar" url="/product/CadastreProduct.xhtml" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="/product/SearchProduct.xhtml" icon="ui-icon-search"/>
-                    </p:submenu>
-
-                    <p:submenu label="Patrimônio" icon="ui-icon-folder-open">
-                        <p:menuitem value="Cadastrar" url="/patrimony/CadastrePatrimony.xhtml" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="/patrimony/SearchPatrimony.xhtml" icon="ui-icon-search"/>
-                    </p:submenu>
-
-                    <p:submenu label="Fornecedor" icon="ui-icon-person">
-                        <p:menuitem value="Cadastrar" url="/provider/CadastreProvider.xhtml" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>
-                    </p:submenu>
-                </p:submenu>
-
-                <p:submenu label="Financeiro" icon="ui-icon-calculator">
-                    <p:submenu label="Contas a pagar" icon="ui-icon-minus">
-                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
-                    </p:submenu>
-
-                    <p:submenu label="Contas a receber" icon="ui-icon-plus">
-                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
-                    </p:submenu>
-                </p:submenu>
-
-                <p:submenu label="Agendamentos" icon="ui-icon-calendar">
-                    <p:submenu label="Consultas" icon="ui-icon-note">
-                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
-                    </p:submenu>
-
-                    <p:submenu label="Horários" icon="ui-icon-clock">
-                        <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
-                    </p:submenu>
-                </p:submenu>
-            </p:menubar>
-        </h:form>
-
-        <div id="content">
-            <ui:insert name="content">
-
-            </ui:insert>
-        </div>
-
+        <!--        This code represents the central region, where the content of all other pages will be put
+                your components, images and text.-->
+        <div id="content"> <ui:insert name="content"/> </div>
 
         <footer>
-            <div id="copyright">
-                Desenvolvimento: Equipe IFPB
-            </div>
-            <div id="systemName">
-                DermaSist - Sistema de Gestão de Clínicas Dermatológicas
-            </div>
+            <div id="copyright">Desenvolvimento: Equipe IFPB</div>
+            <div id="systemName">DermaSist - Sistema de Gestão de Clínicas Dermatológicas</div>
         </footer>
 
         <!--This script changes the mask of money format-->
@@ -132,9 +51,7 @@
                 $(".money").maskMoney({
                     decimal: ",",
                     thousands: ".",
-                    allowZero: true,
-                    symbol: "R$ ",
-                    symbolStay: true
+                    allowZero: true
                 });
             }
 
@@ -164,6 +81,5 @@
             }
             );
         </script>
-
     </h:body>
 </html>

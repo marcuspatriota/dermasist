@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form> 
+        <p:growl id="messages"/>
+
+        <p:menubar>
+            <p:submenu label="Cadastros" icon="ui-icon-folder-collapsed">
+                <p:submenu label="Funcionários" icon="ui-icon-person">
+
+                    <p:submenu label="Médico" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="/employees/doctor/CadastreDoctor.xhtml" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="/employees/doctor/SearchDoctor.xhtml" icon="ui-icon-search"/>
+                    </p:submenu>   
+
+                    <p:submenu label="Secretário" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="/employees/secretary/CadastreSecretary.xhtml" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="/employees/secretary/SearchSecretary.xhtml" icon="ui-icon-search"/>
+                    </p:submenu>
+
+                    <p:submenu label="Servidor" icon="ui-icon-person">
+                        <p:menuitem value="Cadastrar" url="/employees/servent/CadastreServent.xhtml" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Procurar" url="/employees/servent/SearchServent.xhtml" icon="ui-icon-search"/>
+                    </p:submenu>
+
+                </p:submenu>
+
+                <p:submenu label="Pacientes" icon="ui-icon-person" >
+                    <p:menuitem value="Cadastrar" url="/patient/CadastrePatient.xhtml" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="/patient/SearchPatient.xhtml" icon="ui-icon-search"/>
+                </p:submenu>
+
+                <p:submenu label="Serviços" icon="ui-icon-wrench">
+                    <p:menuitem value="Cadastrar" url="/services/CadastreService.xhtml" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="/services/SearchService.xhtml" icon="ui-icon-search"/>
+                </p:submenu>
+
+                <p:submenu label="Produtos" icon="ui-icon-cart">
+                    <p:menuitem value="Cadastrar" url="/product/CadastreProduct.xhtml" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="/product/SearchProduct.xhtml" icon="ui-icon-search"/>
+                </p:submenu>
+
+                <p:submenu label="Patrimônio" icon="ui-icon-folder-open">
+                    <p:menuitem value="Cadastrar" url="/patrimony/CadastrePatrimony.xhtml" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="/patrimony/SearchPatrimony.xhtml" icon="ui-icon-search"/>
+                </p:submenu>
+
+                <p:submenu label="Fornecedor" icon="ui-icon-person">
+                    <p:menuitem value="Cadastrar" url="/provider/CadastreProvider.xhtml" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>
+                </p:submenu>
+            </p:submenu>
+
+            <p:submenu label="Financeiro" icon="ui-icon-calculator">
+                <p:submenu label="Contas a pagar" icon="ui-icon-minus">
+                    <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                </p:submenu>
+
+                <p:submenu label="Contas a receber" icon="ui-icon-plus">
+                    <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                </p:submenu>
+            </p:submenu>
+
+            <p:submenu label="Agendamentos" icon="ui-icon-calendar">
+                <p:submenu label="Consultas" icon="ui-icon-note">
+                    <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                </p:submenu>
+
+                <p:submenu label="Horários" icon="ui-icon-clock">
+                    <p:menuitem value="Cadastrar" url="#" icon="ui-icon-pencil"/>
+                    <p:menuitem value="Procurar" url="#" icon="ui-icon-search"/>
+                </p:submenu>
+            </p:submenu>
+        </p:menubar>
+    </h:form>
+
+
+</ui:composition>
