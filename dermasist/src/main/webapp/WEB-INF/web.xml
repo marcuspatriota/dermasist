@@ -6,8 +6,8 @@
     </context-param>
     
     <context-param>  
-    <param-name>primefaces.THEME</param-name>  
-    <param-value>south-street</param-value>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>south-street</param-value>  
     </context-param> 
     
     <servlet>

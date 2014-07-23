@@ -22,13 +22,13 @@
 
                     <p:outputLabel for="namePatient" value="Nome do Paciente: "/>
                     <p:inputText id="namePatient" size="50" placeholder="Nome completo"
-                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                                 validatorMessage="O campo [Nome do Paciente] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
                     
                     <p:outputLabel for="nameDoctor" value="Nome do Médico: "/>
                     <p:inputText id="nameDoctor" size="50" placeholder="Nome completo"
-                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                                 validatorMessage="O campo [Nome do Médico] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
 
@@ -40,23 +40,23 @@
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data" 
                                 readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
                     
-                    <p:outputLabel for="diagnosis" value="Diagnóstico: "/>
-                    <p:inputTextarea id="diagnosis" rows="5" cols="50" placeholder="Descrição do diagnóstico" 
-                                     maxlength="240" counter="counterDiagnosis" counterTemplate="{0} caracteres restantes"/>
-                    <p:outputLabel id="counterDiagnosis" /> 
+                    <p:outputLabel for="diagnosisArea" value="Diagnóstico: "/>
+                    <p:inputTextarea id="diagnosisArea" rows="5" cols="50" placeholder="Descrição do diagnóstico" 
+                                     maxlength="240" autoResize="false" counter="counterDiagnosis" counterTemplate="{0} caracteres restantes"/>
                     <p:outputLabel/>
+                    <p:outputLabel id="counterDiagnosis" style="font-size: 12px;"/> 
 
-                    <p:outputLabel for="exam" value="Exame: "/>
-                    <p:inputTextarea id="exam" rows="5" cols="50" placeholder="Descrição dos exames" 
-                                     maxlength="100" counter="counterExam" counterTemplate="{0} caracteres restantes"/>
-                    <p:outputLabel id="counterExam" /> 
+                    <p:outputLabel for="examArea" value="Exame: "/>
+                    <p:inputTextarea id="examArea" rows="5" cols="50" placeholder="Descrição dos exames" 
+                                     maxlength="100" autoResize="false" counter="counterExam" counterTemplate="{0} caracteres restantes"/>
                     <p:outputLabel/>
+                    <p:outputLabel id="counterExam" style="font-size: 12px;"/> 
                     
-                    <p:outputLabel for="medication" value="Medicação: "/>
-                    <p:inputTextarea id="medication" rows="5" cols="50" placeholder="Pescrição de medicação" 
-                                     maxlength="140" counter="counterMedication" counterTemplate="{0} caracteres restantes"/>
-                    <p:outputLabel id="counterMedication" /> 
+                    <p:outputLabel for="medicationArea" value="Medicação: "/>
+                    <p:inputTextarea id="medicationArea" rows="5" cols="50" placeholder="Pescrição de medicação" 
+                                     maxlength="140" autoResize="false" counter="counterMedication" counterTemplate="{0} caracteres restantes"/>
                     <p:outputLabel/>
+                    <p:outputLabel id="counterMedication" style="font-size: 12px;"/> 
 
                 </h:panelGrid>
 
