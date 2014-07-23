@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/HeadFooterTemplate.xhtml">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+
+    <ui:define name="content">
+        <p:fieldset legend="CADASTRO DE HORÁRIOS" id="fieldSetFormTitle" >
+            <h:form id="formRegisterPayment">
+                <p:growl id="msgPaymentForm" showDetail="true" sticky="true" />
+                <h:panelGrid columns="2" cellpadding="2" >
+
+                    <p:outputLabel/>
+                    <h:inputHidden id="idPayment"/>
+
+                    <p:outputLabel for="value" value="Valor: "/>
+                    <p:inputText id="value" placeholder="Valor" styleClass="money" maxlength="15"/>
+                    
+                    <p:outputLabel for="interest" value="Juros: "/>
+                    <p:inputMask id="interest" mask="99%" placeholder="Juros"/>
+
+                    <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
+                    <p:calendar id="expirationDate" navigator="true" effect="explode" 
+                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Expira em" 
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
+                    
+                    <p:outputLabel for="dateOfPayment" value="Data de pagamento: "/>
+                    <p:calendar id="dateOfPayment" navigator="true" effect="explode" 
+                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Pagamento" 
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
+
+                    <p:outputLabel for="typeOfPayment" value="Formas de pagamento: "/>
+                    <p:selectOneMenu id="typeOfPayment" label="Formas de pagamento: " effect="explode" editable="true">
+                        <f:selectItem itemLabel="Espécie" />
+                        <f:selectItem itemLabel="Cartão/Débito" />
+                        <f:selectItem itemLabel="Cartão/Crédito" />
+                        <f:selectItem itemLabel="Cheque" />
+                        <f:selectItem itemLabel="Boleto Bancário" />
+                        <f:selectItem itemLabel="Outro" />
+                    </p:selectOneMenu>
+                    
+                </h:panelGrid>
+
+                <p:toolbar id="panelButtonsSchedule" style="margin-top: 10px;">
+                    <p:toolbarGroup>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                    </p:toolbarGroup>
+
+                    <p:toolbarGroup align="right">
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/schedule/CadastreSchedule" icon="ui-icon ui-icon-pencil"/>
+                        <p:button style="font-size: 13px;" value="Pesquisar" outcome="/schedule/SearchSchedule" id="search" icon="ui-icon ui-icon-search"/>
+                    </p:toolbarGroup>
+                </p:toolbar> 
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>

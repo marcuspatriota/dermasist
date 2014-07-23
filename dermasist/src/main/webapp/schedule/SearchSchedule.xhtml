@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/HeadFooterTemplate.xhtml">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+
+    <ui:define name="content">
+        <p:fieldset legend="BUSCA DE HORÁRIOS" id="fieldSetFormTitle">
+            <h:form id="formSearchPay">
+                <p:growl id="msgPayForm" showDetail="true" sticky="true" />
+                <h:panelGrid columns="2" cellpadding="2">
+
+                    <p:outputLabel/>
+                    <h:inputHidden id="idPayment"/>
+
+                    <p:outputLabel for="registrationCode" value="Matrícula/CRM: "/>
+                    <p:inputText id="registrationCode" placeholder="Nº de matrícula ou CRM"/>
+
+                    <p:outputLabel for="name" value="Nome: "/>
+                    <p:inputText id="name" placeholder="Nome ou parte dele"
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+                    
+                      <p:outputLabel for="date" value="Data: "/>
+                    <p:calendar id="date" navigator="true" effect="explode" 
+                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data" 
+                                readonly="true" locale="pt"/>
+                    
+                </h:panelGrid>
+
+                <p:toolbar id="panelButtonsPay">
+                    <p:toolbarGroup>
+                        <p:button style="font-size: 13px;" value="Pesquisar" id="search" icon="ui-icon ui-icon-search"/>
+                    </p:toolbarGroup>
+
+                    <p:toolbarGroup align="right">
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/schedule/CadastreSchedule" 
+                                  icon="ui-icon ui-icon-pencil"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+            </h:form>
+
+            <h:form id="formTableSearchPay">
+                <p:growl id="msgTableSearchPay"/>
+                <p:dataTable id="tablePaymentDB" var="paymentId" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" 
+                             paginatorAlwaysVisible="false">
+                    <f:facet name="header">Lista de horários</f:facet>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data"/>
+                        </f:facet>
+                        <h:outputText/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Horário"/>
+                        </f:facet>
+                        <h:outputText/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Médico"/>
+                        </f:facet>
+                        <h:outputText/>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>

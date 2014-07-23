@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/HeadFooterTemplate.xhtml">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+
+    <ui:define name="content">
+        <p:fieldset legend="CADASTRO DE CONSULTA" id="fieldSetFormTitle" >
+            <h:form id="formRegisterConsult">
+                <p:growl id="msgConsultForm" showDetail="true" sticky="true" />
+                <h:panelGrid columns="2" cellpadding="2" >
+
+                    <p:outputLabel/>
+                    <h:inputHidden id="idConsult"/>
+
+                    <p:outputLabel for="namePatient" value="Nome do Paciente: "/>
+                    <p:inputText id="namePatient" size="50" placeholder="Nome completo"
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+                    
+                    <p:outputLabel for="nameDoctor" value="Nome do Médico: "/>
+                    <p:inputText id="nameDoctor" size="50" placeholder="Nome completo"
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="time" value="Horário: "/>
+                    <p:calendar id="time" pattern="HH:mm:ss" timeOnly="true" mask="99:99:99" placeholder="Horário"/>
+                    
+                    <p:outputLabel for="date" value="Data da consulta: "/>
+                    <p:calendar id="date" navigator="true" effect="explode" 
+                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data" 
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
+                    
+                    <p:outputLabel for="diagnosis" value="Diagnóstico: "/>
+                    <p:inputTextarea id="diagnosis" rows="5" cols="50" placeholder="Descrição do diagnóstico" 
+                                     maxlength="240" counter="counterDiagnosis" counterTemplate="{0} caracteres restantes"/>
+                    <p:outputLabel id="counterDiagnosis" /> 
+                    <p:outputLabel/>
+
+                    <p:outputLabel for="exam" value="Exame: "/>
+                    <p:inputTextarea id="exam" rows="5" cols="50" placeholder="Descrição dos exames" 
+                                     maxlength="100" counter="counterExam" counterTemplate="{0} caracteres restantes"/>
+                    <p:outputLabel id="counterExam" /> 
+                    <p:outputLabel/>
+                    
+                    <p:outputLabel for="medication" value="Medicação: "/>
+                    <p:inputTextarea id="medication" rows="5" cols="50" placeholder="Pescrição de medicação" 
+                                     maxlength="140" counter="counterMedication" counterTemplate="{0} caracteres restantes"/>
+                    <p:outputLabel id="counterMedication" /> 
+                    <p:outputLabel/>
+
+                </h:panelGrid>
+
+                <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+                    <p:toolbarGroup>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                    </p:toolbarGroup>
+
+                    <p:toolbarGroup align="right">
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/consult/CadastreConsult" icon="ui-icon ui-icon-pencil"/>
+                        <p:button style="font-size: 13px;" value="Pesquisar" outcome="/consult/SearchConsult" id="search" icon="ui-icon ui-icon-search"/>
+                    </p:toolbarGroup>
+                </p:toolbar> 
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>
