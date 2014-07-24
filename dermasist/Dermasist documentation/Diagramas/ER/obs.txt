@@ -1,6 +1,0 @@
-Alterações
-
-
-1- consulta vira agendamento
-2- inserir entidade serviços(nome do serviço,valor);
-
