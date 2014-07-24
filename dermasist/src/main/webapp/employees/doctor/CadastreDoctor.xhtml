@@ -13,7 +13,7 @@
 
     <ui:define name="content">
         <p:fieldset legend="CADASTRO DE MÉDICO" id="fieldSetFormTitle" >
-            <h:form id="formRegisterDoctor">
+            <h:form id="doctorForm">
                 <p:growl id="msgDoctorForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2" >
                     <p:outputLabel value="Campos com * são obrigatórios" id="labelRequiredInfo" style="color: #D20005; font-size: 12px; font-weight: bold;"/>
@@ -97,7 +97,7 @@
 
                 <p:toolbar id="panelButtonsDoctor" style="margin-top: 10px;">
                     <p:toolbarGroup>
-                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" icon="ui-icon ui-icon-disk"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">

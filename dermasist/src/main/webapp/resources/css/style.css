@@ -32,8 +32,8 @@ a:link:hover, a:visited:hover  {
 header{
     position: relative;
     height: 60px; 
-    background-color: #036fab;
-    color: white;
+    /*background-color: #036fab;*/
+    /*color: white;*/
     padding: 1px;
     margin: 0px 0px 0px 0px;
     background: #b4ddb4; /* Old browsers */
