@@ -13,23 +13,20 @@
 
     <ui:define name="content">
         <p:fieldset legend="BUSCA DE HORÁRIOS" id="fieldSetFormTitle">
-            <h:form id="formSearchPay">
+            <h:form id="formSearchSchedule">
                 <p:growl id="msgPayForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2">
 
                     <p:outputLabel/>
-                    <h:inputHidden id="idPayment"/>
+                    <h:inputHidden id="idScheduling"/>
 
-                    <p:outputLabel for="registrationCode" value="Matrícula/CRM: "/>
-                    <p:inputText id="registrationCode" placeholder="Nº de matrícula ou CRM"/>
-
-                    <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" placeholder="Nome ou parte dele"
+                    <p:outputLabel for="patient" value="Nome do paciente: "/>
+                    <p:inputText id="patient" placeholder="Nome ou parte dele"
                                  validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
                     
-                      <p:outputLabel for="date" value="Data: "/>
+                    <p:outputLabel for="date" value="Data: "/>
                     <p:calendar id="date" navigator="true" effect="explode" 
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data" 
                                 readonly="true" locale="pt"/>
@@ -49,9 +46,9 @@
 
             </h:form>
 
-            <h:form id="formTableSearchPay">
-                <p:growl id="msgTableSearchPay"/>
-                <p:dataTable id="tablePaymentDB" var="paymentId" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+            <h:form id="formTableSearchSchedule">
+                <p:growl id="msgTableSearchSchedule"/>
+                <p:dataTable id="tableScheduleDB" var="schedulingId" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" 
                              paginatorAlwaysVisible="false">
@@ -72,7 +69,7 @@
                     
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Médico"/>
+                            <h:outputText value="Paciente"/>
                         </f:facet>
                         <h:outputText/>
                     </p:column>

@@ -13,38 +13,31 @@
 
     <ui:define name="content">
         <p:fieldset legend="CADASTRO DE HORÁRIOS" id="fieldSetFormTitle" >
-            <h:form id="formRegisterPayment">
-                <p:growl id="msgPaymentForm" showDetail="true" sticky="true" />
+            <h:form id="formRegisterSchedule">
+                <p:growl id="msgScheduleForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2" >
 
                     <p:outputLabel/>
-                    <h:inputHidden id="idPayment"/>
+                    <h:inputHidden id="idScheduling"/>
 
-                    <p:outputLabel for="value" value="Valor: "/>
-                    <p:inputText id="value" placeholder="Valor" styleClass="money" maxlength="15"/>
+                    <p:outputLabel for="patient" value="Nome: "/>
+                    <p:inputText id="patient" size="50" placeholder="Nome do paciente"
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
                     
-                    <p:outputLabel for="interest" value="Juros: "/>
-                    <p:inputMask id="interest" mask="99%" placeholder="Juros"/>
-
-                    <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
-                    <p:calendar id="expirationDate" navigator="true" effect="explode" 
+                    <p:outputLabel for="date" value="Data: "/>
+                    <p:calendar id="date" navigator="true" effect="explode" 
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Expira em" 
                                 readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
                     
-                    <p:outputLabel for="dateOfPayment" value="Data de pagamento: "/>
-                    <p:calendar id="dateOfPayment" navigator="true" effect="explode" 
-                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Pagamento" 
+                    <p:outputLabel for="timetable" value="Horário: "/>
+                    <p:calendar id="timetable" navigator="true" effect="explode"
+                                pattern="dd/MM/yyyy HH:mm:ss" yearRange="c-100:c+100" placeholder="Data e hora" 
                                 readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
 
-                    <p:outputLabel for="typeOfPayment" value="Formas de pagamento: "/>
-                    <p:selectOneMenu id="typeOfPayment" label="Formas de pagamento: " effect="explode" editable="true">
-                        <f:selectItem itemLabel="Espécie" />
-                        <f:selectItem itemLabel="Cartão/Débito" />
-                        <f:selectItem itemLabel="Cartão/Crédito" />
-                        <f:selectItem itemLabel="Cheque" />
-                        <f:selectItem itemLabel="Boleto Bancário" />
-                        <f:selectItem itemLabel="Outro" />
-                    </p:selectOneMenu>
+                    <p:outputLabel for="typeOfScheduling" value="Tipo de agendamento: "/>
+                    <p:inputText id="typeOfScheduling" placeholder="Agendamento" maxlength="25"/>
                     
                 </h:panelGrid>
 
