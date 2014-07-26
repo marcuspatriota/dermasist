@@ -52,7 +52,7 @@ footer {
     position:fixed; 
     width: 100%;
     bottom:0; 
-    z-index:999999;
+    /*z-index:999999;*/
     background-color: #83c783;
 }
 
