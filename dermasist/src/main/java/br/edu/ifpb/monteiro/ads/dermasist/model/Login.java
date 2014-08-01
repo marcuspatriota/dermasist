@@ -1,6 +1,7 @@
 package br.edu.ifpb.monteiro.ads.dermasist.model;
 
 import br.edu.ifpb.monteiro.ads.dermasist.dao.LoginDao;
+import br.edu.ifpb.monteiro.ads.dermasist.exception.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.facade.LoginIF;
 import br.edu.ifpb.monteiro.ads.dermasist.validation.LoginValidation;
 
@@ -21,6 +22,16 @@ public class Login implements LoginIF {
             System.out.println("O TEXTO É: " + teste);
         }
 
+        return false;
+    }
+
+    @Override
+    public boolean editUser(String user, String password) throws DermaSistException {
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(br.edu.ifpb.monteiro.ads.dermasist.entities.Login login) throws DermaSistException {
         return false;
     }
 }

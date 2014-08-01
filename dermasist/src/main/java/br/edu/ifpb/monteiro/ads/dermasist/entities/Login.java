@@ -24,6 +24,11 @@ public class Login implements IdentifiableIF{
     @Column(name="POSSWORD")
     private String password;
 
+    public Login(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     // Get's e Set's
     
     public String getLogin() {
