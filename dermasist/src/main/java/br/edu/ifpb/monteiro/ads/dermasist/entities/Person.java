@@ -63,6 +63,27 @@ public class Person implements IdentifiableIF, Serializable {
     @Column(name="PHONE")
     private String phone;
 
+    
+    public Person(){
+        
+    }
+    
+    public Person(Long ID, String name, String dateOfBirth, char sex, String cpf, String rg, String street, String number, String city, String neighborhood, String state, String mobile, String phone) {
+        this.ID = ID;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.street = street;
+        this.number = number;
+        this.city = city;
+        this.neighborhood = neighborhood;
+        this.state = state;
+        this.mobile = mobile;
+        this.phone = phone;
+    }
+    
     /**
      * Getters and Setters
      * @return atribute

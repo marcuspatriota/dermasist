@@ -28,8 +28,19 @@ public class Doctor extends Person{
     
     @Column (name="SALARY")
     private float salary;
+ 
 
+    public Doctor(){
+        
+    }
     
+    public Doctor(Person fk_person, String speciality, String registrationCode, float salary, Long ID, String name, String dateOfBirth, char sex, String cpf, String rg, String street, String number, String city, String neighborhood, String state, String mobile, String phone) {
+        super(ID, name, dateOfBirth, sex, cpf, rg, street, number, city, neighborhood, state, mobile, phone);
+        this.fk_person = fk_person;
+        this.speciality = speciality;
+        this.registrationCode = registrationCode;
+        this.salary = salary;
+    }
 
     public String getRegistrationCode() {
         return registrationCode;

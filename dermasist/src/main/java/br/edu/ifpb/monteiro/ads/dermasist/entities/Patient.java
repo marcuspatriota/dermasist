@@ -43,6 +43,23 @@ public class Patient extends Person {
     
     @Column(name="HEIGHT")
     private float height;
+    
+    public Patient(){
+        
+    }
+    
+    public Patient(Person person, String motherIsName, String bloodType, String fleshTone, String emergencyContact, String healthPlan, String susCard, int weight, float height, Long ID, String name, String dateOfBirth, char sex, String cpf, String rg, String street, String number, String city, String neighborhood, String state, String mobile, String phone) {
+        super(ID, name, dateOfBirth, sex, cpf, rg, street, number, city, neighborhood, state, mobile, phone);
+        this.person = person;
+        this.motherIsName = motherIsName;
+        this.bloodType = bloodType;
+        this.fleshTone = fleshTone;
+        this.emergencyContact = emergencyContact;
+        this.healthPlan = healthPlan;
+        this.susCard = susCard;
+        this.weight = weight;
+        this.height = height;
+    }
 
     // Get's e Set's
     
