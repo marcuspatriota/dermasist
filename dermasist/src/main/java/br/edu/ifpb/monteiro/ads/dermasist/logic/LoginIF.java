@@ -1,4 +1,4 @@
-package br.edu.ifpb.monteiro.ads.dermasist.facade;
+package br.edu.ifpb.monteiro.ads.dermasist.logic;
 
 import br.edu.ifpb.monteiro.ads.dermasist.entities.Login;
 import br.edu.ifpb.monteiro.ads.dermasist.exception.DermaSistException;

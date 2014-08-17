@@ -28,7 +28,7 @@ public class Consult implements IdentifiableIF, Serializable{
    
     @ManyToOne(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Patient.class)
     @JoinColumn(name="FK_PATIENT")
-    private Scheduling fk_patient;
+    private Patient fk_patient;
     
     @ManyToOne(targetEntity = br.edu.ifpb.monteiro.ads.dermasist.entities.Doctor.class)
     @JoinColumn(name="FK_DOCTOR")
@@ -103,11 +103,11 @@ public class Consult implements IdentifiableIF, Serializable{
        this.ID=(Long) id;
     }
 
-    public Scheduling getFk_patient() {
+    public Patient getFk_patient() {
         return fk_patient;
     }
 
-    public void setFk_patient(Scheduling fk_patient) {
+    public void setFk_patient(Patient fk_patient) {
         this.fk_patient = fk_patient;
     }
 

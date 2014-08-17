@@ -2,7 +2,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.model;
 
 import br.edu.ifpb.monteiro.ads.dermasist.dao.LoginDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exception.DermaSistException;
-import br.edu.ifpb.monteiro.ads.dermasist.facade.LoginIF;
+import br.edu.ifpb.monteiro.ads.dermasist.logic.LoginIF;
 import br.edu.ifpb.monteiro.ads.dermasist.validation.LoginValidation;
 
 /**
