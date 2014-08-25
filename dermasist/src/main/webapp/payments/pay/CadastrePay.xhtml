@@ -14,30 +14,46 @@
     <ui:define name="content">
         <p:fieldset legend="CADASTRO DE CONTAS A PAGAR" id="fieldSetFormTitle" >
             <h:form id="formRegisterPayment">
-                <p:growl id="msgPaymentForm" showDetail="true" sticky="true" />
+
+                <!-- Show a gif image to loading ajax user requests -->
+                <p:ajaxStatus>
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="loading.gif"/>
+                        <h:outputLabel value="Aguarde..."/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+
+                <p:growl/> 
+
                 <h:panelGrid columns="2" cellpadding="2" >
 
-                    <p:outputLabel/>
-                    <h:inputHidden id="idPayment"/>
-
                     <p:outputLabel for="value" value="Valor: "/>
-                    <p:inputText id="value" placeholder="Valor" styleClass="money" maxlength="15"/>
-                    
+                    <p:inputText id="value" placeholder="Valor" styleClass="money" maxlength="15"
+                                 value="#{paymentBean.payment.value}">
+                        <f:convertNumber type="number" locale="pt_BR"/>
+                    </p:inputText>
+
                     <p:outputLabel for="interest" value="Juros: "/>
-                    <p:inputMask id="interest" mask="999" placeholder="Juros"/>
+                    <p:inputMask id="interest" mask="999" placeholder="Juros" value="#{paymentBean.payment.interest}"/>
 
                     <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
                     <p:calendar id="expirationDate" navigator="true" effect="explode" 
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Expira em" 
-                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
-                    
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"
+                                value="#{paymentBean.payment.expirationDate}"/>
+
                     <p:outputLabel for="dateOfPayment" value="Data de pagamento: "/>
                     <p:calendar id="dateOfPayment" navigator="true" effect="explode" 
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Pagamento" 
-                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"
+                                value="#{paymentBean.payment.dateOfPayment}"/>
 
                     <p:outputLabel for="typeOfPayment" value="Formas de pagamento: "/>
-                    <p:selectOneMenu id="typeOfPayment" label="Formas de pagamento: " effect="explode" editable="true">
+                    <p:selectOneMenu id="typeOfPayment" label="Formas de pagamento: " effect="explode" 
+                                     editable="true" value="#{paymentBean.payment.typeOfPayment}">
                         <f:selectItem itemLabel="Espécie" />
                         <f:selectItem itemLabel="Cartão/Débito" />
                         <f:selectItem itemLabel="Cartão/Crédito" />
@@ -45,12 +61,13 @@
                         <f:selectItem itemLabel="Boleto Bancário" />
                         <f:selectItem itemLabel="Outro" />
                     </p:selectOneMenu>
-                    
+
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsSecretary" style="margin-top: 10px;">
                     <p:toolbarGroup>
-                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" 
+                                         icon="ui-icon ui-icon-disk" action="#{paymentBean.create}"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">

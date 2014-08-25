@@ -14,36 +14,46 @@
     <ui:define name="content">
         <p:fieldset legend="CADASTRO DE PRODUTO" id="fieldSetFormTitle" >
             <h:form id="formRegisterProduct">
-                <p:growl id="msgProductForm" showDetail="true" sticky="true" />
+
+                <!-- Show a gif image to loading ajax user requests -->
+                <p:ajaxStatus>
+                        <f:facet name="start">
+                            <h:graphicImage library="images" name="loading.gif"/>
+                            <h:outputLabel value="Aguarde..."/>
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value=""/>
+                        </f:facet>
+                    </p:ajaxStatus>
+                
+                <p:growl/>
                 <h:panelGrid columns="2" cellpadding="2" >
 
-                    <p:outputLabel/>
-                    <h:inputHidden id="idProduct"/>
-
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" maxlength="50" placeholder="Nome do produto"/>
-                    
+                    <p:inputText id="name" maxlength="50" placeholder="Nome do produto" value="#{productBean.product.name}"/>
+
                     <p:outputLabel for="dateOfPurchase" value="Data de compra: "/>
-                    <p:calendar id="dateOfPurchase" navigator="true" effect="explode" 
-                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data de compra" 
-                                readonly="true" maxdate="#{personBean.dateToday}"  locale="pt"/>
-                    
+                    <p:calendar id="dateOfPurchase" pattern="dd/MM/yyyy" required="true" 
+                                value="#{productBean.product.dateOfPurchase}" maxdate="#{personBean.dateToday}"/>
+
                     <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
-                    <p:calendar id="expirationDate" navigator="true" effect="explode" 
-                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Expira em" 
-                                readonly="true" locale="pt"/>
-                    
+                    <p:calendar id="expirationDate" pattern="dd/MM/yyyy" required="true" 
+                                value="#{productBean.product.expirationDate}" mindate="#{personBean.dateToday}"/>
+
                     <p:outputLabel for="value" value="Valor: "/>
-                    <p:inputText id="value" placeholder="Valor do produto" styleClass="money" maxlength="15"/>
+                    <p:inputText id="value" placeholder="Valor do produto" styleClass="money" maxlength="15" value="#{productBean.product.value}">
+                        <f:convertNumber type="number" locale="pt_BR"/>
+                    </p:inputText>
 
                     <p:outputLabel for="finality" value="Finalidade: "/>
-                    <p:inputText id="finality"  maxlength="40" placeholder="Finalidade do produto"/>
-                    
+                    <p:inputText id="finality"  maxlength="40" placeholder="Finalidade do produto" value="#{productBean.product.finality}"/>
+
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsProduct" style="margin-top: 10px;">
                     <p:toolbarGroup>
-                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                         update="@form" icon="ui-icon ui-icon-disk" action="#{productBean.create}"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">

@@ -14,23 +14,34 @@
     <ui:define name="content">
         <p:fieldset legend="CADASTRO DE PATRIMÔNIO" id="fieldSetFormTitle" >
             <h:form id="formRegisterPatrimony">
-                <p:growl id="msgPatrimonyForm" showDetail="true" sticky="true" />
+
+                <!-- Show a gif image to loading ajax user requests -->
+                <p:ajaxStatus>
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="loading.gif"/>
+                        <h:outputLabel value="Aguarde..."/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+
+                <p:growl/>                
+
                 <h:panelGrid columns="2" cellpadding="2" >
 
-                    <p:outputLabel/>
-                    <h:inputHidden id="idPatrimony"/>
-
                     <p:outputLabel for="description" value="Descrição: "/>
-                    <p:inputText id="description" maxlength="100" placeholder="Descrição"/>
-                    
+                    <p:inputText id="description" maxlength="100" placeholder="Descrição" value="#{patrimonyBean.patrimony.description}"/>
+
                     <p:outputLabel for="observations" value="Observações: "/>
-                    <p:inputText id="observations"  maxlength="150" placeholder="Observações"/>
-                    
+                    <p:inputText id="observations"  maxlength="150" placeholder="Observações" value="#{patrimonyBean.patrimony.observations}"/>
+
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsPatrimony" style="margin-top: 10px;">
                     <p:toolbarGroup>
-                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                         update="@form" icon="ui-icon ui-icon-disk" action="#{patrimonyBean.create}"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">

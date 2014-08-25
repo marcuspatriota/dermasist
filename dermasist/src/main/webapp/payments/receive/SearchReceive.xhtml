@@ -47,23 +47,22 @@
 
             <h:form id="formTableSearchPay">
                 <p:growl id="msgTableSearchPay"/>
-                <p:dataTable id="tablePaymentDB" var="paymentId" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                <p:dataTable id="tablePaymentDB" var="receivements" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" 
                              paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de contas</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Data"/>
-                        </f:facet>
+                    <p:column headerText="Data">
                         <h:outputText/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Valor"/>
-                        </f:facet>
+                    <p:column headerText="Valor">
                         <h:outputText/>
+                    </p:column>
+                    
+                    <p:column headerText="Ações" width="100" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 
                 </p:dataTable>

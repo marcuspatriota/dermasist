@@ -1,34 +1,42 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Patient;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Patient;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Markus
+ * @author Wilde Arruda
  */
-@Stateless
-public class PatientDao extends DaoAbstract<Patient> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
+public class PatientDao implements Serializable {
 
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return 
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+    @Inject
+    private EntityManager entityManager;
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
     public PatientDao() {
-        super(Patient.class);
+
     }
-    
+
+    public void create(Patient patient) {
+        entityManager.persist(patient);
+    }
+
+    public void update(Patient patient) {
+        entityManager.merge(patient);
+    }
+
+    public void delete(Patient patient) {
+        entityManager.remove(patient);
+    }
+
+    public List<Patient> findAll() {
+        return entityManager.createQuery("from Patient pat").getResultList();
+    }
+
+    public Patient findById(Patient id) {
+        return entityManager.find(Patient.class, id);
+    }
+
 }

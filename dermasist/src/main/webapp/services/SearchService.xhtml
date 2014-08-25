@@ -14,7 +14,7 @@
     <ui:define name="content">
         <p:fieldset legend="BUSCA DE SERVIÇO" id="fieldSetFormTitle">
             <h:form id="formSearchPatient">
-                <p:growl id="msgPatientForm" showDetail="true" sticky="true" />
+                <p:growl id="growlService" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2">
                     <p:outputLabel/>
                     <h:inputHidden id="idPatient"/>
@@ -38,28 +38,42 @@
                 </p:toolbar>
 
             </h:form>
-            
+
             <h:form id="formTableSearchPatient">
                 <p:growl id="msgTableSearchPatient"/>
-                <p:dataTable id="tablePatientDB" var="patientName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+
+                <p:dataTable id="tablePatientDB" value="#{serviceBean.services}" var="services" 
+                             paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
+                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
+                             rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de serviços</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Serviço"/>
-                        </f:facet>
-                        <h:outputText/>
+
+                    <p:column headerText="Serviço" width="300" >
+                        <h:outputText value="#{services.name}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Valor"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Valor" width="50" style="text-align: right">
+                        <h:outputText value="#{services.value}">
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Ações" width="30" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 
                 </p:dataTable>
+
+                <!-- ESTE DIALOG É PARA A CONFIRMAÇÃO DE EXCLUSÃO DE PRODUTO               
+                
+                <p:confirmDialog header="Exclusão de produto" widgetVar="confirmExclusion"
+                                                 message="Tem certeza que deseja excluir o produto?">
+                                    <p:commandButton value="Não" onclick="PF('confirmExclusion').hide();" type="button"/>
+                                    <p:commandButton value="Sim" onclick="PF('confirmExclusion').show();" update="growlService" type="button"/>
+                                </p:confirmDialog>-->
+
             </h:form>
 
         </p:fieldset>

@@ -44,30 +44,26 @@
             
             <h:form id="formTableSearchPatient">
                 <p:growl id="msgTableSearchPatient"/>
-                <p:dataTable id="tablePatientDB" var="patientName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                <p:dataTable id="tablePatientDB" value="#{patientBean.patients}" var="patients" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de pacientes</f:facet>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Nome" width="250">
+                        <h:outputText value="#{patients.name}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Celular"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Celular" width="50">
+                        <h:outputText value="#{patients.mobile}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Contato de Emergência"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Contato de Emergência" width="80">
+                        <h:outputText value="#{patients.emergencyContact}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Ações" width="30" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
                     
                 </p:dataTable>

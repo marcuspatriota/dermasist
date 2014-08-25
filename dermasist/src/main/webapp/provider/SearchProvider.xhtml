@@ -44,23 +44,34 @@
             
             <h:form id="formTableSearchProvider">
                 <p:growl id="msgTableSearchProvider"/>
-                <p:dataTable id="tableProviderDB" var="providerName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                <p:dataTable id="tableProviderDB" value="#{providerBean.providers}" var="providers" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de fornecedores</f:facet>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Nome" width="250">
+                        <h:outputText value="#{providers.name}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Telefone"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Telefone" width="50">
+                        <h:outputText value="#{providers.phone}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Cidade" width="90">
+                        <h:outputText value="#{providers.city}"/>
+                    </p:column>
+                    
+                    <p:column headerText="UF" width="10"  style="text-align: center">
+                        <h:outputText value="#{providers.state}"/>
+                    </p:column>
+                    
+                    <p:column headerText="CNPJ" width="60">
+                        <h:outputText value="#{providers.cnpj}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Ações" width="30" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 
                 </p:dataTable>

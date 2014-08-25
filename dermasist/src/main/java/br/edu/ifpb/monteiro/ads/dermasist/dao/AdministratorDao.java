@@ -1,35 +1,44 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Administrator;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Administrator;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author Wilde Arruda
  */
-@Stateless
-public class AdministratorDao extends DaoAbstract<Administrator> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return 
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class AdministratorDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public AdministratorDao(){
+        
+    }
+    
+    public void create(Administrator administrator) {
+        entityManager.persist(administrator);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public AdministratorDao() {
-        super(Administrator.class);
+    public void update(Administrator administrator) {
+        entityManager.merge(administrator);
+    }
+    
+    public void delete(Administrator administrator) {
+        entityManager.remove(administrator);
+    }
+
+    
+    public List<Administrator> findAll() {
+        return entityManager.createQuery("from Administrator adm").getResultList();
+    }
+
+    
+    public Administrator findById(Administrator id) {
+        return entityManager.find(Administrator.class, id);
     }
     
 }

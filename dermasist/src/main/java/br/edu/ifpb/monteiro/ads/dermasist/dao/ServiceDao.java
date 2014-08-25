@@ -1,35 +1,44 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Service;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Service;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author Wilde Arruda
  */
-@Stateless
-public class ServiceDao extends DaoAbstract<Service> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return  
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class ServiceDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public ServiceDao(){
+        
+    }
+    
+    public void create(Service service) {
+        entityManager.persist(service);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public ServiceDao() {
-        super(Service.class);
+    public void update(Service service) {
+        entityManager.merge(service);
+    }
+    
+    public void delete(Service service) {
+        entityManager.remove(service);
+    }
+
+    
+    public List<Service> findAll() {
+        return entityManager.createQuery("from Service svc").getResultList();
+    }
+
+    
+    public Service findById(Service id) {
+        return entityManager.find(Service.class, id);
     }
     
 }

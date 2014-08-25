@@ -1,35 +1,44 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Consult;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Consult;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author cassio
  */
-@Stateless
-public class ConsultDao extends DaoAbstract<Consult> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
+public class ConsultDao implements Serializable{
     
-    /**
-     * The class constructor receives with Parliament the entity that will be 
-     * persisted in the database.
-     * @return 
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    @Inject
+    private EntityManager entityManager;
+    
+    public ConsultDao(){
+        
     }
     
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public ConsultDao() {
-        super(Consult.class);
+    public void create(Consult consult) {
+        entityManager.persist(consult);
+    }
+
+    public void update(Consult consult) {
+        entityManager.merge(consult);
+    }
+    
+    public void delete(Consult consult) {
+        entityManager.remove(consult);
+    }
+
+    
+    public List<Consult> findAll() {
+        return entityManager.createQuery("from Consult cons").getResultList();
+    }
+
+    
+    public Consult findById(Consult id) {
+        return entityManager.find(Consult.class, id);
     }
     
 }

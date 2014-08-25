@@ -38,23 +38,22 @@
             
             <h:form id="formTableSearchPatrimony">
                 <p:growl id="msgTableSearchPatrimony"/>
-                <p:dataTable id="tablePatrimonyDB" var="patrimonyName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                <p:dataTable id="tablePatrimonyDB" value="#{patrimonyBean.patrimonies}" var="patrimonies" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista patrimonial</f:facet>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="ID" width="10">
+                        <h:outputText value="#{patrimonies.ID}"/>
                     </p:column>
                     
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Descrição"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Descrição" width="300">
+                        <h:outputText value="#{patrimonies.description}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Ações" width="30" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 
                 </p:dataTable>

@@ -14,49 +14,59 @@
     <ui:define name="content">
         <p:fieldset legend="CADASTRO DE FORNECEDOR" id="fieldSetFormTitle" >
             <h:form id="formRegisterProvider">
-                <p:growl id="msgProviderForm" showDetail="true" sticky="true" />
+
+                <!-- Show a gif image to loading ajax user requests -->
+                <p:ajaxStatus>
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="loading.gif"/>
+                        <h:outputLabel value="Aguarde..."/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+
+                <p:growl/> 
+
                 <h:panelGrid columns="2" cellpadding="2" >
 
-                    <p:outputLabel/>
-                    <h:inputHidden id="idProvider"/>
-
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" size="50" placeholder="Nome fornecedor" 
+                    <p:inputText id="name" size="50" placeholder="Nome fornecedor" value="#{providerBean.provider.name}"
                                  validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
 
                     <p:outputLabel for="street" value="Rua: "/>
-                    <p:inputText id="street" size="30" placeholder="Nome da Rua" />
+                    <p:inputText id="street" size="30" placeholder="Nome da Rua" value="#{providerBean.provider.street}"/>
 
                     <p:outputLabel for="number" value="Nº: "/>
-                    <p:inputText id="number" size="30" placeholder="Nº" validatorMessage="O campo [Nº] deve começar com números e pode conter letras">
-                        <f:validateRegex pattern="^\d+$|^\d+[aA-zZ]+$"/>
-                    </p:inputText>
+                    <p:inputText id="number" size="30" value="#{providerBean.provider.number}"
+                                 placeholder="Nº" validatorMessage="O campo [Nº] deve conter apenas números"/>
 
                     <p:outputLabel for="neighborhood" value="Bairro: "/>
-                    <p:inputText id="neighborhood" size="30" placeholder="Nome do bairro"/>
+                    <p:inputText id="neighborhood" size="30" placeholder="Nome do bairro" value="#{providerBean.provider.neighborhood}"/>
 
                     <p:outputLabel for="state" value="Estado: "/>
-                    <p:selectOneMenu id="state" value="#{personBean.state}">
+                    <p:selectOneMenu id="state" value="#{providerBean.provider.state}">
                         <f:selectItem itemLabel="Selecione"/>
                         <f:selectItems value="#{personBean.states}" itemLabel="#{state}" itemValue="#{state}" var="state"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel for="city" value="Cidade: "/>
-                    <p:inputText id="city" size="30" placeholder="Nome da cidade"/>
+                    <p:inputText id="city" size="30" placeholder="Nome da cidade" value="#{providerBean.provider.city}"/>
 
                     <p:outputLabel for="phone" value="Telefone: "/>
-                    <p:inputText id="phone" placeholder="Telefone fixo ou celular" styleClass="phone"/>
+                    <p:inputText id="phone" placeholder="Telefone fixo ou celular" styleClass="phone" value="#{providerBean.provider.phone}"/>
 
                     <p:outputLabel for="cnpj" value="CNPJ: "/>
-                    <p:inputMask id="cnpj" mask="99.999.999/9999-99" placeholder="Número do CNPJ"/>
+                    <p:inputMask id="cnpj" mask="99.999.999/9999-99" placeholder="Número do CNPJ" value="#{providerBean.provider.cnpj}"/>
 
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsProvider" style="margin-top: 10px;">
                     <p:toolbarGroup>
-                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                         update="@form" icon="ui-icon ui-icon-disk" action="#{providerBean.create}"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">

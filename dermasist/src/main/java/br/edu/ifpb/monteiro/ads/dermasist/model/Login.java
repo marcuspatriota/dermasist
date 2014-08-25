@@ -1,37 +1,98 @@
 package br.edu.ifpb.monteiro.ads.dermasist.model;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.LoginDao;
-import br.edu.ifpb.monteiro.ads.dermasist.exception.DermaSistException;
-import br.edu.ifpb.monteiro.ads.dermasist.logic.LoginIF;
-import br.edu.ifpb.monteiro.ads.dermasist.validation.LoginValidation;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- *
- * @author cassio
+ * Login entity contains atribudos and methods of creating a 
+ * login.
+ * @author Markus
  */
-public class Login implements LoginIF {
 
-    LoginValidation loginValidation = new LoginValidation();
+@Entity
+@Table(name="LOGIN")
+public class Login implements Serializable{
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
+   
+    @Column(name="LOGIN")
+    private String login;
+    @Column(name="POSSWORD")
+    private String password;
+
+    public Login() {
+    }
+
+    public Login(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    // Get's e Set's
+    
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
-    public boolean login(String user, String password) {
-        if (loginValidation.isUserBlank(user) == false && 
-            loginValidation.isPasswordBlank(password) == false) {
-            LoginDao loginDao = new LoginDao();
-            String teste = loginDao.find(user).toString();
-            System.out.println("O TEXTO É: " + teste);
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.getID());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Login other = (Login) obj;
+        if (!Objects.equals(this.ID, other.ID)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean editUser(String user, String password) throws DermaSistException {
-        return false;
+    public String toString() {
+        return "Login{" + "ID=" + getID() + ", login=" + login + ", password=" + password + '}';
     }
 
-    @Override
-    public boolean deleteUser(br.edu.ifpb.monteiro.ads.dermasist.entities.Login login) throws DermaSistException {
-        return false;
+    /**
+     * @return the ID
+     */
+    public Long getID() {
+        return ID;
     }
-}
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+      
+ }

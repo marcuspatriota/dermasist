@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/HeadFooterTemplate.xhtml">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+
+    <ui:define name="content">
+        <p:fieldset legend="CADASTRO DE HORÁRIOS" id="fieldSetFormTitle" >
+            <h:form id="formRegisterSchedule">
+                <p:growl id="msgScheduleForm" showDetail="true" sticky="true" />
+                <h:panelGrid columns="2" cellpadding="2" >
+
+                    <p:outputLabel for="patient" value="Nome: "/>
+                    <p:inputText id="patient" size="50" placeholder="Nome do paciente"
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="date" value="Data: "/>
+                    <p:calendar id="date" navigator="true" effect="explode" 
+                                pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Data " 
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
+
+                    <p:outputLabel for="timetable" value="Horário: "/>
+                    <p:calendar id="timetable" navigator="true" effect="explode"
+                                pattern="dd/MM/yyyy HH:mm:ss" yearRange="c-100:c+100" placeholder="Data e hora" 
+                                readonly="true" mindate="#{personBean.dateToday}"  locale="pt"/>
+
+                    <p:outputLabel for="typeOfScheduling" value="Tipo de agendamento: "/>
+                    <p:inputText id="typeOfScheduling" placeholder="Agendamento" maxlength="25"/>
+
+                </h:panelGrid>
+
+                <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+                    <p:toolbarGroup>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                         update="@form" icon="ui-icon ui-icon-disk"/>
+                    </p:toolbarGroup>
+
+                    <p:toolbarGroup align="right">
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/schedule/hour/CadastreHorary" 
+                                  icon="ui-icon ui-icon-pencil"/>
+                        <p:button value="Pesquisar" id="search" outcome="/schedule/hour/SearchHorary" 
+                                  icon="ui-icon ui-icon-search" style="font-size: 13px;" />
+                    </p:toolbarGroup>
+                </p:toolbar> 
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>

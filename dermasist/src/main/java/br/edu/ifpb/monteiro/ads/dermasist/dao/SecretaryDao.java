@@ -1,35 +1,39 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Secretary;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Secretary;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author cassio
  */
-@Stateless
-public class SecretaryDao extends DaoAbstract<Secretary> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return 
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class SecretaryDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public void create(Secretary secretary) {
+        entityManager.persist(secretary);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public SecretaryDao() {
-        super(Secretary.class);
+    public void update(Secretary secretary) {
+        entityManager.merge(secretary);
+    }
+    
+    public void delete(Secretary secretary) {
+        entityManager.remove(secretary);
+    }
+
+    
+    public List<Secretary> findAll() {
+        return entityManager.createQuery("from Secretary sec").getResultList();
+    } 
+    
+    public Secretary findById(Secretary id) {
+        return entityManager.find(Secretary.class, id);
     }
     
 }

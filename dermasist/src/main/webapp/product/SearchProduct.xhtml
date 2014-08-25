@@ -35,27 +35,44 @@
                 </p:toolbar>
 
             </h:form>
-            
+
             <h:form id="formTableSearchProduct">
                 <p:growl id="msgTableSearchProduct"/>
-                <p:dataTable id="tableProductDB" var="productName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                <p:dataTable id="tableProductDB" value="#{productBean.products}" var="products" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de produtos</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText/>
+
+                    <p:column headerText="ID" width="20" style="text-align: center">
+                        <h:outputText value="#{products.ID}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Quantidade"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Descrição" width="300" style="text-align: center">
+                        <h:outputText value="#{products.name}"/>
                     </p:column>
 
+                    <p:column headerText="Valor" width="50" style="text-align: center">
+                        <h:outputText value="#{products.value}">
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Data de compra" width="50" style="text-align: center">
+                        <h:outputText value="#{products.dateOfPurchase}">
+                            <f:convertDateTime dateStyle="default"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Validade" width="50" style="text-align: center">
+                        <h:outputText value="#{products.expirationDate}">
+                            <f:convertDateTime dateStyle="default"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Ações" width="30" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
+                    </p:column>
 
                 </p:dataTable>
             </h:form>

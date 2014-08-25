@@ -1,36 +1,44 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Doctor;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Doctor;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author cassio
  */
-@Stateless
-public class DoctorDao extends DaoAbstract<Doctor> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class DoctorDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public DoctorDao(){
+        
+    }
+    
+    public void create(Doctor doctor) {
+        entityManager.persist(doctor);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public DoctorDao() {
-        super(Doctor.class);
+    public void update(Doctor doctor) {
+        entityManager.merge(doctor);
+    }
+    
+    public void delete(Doctor doctor) {
+        entityManager.remove(doctor);
+    }
+
+    
+    public List<Doctor> findAll() {
+        return entityManager.createQuery("from Doctor doc").getResultList();
+    }
+
+    
+    public Doctor findById(Doctor id) {
+        return entityManager.find(Doctor.class, id);
     }
     
 }

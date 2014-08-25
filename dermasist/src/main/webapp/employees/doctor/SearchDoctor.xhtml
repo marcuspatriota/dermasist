@@ -31,7 +31,7 @@
                     <p:outputLabel for="cpf" value="CPF: "/>
                     <p:inputMask id="cpf" mask="999.999.999-99" placeholder="Número do CPF"/>
 
-                   
+
                     <p:outputLabel for="speciality" value="Especialidade "/>
                     <p:inputText id="speciality" placeholder="Especialidade"/>
 
@@ -48,39 +48,33 @@
                 </p:toolbar>
 
             </h:form>
-            
+
             <h:form id="formTableSearchDoctor">
                 <p:growl id="msgTableSearchDoctor"/>
-                <p:dataTable id="tableDoctorDB" var="doctorName" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+                <p:dataTable id="tableDoctorDB" value="#{doctorBean.doctors}" var="doctors" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de médicos</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Matrícula"/>
-                        </f:facet>
-                        <h:outputText/>
+
+                    <p:column headerText="Matrícula" width="20" style="text-align: center">
+                        <h:outputText value="#{doctors.registrationCode}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Nome" width="200" style="text-align: left">
+                        <h:outputText value="#{doctors.name}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Especialidade"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Especialidade" width="120" style="text-align: left">
+                        <h:outputText value="#{doctors.speciality}"/>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Celular"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Celular" width="90" style="text-align: center">
+                        <h:outputText value="#{doctors.registrationCode}"/>
+                    </p:column>
+
+                    <p:column headerText="Ações" width="30" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 
                 </p:dataTable>

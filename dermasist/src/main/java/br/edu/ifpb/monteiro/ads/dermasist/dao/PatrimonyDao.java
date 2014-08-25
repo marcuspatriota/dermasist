@@ -1,35 +1,44 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Patrimony;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Patrimony;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author Wilde Arruda
  */
-@Stateless
-public class PatrimonyDao extends DaoAbstract<Patrimony> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return 
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class PatrimonyDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public PatrimonyDao(){
+        
+    }
+    
+    public void create(Patrimony patrimony) {
+        entityManager.persist(patrimony);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public PatrimonyDao() {
-        super(Patrimony.class);
+    public void update(Patrimony patrimony) {
+        entityManager.merge(patrimony);
+    }
+    
+    public void delete(Patrimony patrimony) {
+        entityManager.remove(patrimony);
+    }
+
+    
+    public List<Patrimony> findAll() {
+        return entityManager.createQuery("from Patrimony patrim").getResultList();
+    }
+
+    
+    public Patrimony findById(Patrimony id) {
+        return entityManager.find(Patrimony.class, id);
     }
     
 }

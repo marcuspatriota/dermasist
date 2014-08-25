@@ -12,33 +12,54 @@
     </h:head>
 
     <ui:define name="content">
-        <p:fieldset legend="CADASTRO DE SERVIÇO" id="fieldSetFormTitle" >
-            <h:form id="formRegisterService">
-                <p:growl id="msgServiceForm" showDetail="true" sticky="true" />
-                <h:panelGrid columns="2" cellpadding="2" >
 
-                    <p:outputLabel/>
-                    <h:inputHidden id="idService"/>
+    <p:fieldset legend="CADASTRO DE SERVIÇO" id="fieldSetFormTitle" >
+        <h:form id="formRegisterService">
 
-                    <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" maxlength="50" placeholder="Nome do serviço"/>
+            <!-- Show a gif image to loading ajax user requests -->
+            <p:ajaxStatus>
+                <f:facet name="start">
+                    <h:graphicImage library="images" name="loading.gif"/>
+                    <h:outputLabel value="Aguarde..."/>
+                </f:facet>
+                <f:facet name="complete">
+                    <h:outputText value=""/>
+                </f:facet>
+            </p:ajaxStatus>
 
-                    <p:outputLabel for="value" value="Valor: "/>
-                    <p:inputText id="value" placeholder="Valor do serviço" styleClass="money" maxlength="15"/>
+            <p:growl id="msgServiceForm" life="7000" />
+            <h:panelGrid columns="2" cellpadding="2" >
 
-                </h:panelGrid>
+                <p:outputLabel/>
+                <h:inputHidden id="idService" />
 
-                <p:toolbar id="panelButtonsService" style="margin-top: 10px;">
-                    <p:toolbarGroup>
-                        <p:commandButton style="font-size: 13px;" value="Salvar" id="save" update="@form" icon="ui-icon ui-icon-disk"/>
-                    </p:toolbarGroup>
+                <p:outputLabel for="name" value="Nome: "/>
+                <p:inputText id="name" maxlength="50" placeholder="Nome do serviço" 
+                             value="#{serviceBean.service.name}"/>
 
-                    <p:toolbarGroup align="right">
-                        <p:button value="Novo cadastro" id="newRegister" outcome="/services/CadastreService.xhtml" icon="ui-icon ui-icon-pencil"/>
-                        <p:button style="font-size: 13px;" value="Pesquisar" outcome="/services/SearchService.xhtml" id="search" icon="ui-icon ui-icon-search"/>
-                    </p:toolbarGroup>
-                </p:toolbar> 
-            </h:form>
-        </p:fieldset>
-    </ui:define>
+                <p:outputLabel for="value" value="Valor: "/>
+                <p:inputText id="value" styleClass="money" placeholder="Valor do serviço"  
+                             maxlength="15" value="#{serviceBean.service.value}">
+                    <f:convertNumber type="number" locale="pt_BR"/>
+                </p:inputText>
+
+            </h:panelGrid>
+
+            <p:toolbar id="panelButtonsService" style="margin-top: 10px;">
+                <p:toolbarGroup>
+                    <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                     update="@form" icon="ui-icon ui-icon-disk" 
+                                     action="#{serviceBean.create}"/>
+                </p:toolbarGroup>
+
+                <p:toolbarGroup align="right">
+                    <p:button value="Novo cadastro" id="newRegister" outcome="/services/CadastreService.xhtml" 
+                              icon="ui-icon ui-icon-pencil"/>
+                    <p:button style="font-size: 13px;" value="Pesquisar" outcome="/services/SearchService.xhtml" 
+                              id="search" icon="ui-icon ui-icon-search"/>
+                </p:toolbarGroup>
+            </p:toolbar> 
+        </h:form>
+    </p:fieldset>
+</ui:define>
 </ui:composition>

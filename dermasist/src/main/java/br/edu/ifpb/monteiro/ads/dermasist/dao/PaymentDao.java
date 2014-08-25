@@ -1,35 +1,39 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Payment;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Payment;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author cassio
  */
-@Stateless
-public class PaymentDao extends DaoAbstract<Payment> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return  
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class PaymentDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public void create(Payment payment) {
+        entityManager.persist(payment);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public PaymentDao() {
-        super(Payment.class);
+    public void update(Payment payment) {
+        entityManager.merge(payment);
+    }
+    
+    public void delete(Payment payment) {
+        entityManager.remove(payment);
+    }
+
+    
+    public List<Payment> findAll() {
+        return entityManager.createQuery("from Payment pay").getResultList();
+    }
+    
+    public Payment findById(Payment id) {
+        return entityManager.find(Payment.class, id);
     }
     
 }

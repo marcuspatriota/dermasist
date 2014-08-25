@@ -20,16 +20,16 @@
                     <p:outputLabel/>
                     <h:inputHidden id="idPayment"/>
 
-                      <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
+                    <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
                     <p:calendar id="expirationDate" navigator="true" effect="explode" 
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Expira em" 
                                 readonly="true" locale="pt"/>
-                    
+
                     <p:outputLabel for="dateOfPayment" value="Data de pagamento: "/>
                     <p:calendar id="dateOfPayment" navigator="true" effect="explode" 
                                 pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Pagamento" 
                                 readonly="true" locale="pt"/>
-                    
+
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsPay">
@@ -47,23 +47,26 @@
 
             <h:form id="formTableSearchPay">
                 <p:growl id="msgTableSearchPay"/>
-                <p:dataTable id="tablePaymentDB" var="paymentId" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
+
+                <p:dataTable id="tablePaymentDB" value="#{paymentBean.payments}" var="payments" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
                              {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" 
                              paginatorAlwaysVisible="false">
                     <f:facet name="header">Lista de contas</f:facet>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Data"/>
-                        </f:facet>
-                        <h:outputText/>
+
+                    <p:column headerText="Data">
+                        <h:outputText value="#{payments.dateOfPayment}">
+                            <f:convertDateTime dateStyle="default"/>
+                        </h:outputText>
                     </p:column>
 
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Valor"/>
-                        </f:facet>
-                        <h:outputText/>
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{payments.value}"/>
+                    </p:column>
+
+                    <p:column headerText="Ações" width="100" style="text-align: center">
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 
                 </p:dataTable>

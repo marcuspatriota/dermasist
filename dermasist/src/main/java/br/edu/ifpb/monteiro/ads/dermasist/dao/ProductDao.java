@@ -1,35 +1,44 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.entities.Product;
-import javax.ejb.Stateless;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Product;
+import java.io.Serializable;
+import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
- * Class for persisting data with the database, which contains methods to persist,
- * delete, update, Search by id, search all, multiple search and counting
- * @author Markus
+ *
+ * @author Wilde Arruda
  */
-@Stateless
-public class ProductDao extends DaoAbstract<Product> {
-    @PersistenceContext(unitName = "dermasist_PU")
-    private EntityManager em;
-
-    /**
-     * Implementation of the method for recovering the EntityManager abstract
-     * class.
-     * @return 
-     */
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+public class ProductDao implements Serializable{
+    
+    @Inject
+    private EntityManager entityManager;
+    
+    public ProductDao(){
+        
+    }
+    
+    public void create(Product product) {
+        entityManager.persist(product);
     }
 
-    /**
-     * Constructor for the class play this class for the parent class.
-     */
-    public ProductDao() {
-        super(Product.class);
+    public void update(Product product) {
+        entityManager.merge(product);
+    }
+    
+    public void delete(Product product) {
+        entityManager.remove(product);
+    }
+
+    
+    public List<Product> findAll() {
+        return entityManager.createQuery("from Product prod").getResultList();
+    }
+
+    
+    public Product findById(Product id) {
+        return entityManager.find(Product.class, id);
     }
     
 }
