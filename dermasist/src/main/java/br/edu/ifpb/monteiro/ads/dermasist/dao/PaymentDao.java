@@ -1,39 +1,22 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Payment;
-import java.io.Serializable;
 import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
- * @author cassio
+ * @author cassio, modify by Vanderlan Gomes
  */
-public class PaymentDao implements Serializable{
-    
-    @Inject
-    private EntityManager entityManager;
-    
-    public void create(Payment payment) {
-        entityManager.persist(payment);
-    }
+public class PaymentDao extends AbstractDAO<Payment>{
 
-    public void update(Payment payment) {
-        entityManager.merge(payment);
-    }
-    
-    public void delete(Payment payment) {
-        entityManager.remove(payment);
+    public PaymentDao() {
+        super(Payment.class);
     }
 
     
+    @Override
     public List<Payment> findAll() {
-        return entityManager.createQuery("from Payment pay").getResultList();
+        return getEntityManager().createQuery("from Payment pay").getResultList();
     }
-    
-    public Payment findById(Payment id) {
-        return entityManager.find(Payment.class, id);
-    }
-    
+   
 }

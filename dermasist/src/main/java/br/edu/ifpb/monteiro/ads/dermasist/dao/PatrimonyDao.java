@@ -3,42 +3,20 @@ package br.edu.ifpb.monteiro.ads.dermasist.dao;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Patrimony;
 import java.io.Serializable;
 import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
- * @author Wilde Arruda
+ * @author Wilde Arruda, modify by Vanderlan Gomes
  */
-public class PatrimonyDao implements Serializable{
-    
-    @Inject
-    private EntityManager entityManager;
-    
-    public PatrimonyDao(){
-        
-    }
-    
-    public void create(Patrimony patrimony) {
-        entityManager.persist(patrimony);
-    }
+public class PatrimonyDao extends AbstractDAO<Patrimony>implements Serializable{
 
-    public void update(Patrimony patrimony) {
-        entityManager.merge(patrimony);
+    public PatrimonyDao() {
+        super(Patrimony.class);
     }
     
-    public void delete(Patrimony patrimony) {
-        entityManager.remove(patrimony);
-    }
-
-    
+    @Override
     public List<Patrimony> findAll() {
-        return entityManager.createQuery("from Patrimony patrim").getResultList();
-    }
-
-    
-    public Patrimony findById(Patrimony id) {
-        return entityManager.find(Patrimony.class, id);
+        return getEntityManager().createQuery("from Patrimony patrim").getResultList();
     }
     
 }

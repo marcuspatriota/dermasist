@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "DOCTOR")
-public class Doctor extends Person {
+public class Doctor extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -123,4 +123,5 @@ public class Doctor extends Person {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
+
 }

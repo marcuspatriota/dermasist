@@ -24,4 +24,5 @@ public class PatientService implements Serializable{
         
         this.patientDao.create(patient);
     }
+
 }

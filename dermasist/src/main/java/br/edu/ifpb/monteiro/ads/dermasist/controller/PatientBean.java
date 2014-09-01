@@ -53,7 +53,7 @@ public class PatientBean implements Serializable {
             FacesUtil.addSuccessMessage(e.getMessage());
         }
     }
-
+   
     /**
      * @return the patient
      */
@@ -72,4 +72,5 @@ public class PatientBean implements Serializable {
         patients = patientDao.findAll();
         return patients;
     }
+    
 }

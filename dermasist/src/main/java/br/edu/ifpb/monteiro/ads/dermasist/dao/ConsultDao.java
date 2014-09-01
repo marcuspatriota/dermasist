@@ -1,44 +1,21 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Consult;
-import java.io.Serializable;
 import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
- * @author cassio
+ * @author cassio, modify by Vanderlan Gomes
  */
-public class ConsultDao implements Serializable{
-    
-    @Inject
-    private EntityManager entityManager;
-    
-    public ConsultDao(){
-        
-    }
-    
-    public void create(Consult consult) {
-        entityManager.persist(consult);
+public class ConsultDao extends AbstractDAO<Consult>{
+
+    public ConsultDao() {
+        super(Consult.class);
     }
 
-    public void update(Consult consult) {
-        entityManager.merge(consult);
-    }
-    
-    public void delete(Consult consult) {
-        entityManager.remove(consult);
-    }
-
-    
+    @Override
     public List<Consult> findAll() {
-        return entityManager.createQuery("from Consult cons").getResultList();
+        return getEntityManager().createQuery("from Consult cons").getResultList();
     }
 
-    
-    public Consult findById(Consult id) {
-        return entityManager.find(Consult.class, id);
-    }
-    
 }

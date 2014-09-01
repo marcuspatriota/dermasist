@@ -22,6 +22,6 @@ public class DoctorService implements Serializable{
             throw new DermaSistException("O nome do médico é obrigatório");
         }
         
-        this.doctorDao.create(doctor);
+        doctorDao.create(doctor);
     }
 }

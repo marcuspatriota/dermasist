@@ -1,44 +1,21 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Doctor;
-import java.io.Serializable;
 import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
- * @author cassio
+ * @author cassio, modify by Vanderlan Gomes
  */
-public class DoctorDao implements Serializable{
+public class DoctorDao extends AbstractDAO<Doctor> {
     
-    @Inject
-    private EntityManager entityManager;
-    
-    public DoctorDao(){
-        
-    }
-    
-    public void create(Doctor doctor) {
-        entityManager.persist(doctor);
+    public DoctorDao() {
+        super(Doctor.class);
     }
 
-    public void update(Doctor doctor) {
-        entityManager.merge(doctor);
-    }
-    
-    public void delete(Doctor doctor) {
-        entityManager.remove(doctor);
-    }
-
-    
+    @Override
     public List<Doctor> findAll() {
-        return entityManager.createQuery("from Doctor doc").getResultList();
+        return getEntityManager().createQuery("from Doctor doc").getResultList();
     }
 
-    
-    public Doctor findById(Doctor id) {
-        return entityManager.find(Doctor.class, id);
-    }
-    
 }

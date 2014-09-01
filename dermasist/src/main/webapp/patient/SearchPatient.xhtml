@@ -27,7 +27,7 @@
 
                     <p:outputLabel for="cpf" value="CPF: "/>
                     <p:inputMask id="cpf" mask="999.999.999-99" placeholder="Número do CPF"/>
-                   
+
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsPatient">
@@ -41,7 +41,7 @@
                 </p:toolbar>
 
             </h:form>
-            
+
             <h:form id="formTableSearchPatient">
                 <p:growl id="msgTableSearchPatient"/>
                 <p:dataTable id="tablePatientDB" value="#{patientBean.patients}" var="patients" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
@@ -60,12 +60,15 @@
                     <p:column headerText="Contato de Emergência" width="80">
                         <h:outputText value="#{patients.emergencyContact}"/>
                     </p:column>
-                    
+
                     <p:column headerText="Ações" width="30" style="text-align: center">
-                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
-                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
+                        <p:button icon="ui-icon ui-icon-pencil" title="Editar" outcome="/patient/EditPatient.xhtml">
+                            <f:param name="id_patient" value="3" />
+                        </p:button>
+                        <p:commandButton icon="ui-icon ui-icon-trash" title="Excluir"                                   
+                                         process="@this" update="@form" action="#{patientBean.delete}"/>
                     </p:column>
-                    
+
                 </p:dataTable>
             </h:form>
 

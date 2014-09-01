@@ -1,44 +1,21 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Product;
-import java.io.Serializable;
 import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 /**
  *
- * @author Wilde Arruda
+ * @author Wilde Arruda, modify by Vanderlan Gomes
  */
-public class ProductDao implements Serializable{
-    
-    @Inject
-    private EntityManager entityManager;
-    
-    public ProductDao(){
-        
-    }
-    
-    public void create(Product product) {
-        entityManager.persist(product);
-    }
+public class ProductDao extends AbstractDAO<Product>{
 
-    public void update(Product product) {
-        entityManager.merge(product);
+    public ProductDao() {
+        super(Product.class);
     }
     
-    public void delete(Product product) {
-        entityManager.remove(product);
-    }
-
-    
+    @Override
     public List<Product> findAll() {
-        return entityManager.createQuery("from Product prod").getResultList();
+        return getEntityManager().createQuery("from Product prod").getResultList();
     }
 
-    
-    public Product findById(Product id) {
-        return entityManager.find(Product.class, id);
-    }
-    
 }

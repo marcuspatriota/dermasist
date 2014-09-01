@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/HeadFooterTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewAction action="#{patientBean.setPatientForId(id)}" />
+    </f:metadata>
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    </h:head>
+
+    <ui:define name="content">
+        <p:fieldset legend="CADASTRO DE PACIENTE" id="fieldSetFormTitle" >
+            <h:form id="formRegisterPatient">
+
+                <p:ajaxStatus>
+                    <f:facet name="start">
+                        <h:graphicImage library="images" name="loading.gif"/>
+                        <h:outputLabel value="Aguarde..."/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+
+                <p:growl id="msgPatientForm" life="7000"/>
+                <h:panelGrid columns="2" cellpadding="2" >
+                    <p:outputLabel value="Campos com * são obrigatórios"
+                                   id="labelRequiredInfo" style="color: #D20005; font-size: 12px; font-weight: bold;"/>
+                    <p:outputLabel/>
+
+                    <p:outputLabel/>
+                    <h:inputHidden id="idPatient" value="#{param.id_patient}"/>
+
+                    <p:outputLabel for="name" value="Nome: "/>
+                    <p:inputText id="name" required="true" value="#{patientBean.patient.name}"
+                                 requiredMessage="O campo [Nome] é obrigatório." size="50" 
+                                 placeholder="Nome completo" validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="street" value="Rua: "/>
+                    <p:inputText id="street" required="true" value="#{patientBean.patient.street}"
+                                 requiredMessage="O campo [Rua] é obrigatório." size="30" placeholder="Nome da Rua" />
+
+                    <p:outputLabel for="number" value="Nº: "/>
+                    <p:inputText id="number" required="true" value="#{patientBean.patient.number}"
+                                 requiredMessage="O campo [Nº] é obrigatório." size="30" placeholder="Nº da casa"
+                                 validatorMessage="O campo [Nº] deve começar com números e pode conter letras">
+                        <f:validateRegex pattern="^\d+$|^\d+[aA-zZ]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="neighborhood" value="Bairro: "/>
+                    <p:inputText id="neighborhood" required="true" value="#{patientBean.patient.neighborhood}"
+                                 requiredMessage="O campo [Bairro] é obrigatório." size="30" placeholder="Nome do bairro"/>
+
+                    <p:outputLabel for="state" value="Estado: "/>
+                    <p:selectOneMenu id="state" required="true" requiredMessage="O campo [Estado] é obrigatório." 
+                                     value="#{patientBean.patient.state}">
+                        <f:selectItem itemLabel="Selecione"/>
+                        <f:selectItems value="#{personBean.states}" itemLabel="#{state}" itemValue="#{state}" var="state"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="city" value="Cidade: "/>
+                    <p:inputText id="city" required="true" value="#{patientBean.patient.city}"
+                                 requiredMessage="O campo [Cidade] é obrigatório." size="30" placeholder="Nome da cidade"/>
+
+                    <p:outputLabel for="mobile" value="Celular: "/>
+                    <p:inputText id="mobile" required="true" value="#{patientBean.patient.mobile}" 
+                                 requiredMessage="O campo [Celular] é obrigatório." 
+                                 placeholder="Número do celular" styleClass="phone"/>
+
+                    <p:outputLabel for="phone" value="Telefone: "/>
+                    <p:inputText id="phone" value="#{patientBean.patient.phone}" placeholder="Telefone fixo ou outro celular" styleClass="phone"/>
+
+                    <p:outputLabel for="birthOfDate" value="Data de nascimento: "/>
+                    <p:calendar id="birthOfDate" pattern="dd/MM/yyyy" required="true" 
+                                value="#{patientBean.patient.dateOfBirth}" maxdate="#{personBean.dateToday}"/>
+
+                    <p:outputLabel for="cpf" value="CPF: "/>
+                    <p:inputMask id="cpf" mask="999.999.999-99" required="true" value="#{patientBean.patient.cpf}" 
+                                 requiredMessage="O campo [CPF] é obrigatório." placeholder="Número do CPF"/>
+
+                    <p:outputLabel for="rg" value="RG: "/>
+                    <p:inputText id="rg" required="true"  requiredMessage="O campo [RG] é obrigatório." value="#{patientBean.patient.rg}"
+                                 placeholder="Número do RG" validatorMessage="O campo [RG] deve conter apenas números ">
+                        <f:validateRegex pattern="^\d+$|^\d+[aA-zZ]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="sex" value="Sexo: " />
+                    <p:selectOneMenu id="sex" label="Sexo: " value="#{patientBean.patient.sex}" effect="explode" editable="true" required="true" 
+                                     requiredMessage="O campo [Sexo] é obrigatório.">
+                        <f:selectItem itemLabel="" itemDisabled="true"/>
+                        <f:selectItem itemLabel="M" />
+                        <f:selectItem itemLabel="F" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="motherIsName" value="Nome da Mãe: "/>
+                    <p:inputText id="motherIsName" value="#{patientBean.patient.motherIsName}" 
+                                 placeholder="Nome da mãe" validatorMessage="O campo [Nome da Mãe] deve conter apenas letras, letras  e/ou espaços">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="bloodType" value="Tipo Sanguíneo: "/>
+                    <p:selectOneMenu id="bloodType" label="Tipo Sanguíneo: " value="#{patientBean.patient.bloodType}"
+                                     effect="explode" editable="true">
+                        <f:selectItem itemLabel="A+" />
+                        <f:selectItem itemLabel="A-" />
+                        <f:selectItem itemLabel="B+" />
+                        <f:selectItem itemLabel="B-" />
+                        <f:selectItem itemLabel="AB+" />
+                        <f:selectItem itemLabel="AB-" />
+                        <f:selectItem itemLabel="O+" />
+                        <f:selectItem itemLabel="O-" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="fleshTone" value="Tom de Pele: "/>
+                    <p:inputText id="fleshTone" placeholder="Raça/Cor" value="#{patientBean.patient.fleshTone}"
+                                 validatorMessage="O campo [Tom de Pele] deve conter apenas letras, letras  e/ou espaços" maxlength="10">
+                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="emergencyContact" value="Contato de Emergência: "/>
+                    <p:inputText id="emergencyContact" placeholder="Contato" value="#{patientBean.patient.emergencyContact}" maxlength="10"/>
+
+                    <p:outputLabel for="healthPlan" value="Plano de Saúde: "/>
+                    <p:inputText id="healthPlan" placeholder="Convênio do paciente" value="#{patientBean.patient.healthPlan}"/>
+
+                    <p:outputLabel for="susCard" value="Cartão do SUS: "/>
+                    <p:inputText id="susCard" placeholder="Nº da inscrição do SUS" value="#{patientBean.patient.susCard}"/>
+
+                    <p:outputLabel for="weight" value="Peso: "/>
+                    <p:inputMask id="weight" mask="999" placeHolder="Peso em kg" value="#{patientBean.patient.weight}"/>
+
+                    <p:outputLabel for="height" value="Altura: "/>
+                    <p:inputMask id="height" mask="999" placeHolder="Altura em cm" value="#{patientBean.patient.height}"/>
+
+
+                </h:panelGrid>
+
+                <p:toolbar id="panelButtonsPatient" style="margin-top: 10px;">
+                    <p:toolbarGroup>
+                        <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                         update="@form" icon="ui-icon ui-icon-disk" action="#{patientBean.create}"/>
+                    </p:toolbarGroup>
+
+                    <p:toolbarGroup align="right">
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/patient/CadastrePatient" icon="ui-icon ui-icon-pencil"/>
+                        <p:button style="font-size: 13px;" value="Pesquisar" outcome="/patient/SearchPatient" id="search" icon="ui-icon ui-icon-search"/>
+                    </p:toolbarGroup>
+                </p:toolbar> 
+            </h:form>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>
