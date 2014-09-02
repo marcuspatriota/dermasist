@@ -1,7 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Patient;
-import java.util.List;
 
 /**
  *
@@ -13,10 +12,4 @@ public class PatientDao extends AbstractDAO<Patient> {
         super(Patient.class);
     }
 
-  
-    @Override
-    public List<Patient> findAll() {
-        return getEntityManager().createQuery("from Patient pat").getResultList();
-    }
-  
 }

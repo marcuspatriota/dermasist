@@ -1,6 +1,8 @@
 package br.edu.ifpb.monteiro.ads.dermasist.session;
 
 
+
+import br.edu.ifpb.monteiro.ads.dermasist.dao.LoginDao;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Login;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
@@ -21,6 +23,8 @@ public class LoginBean implements Serializable {
     @Inject
     private AuthenticRemote loginRemote;
     private boolean logged = false;
+
+    @Inject
     private Login login;
     
     public LoginBean() {
@@ -33,7 +37,7 @@ public class LoginBean implements Serializable {
      */
     public String verify() {
 
-        VerifySession.setLogin(null);
+        VerifySession.setLogin(login);
         return null;
     }
 
@@ -62,6 +66,30 @@ public class LoginBean implements Serializable {
 
     public void setLogged(boolean logged) {
         this.logged = logged;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public AuthenticRemote getLoginRemote() {
+        return loginRemote;
+    }
+
+    public void setLoginRemote(AuthenticRemote loginRemote) {
+        this.loginRemote = loginRemote;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public void setLogin(Login login) {
+        this.login = login;
     }
 
 }

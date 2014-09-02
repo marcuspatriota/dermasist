@@ -1,7 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Payment;
-import java.util.List;
 
 /**
  *
@@ -13,10 +12,4 @@ public class PaymentDao extends AbstractDAO<Payment>{
         super(Payment.class);
     }
 
-    
-    @Override
-    public List<Payment> findAll() {
-        return getEntityManager().createQuery("from Payment pay").getResultList();
-    }
-   
 }

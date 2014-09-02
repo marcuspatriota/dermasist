@@ -1,7 +1,6 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.model.Provider;
-import java.util.List;
 
 /**
  *
@@ -14,9 +13,4 @@ public class ProviderDao extends AbstractDAO<Provider>{
         super(Provider.class);
     }
 
-    @Override
-    public List<Provider> findAll() {
-        return getEntityManager().createQuery("from Provider prov").getResultList();
-    }
-    
 }

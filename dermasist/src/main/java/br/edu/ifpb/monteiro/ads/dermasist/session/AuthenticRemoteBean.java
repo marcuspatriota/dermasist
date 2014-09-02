@@ -1,7 +1,8 @@
 package br.edu.ifpb.monteiro.ads.dermasist.session;
 
+import br.edu.ifpb.monteiro.ads.dermasist.dao.LoginDao;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Login;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 
 /**
  *
@@ -10,26 +11,22 @@ import javax.persistence.EntityManager;
 @Stateless
 public class AuthenticRemoteBean implements AuthenticRemote {
 
-    private EntityManager entityManager;
+    private LoginDao<Login> loginDao = new LoginDao<>(Login.class);
+    private Login logged = null;
 
     @Override
     public boolean authentic(String login, String password) {
 
-//        UserBibliosoft user = new UserBibliosoft();
-//        user.setPassword(password);
-//        user.setRegistration(login);
-//
-//        UserBibliosoft find = entityManager.find(UserBibliosoft.class, user);
-//
-//        if (find.getId() != null) {
-//            return true;
-//        } else {
-//            return "admin".equals(login) && "admin".equals(password);
-//
-//        }
-//
-//    }
-        return "admin".equals(login) && "admin".equals(password);
-
+        logged = loginDao.findByLoginl(login, password);
+        if(logged == null){
+            
+            System.out.println("USUÁRIO E SENHA INVÁLIDO");
+            return false;
+        }
+        else{
+            VerifySession.setLogin(logged);
+            return true;
+        }
+        
     }
 }
