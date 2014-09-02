@@ -2,10 +2,13 @@ package br.edu.ifpb.monteiro.ads.dermasist.model;
 
 /**
  *
- * @author vanderlan
+ * @author Vanderlan Gomes
+ * @param <T>
  */
-public abstract class IdentifiableImp implements IdentifiableIF{
+public abstract class IdentifiableImp<T> implements IdentifiableIF{
 
+    private long ID;
+    
     @Override
     public abstract Long getID() ;
 

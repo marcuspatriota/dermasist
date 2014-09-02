@@ -1,4 +1,4 @@
-package br.edu.ifpb.monteiro.ads.dermasist.controller;
+package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import java.util.List;
 

@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Person extends IdentifiableImp implements Serializable {
+public class Person  implements Serializable {
     
     /**
      * Attributes and their respective annotations 

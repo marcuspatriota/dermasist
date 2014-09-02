@@ -3,25 +3,44 @@ package br.edu.ifpb.monteiro.ads.dermasist.services;
 import br.edu.ifpb.monteiro.ads.dermasist.dao.PatrimonyDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Patrimony;
-import br.edu.ifpb.monteiro.ads.dermasist.util.jpa.Transactional;
 import java.io.Serializable;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
  *
- * @author Wilde Arruda
+ * @author Wilde Arruda, modifield by Vanderlan Gomes
  */
-public class PatrimonyService implements Serializable{
-    
+public class PatrimonyService implements Serializable, ServiceIF<Patrimony> {
+
     @Inject
-    private PatrimonyDao patrimonyDao;
-    
-    @Transactional
-    public void create(Patrimony patrimony) throws DermaSistException {
-        if(patrimony.getDescription()== null || patrimony.getDescription().trim().equals("")){
-            throw new DermaSistException("O descrição do patrimônio é obrigatória");
-        }
-        
-        this.patrimonyDao.create(patrimony);
+    private PatrimonyDao dao;
+
+    @Override
+    public void create(Patrimony entity) throws DermaSistException {
+        dao.create(entity);
     }
+
+    @Override
+    public void delete(Patrimony entity) throws DermaSistException {
+        dao.delete(entity);
+    }
+
+    @Override
+    public void update(Patrimony entity) throws DermaSistException {
+        dao.update(entity);
+    }
+
+    @Override
+    public Patrimony findById(Long id) throws DermaSistException {
+        return dao.findById(id);
+    }
+
+    @Override
+    public List<Patrimony> findAll() {
+
+        return dao.findAll();
+
+    }
+
 }

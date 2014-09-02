@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * @author Wilde Arruda, modify by Vanderlan Gomes
+ * @author Wilde Arruda, modifield by Vanderlan Gomes
  */
 public class PatrimonyDao extends AbstractDAO<Patrimony>implements Serializable{
 

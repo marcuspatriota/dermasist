@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author cassio, modify by Vanderlan Gomes
+ * @author cassio, modifield by Vanderlan Gomes
  */
 public class PaymentDao extends AbstractDAO<Payment>{
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author cassio, modify by Vanderlan Gomes
+ * @author cassio, modifield by Vanderlan Gomes
  */
 public class SecretaryDao extends AbstractDAO<Secretary>{
 

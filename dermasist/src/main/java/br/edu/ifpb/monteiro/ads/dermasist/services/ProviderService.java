@@ -3,25 +3,44 @@ package br.edu.ifpb.monteiro.ads.dermasist.services;
 import br.edu.ifpb.monteiro.ads.dermasist.dao.ProviderDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Provider;
-import br.edu.ifpb.monteiro.ads.dermasist.util.jpa.Transactional;
 import java.io.Serializable;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
  *
- * @author Wilde Arruda
+ * @author Wilde Arruda, modifield by Vanderlan Gomes
  */
-public class ProviderService implements Serializable{
-    
+public class ProviderService implements Serializable,ServiceIF<Provider> {
+
     @Inject
-    private ProviderDao providerDao;
-    
-    @Transactional
-    public void create(Provider provider) throws DermaSistException {
-        if(provider.getName() == null || provider.getName().trim().equals("")){
-            throw new DermaSistException("O nome do fornecedor é obrigatório");
-        }
-        
-        this.providerDao.create(provider);
+    private ProviderDao dao;
+
+    @Override
+    public void create(Provider entity) throws DermaSistException {
+        dao.create(entity);
     }
+
+    @Override
+    public void delete(Provider entity) throws DermaSistException {
+        dao.delete(entity);
+    }
+
+    @Override
+    public void update(Provider entity) throws DermaSistException {
+        dao.update(entity);
+    }
+
+    @Override
+    public Provider findById(Long id) throws DermaSistException {
+        return dao.findById(id);
+    }
+
+    @Override
+    public List<Provider> findAll() {
+
+        return dao.findAll();
+
+    }
+
 }

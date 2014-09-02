@@ -1,10 +1,8 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.DoctorDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.DoctorService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Doctor;
-import br.edu.ifpb.monteiro.ads.dermasist.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -12,29 +10,22 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
 /**
- * Controller to manage the communication between the page and the rest of project
- * 
+ * Controller to manage the communication between the page and the rest of
+ * project
+ *
  * @author cassio
  */
 @Model
-public class DoctorBean implements Serializable {
+public class DoctorBean   implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Inject
     private DoctorService doctorService;
-
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private DoctorDao doctorDao;
-
-    //A list to storage the data come from database
     private List<Doctor> doctors;
+    
+    @Inject
     private Doctor doctor;
-
-    public DoctorBean() {
-
-    }
 
     @PostConstruct
     public void init() {
@@ -45,15 +36,9 @@ public class DoctorBean implements Serializable {
         this.doctor = new Doctor();
     }
 
-    public void create() {
-        try {
-            this.doctorService.create(doctor);
-            FacesUtil.addSuccessMessage("Médico cadastrado com sucesso!");
-        } catch (DermaSistException e) {
-            FacesUtil.addSuccessMessage(e.getMessage());
-        }
+    public void create() throws DermaSistException{
+        doctorService.create(doctor);
     }
-
     /**
      * @return the doctor
      */
@@ -72,7 +57,8 @@ public class DoctorBean implements Serializable {
      * @return the doctors
      */
     public List<Doctor> getDoctors() {
-        doctors = doctorDao.findAll();
+        doctors = doctorService.findAll();
         return doctors;
     }
+
 }

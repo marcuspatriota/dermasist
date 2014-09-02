@@ -3,25 +3,44 @@ package br.edu.ifpb.monteiro.ads.dermasist.services;
 import br.edu.ifpb.monteiro.ads.dermasist.dao.ConsultDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Consult;
-import br.edu.ifpb.monteiro.ads.dermasist.util.jpa.Transactional;
 import java.io.Serializable;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
  *
- * @author cassio
+ * @author cassio, modifield by Vanderlan Gomes
  */
-public class ConsultService implements Serializable{
+public class ConsultService implements Serializable, ServiceIF<Consult>{
     
     @Inject
-    private ConsultDao consultDao;
-    
-    @Transactional
-    public void create(Consult consult) throws DermaSistException {
-        if(consult.getDiagnosis()== null || consult.getDiagnosis().trim().equals("")){
-            throw new DermaSistException("O diagnóstico da consulta é obrigatório");
-        }
-        
-        this.consultDao.create(consult);
+    private ConsultDao dao;
+
+    @Override
+    public void create(Consult entity) throws DermaSistException {
+       dao.create(entity);
     }
+
+    @Override
+    public void delete(Consult entity) throws DermaSistException {
+        dao.delete(entity);
+    }
+
+    @Override
+    public void update(Consult entity) throws DermaSistException {
+        dao.update(entity);
+    }
+
+    @Override
+    public Consult findById(Long id) throws DermaSistException {
+        return dao.findById(id);
+    }
+    
+    @Override
+    public List<Consult> findAll() {
+       
+        return dao.findAll();
+    
+    }
+
 }

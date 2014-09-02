@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
-import br.edu.ifpb.monteiro.ads.dermasist.controller.AbstractDAOIf;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -22,6 +21,7 @@ public abstract class AbstractDAO<T> implements AbstractDAOIf<T>{
 
     @Override
     public void create(T entity) {
+        entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
     }
