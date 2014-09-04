@@ -34,7 +34,7 @@ public class Service implements Serializable{
     @Column(name="NAME")
     private String name;
     
-    @Column(name="SERVICE_VALUE", scale = 10, precision = 2)
+    @Column(name="SERVICE_VALUE", scale = 2, precision = 10)
     private BigDecimal value;
     
     /**

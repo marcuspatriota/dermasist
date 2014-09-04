@@ -14,7 +14,7 @@ import javax.inject.Inject;
 public class ConsultService implements Serializable{
     
     @Inject
-    private ConsultDaoIF<Consult> dao;
+    private ConsultDaoIF dao;
 
     public void create(Consult entity) throws DermaSistException {
        dao.create(entity);

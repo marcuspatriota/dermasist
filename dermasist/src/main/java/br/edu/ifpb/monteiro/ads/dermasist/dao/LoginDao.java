@@ -1,16 +1,16 @@
 package br.edu.ifpb.monteiro.ads.dermasist.dao;
 
 import br.edu.ifpb.monteiro.ads.dermasist.interfacesdao.LoginDaoIF;
+import br.edu.ifpb.monteiro.ads.dermasist.model.Login;
 
 /**
  *
  * @author Vanderlan Gomes
- * @param <Login>
  */
-public class LoginDao<Login> extends AbstractDAO<Login> implements LoginDaoIF{
+public class LoginDao extends AbstractDAO<Login> implements LoginDaoIF{
 
-    public LoginDao(Class<Login> entityClass) {
-        super(entityClass);
+    public LoginDao() {
+        super(Login.class);
     }
 
 }

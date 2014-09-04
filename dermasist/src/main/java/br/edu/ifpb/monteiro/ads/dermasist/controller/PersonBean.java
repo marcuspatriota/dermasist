@@ -18,7 +18,7 @@ public class PersonBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //This attribute will receive the states of the Enumeration States 
-    private static List<States> states;
+    private  List<States> states;
 
     public PersonBean() {
         //Initializing list and receiving the valus of States Enumeration as a List.
@@ -29,7 +29,8 @@ public class PersonBean implements Serializable {
         return new Date();
     }
 
-    public static List<States> getStates() {
+    public  List<States> getStates() {
         return states;
     }
+    
 }

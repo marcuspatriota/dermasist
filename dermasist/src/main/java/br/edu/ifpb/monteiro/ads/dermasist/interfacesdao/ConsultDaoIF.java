@@ -1,21 +1,21 @@
 package br.edu.ifpb.monteiro.ads.dermasist.interfacesdao;
 
+import br.edu.ifpb.monteiro.ads.dermasist.model.Consult;
 import java.util.List;
 
 /**
  *
  * @author Vanderlan Gomes
- * @param <T>
  */
-public interface ConsultDaoIF<T> {
+public interface ConsultDaoIF {
 
-    public void create(T entity);
+    public void create(Consult entity);
 
-    public void delete(T entity);
+    public void delete(Consult entity);
 
-    public void update(T entity);
+    public void update(Consult entity);
 
-    public List<T> findAll();
+    public List<Consult> findAll();
 
-    public T findById(Long id);
+    public Consult findById(Long id);
 }
