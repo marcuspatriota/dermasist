@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.ConsultDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.ConsultService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Consult;
@@ -23,10 +22,6 @@ public class ConsultBean implements Serializable {
 
     @Inject
     private ConsultService consultService;
-    
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private ConsultDao consultDao;
     
     //A list to storage the data come from database
     private List<Consult> consults;
@@ -70,7 +65,7 @@ public class ConsultBean implements Serializable {
     
     
     public List<Consult> getConsults() {
-        consults = consultDao.findAll();
+        consults = consultService.findAll();
         return consults;
     }
 }

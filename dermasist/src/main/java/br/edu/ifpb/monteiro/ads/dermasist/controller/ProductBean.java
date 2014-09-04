@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.ProductDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.ProductService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Product;
@@ -23,10 +22,6 @@ public class ProductBean implements Serializable {
 
     @Inject
     private ProductService productService;
-    
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private ProductDao productDao;
     
     //A list to storage the data come from database
     private List<Product> products;
@@ -70,7 +65,7 @@ public class ProductBean implements Serializable {
     
     
     public List<Product> getProducts() {
-        products = productDao.findAll();
+        products = productService.findAll();
         return products;
     }
 }

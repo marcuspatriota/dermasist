@@ -18,18 +18,18 @@ public class PersonBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //This attribute will receive the states of the Enumeration States 
-    private List<States> states;
+    private static List<States> states;
 
     public PersonBean() {
         //Initializing list and receiving the valus of States Enumeration as a List.
-        this.states = Arrays.asList(States.values());
+       states = Arrays.asList(States.values());
     }
 
     public Date getDateToday() {
         return new Date();
     }
 
-    public List<States> getStates() {
+    public static List<States> getStates() {
         return states;
     }
 }

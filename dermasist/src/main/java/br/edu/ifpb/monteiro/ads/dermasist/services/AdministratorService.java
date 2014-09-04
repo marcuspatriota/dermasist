@@ -1,7 +1,8 @@
 package br.edu.ifpb.monteiro.ads.dermasist.services;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.AdministratorDao;
+
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
+import br.edu.ifpb.monteiro.ads.dermasist.interfacesdao.AdministratorDaoIF;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Administrator;
 import java.util.List;
 import javax.inject.Inject;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 public class AdministratorService implements  ServiceIF<Administrator>{
        
     @Inject
-    private AdministratorDao dao;
+    private AdministratorDaoIF dao;
 
     @Override
     public void create(Administrator entity) throws DermaSistException {

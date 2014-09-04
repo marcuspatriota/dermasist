@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.PatientDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.PatientService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Patient;
@@ -23,10 +22,6 @@ public class PatientBean implements Serializable {
 
     @Inject
     private PatientService patientService;
-    
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private PatientDao patientDao;
     
     //A list to storage the data come from database
     private List<Patient> patients;
@@ -69,7 +64,7 @@ public class PatientBean implements Serializable {
     }
     
     public List<Patient> getPatients() {
-        patients = patientDao.findAll();
+        patients = patientService.findAll();
         return patients;
     }
     

@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.PaymentDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Payment;
 import br.edu.ifpb.monteiro.ads.dermasist.services.PaymentService;
@@ -21,11 +20,7 @@ public class PaymentBean implements Serializable{
     
     @Inject
     private PaymentService paymentService;
-
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private PaymentDao paymentDao;
-    
+   
     //A list to storage the data come from database
     private List<Payment> payments;
     private Payment payment;
@@ -70,7 +65,7 @@ public class PaymentBean implements Serializable{
      * @return the payments
      */
     public List<Payment> getPayments() {
-        payments = paymentDao.findAll();
+        payments = paymentService.findAll();
         return payments;
     }
     

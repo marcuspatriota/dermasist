@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.ServiceDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.ServiceService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Service;
@@ -23,10 +22,6 @@ public class ServiceBean implements Serializable {
 
     @Inject
     private ServiceService serviceService;
-
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private ServiceDao serviceDao;
     
     //A list to storage the data come from database
     private List<Service> services;
@@ -69,7 +64,7 @@ public class ServiceBean implements Serializable {
     }
     
     public List<Service> getServices() {
-        services = serviceDao.findAll();
+        services = serviceService.findAll();
         return services;
     }
 }

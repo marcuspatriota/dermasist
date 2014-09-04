@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.PatrimonyDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.PatrimonyService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Patrimony;
@@ -24,12 +23,9 @@ public class PatrimonyBean implements Serializable {
     @Inject
     private PatrimonyService patrimonyService;
     
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private PatrimonyDao patrimonyDao;
-    
     //A list to storage the data come from database
     private List<Patrimony> patrimonies;
+    @Inject
     private Patrimony patrimony;
 
     public PatrimonyBean() {
@@ -69,7 +65,7 @@ public class PatrimonyBean implements Serializable {
     }
     
     public List<Patrimony> getPatrimonies() {
-        patrimonies = patrimonyDao.findAll();
+        patrimonies = patrimonyService.findAll();
         return patrimonies;
     }
 }

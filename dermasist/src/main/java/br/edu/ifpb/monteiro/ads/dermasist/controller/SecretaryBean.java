@@ -1,6 +1,5 @@
 package br.edu.ifpb.monteiro.ads.dermasist.controller;
 
-import br.edu.ifpb.monteiro.ads.dermasist.dao.SecretaryDao;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Secretary;
 import br.edu.ifpb.monteiro.ads.dermasist.services.SecretaryService;
@@ -21,12 +20,7 @@ public class SecretaryBean implements Serializable{
     
     @Inject
     private SecretaryService secretaryService;
-    
-    //Only used for get data from database without filter or rule to be applied
-    @Inject
-    private SecretaryDao secretaryDao;
-    
-    //A list to storage the data come from database
+
     private List<Secretary> secretaries;
     
     private Secretary secretary;
@@ -68,7 +62,7 @@ public class SecretaryBean implements Serializable{
     }
 
     public List<Secretary> getSecretaries() {
-        secretaries = secretaryDao.findAll();
+        secretaries = secretaryService.findAll();
         return secretaries;
     }
     
