@@ -1,21 +1,12 @@
 package br.edu.ifpb.monteiro.ads.dermasist.interfacesdao;
 
+import br.edu.ifpb.monteiro.ads.dermasist.dao.AbstractDAOIf;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Product;
-import java.util.List;
 
 /**
  *
  * @author Vanderlan Gomes
  */
-public interface ProductDaoIF {
+public interface ProductDaoIF extends AbstractDAOIf<Product>{
 
-    public void create(Product entity);
-
-    public void delete(Product entity);
-
-    public void update(Product entity);
-
-    public List<Product> findAll();
-
-    public Product findById(Long id);
 }
