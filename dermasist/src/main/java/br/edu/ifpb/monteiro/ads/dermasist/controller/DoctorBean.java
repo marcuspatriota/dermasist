@@ -3,6 +3,7 @@ package br.edu.ifpb.monteiro.ads.dermasist.controller;
 import br.edu.ifpb.monteiro.ads.dermasist.exceptions.DermaSistException;
 import br.edu.ifpb.monteiro.ads.dermasist.services.DoctorService;
 import br.edu.ifpb.monteiro.ads.dermasist.model.Doctor;
+import br.edu.ifpb.monteiro.ads.dermasist.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -16,29 +17,37 @@ import javax.inject.Inject;
  * @author cassio
  */
 @Model
-public class DoctorBean   implements Serializable {
-
+public class DoctorBean implements Serializable {
+    
     private static final long serialVersionUID = 1L;
-
+    
     @Inject
     private DoctorService doctorService;
     private List<Doctor> doctors;
     
     @Inject
     private Doctor doctor;
-
+    
     @PostConstruct
     public void init() {
         this.clean();
     }
-
+    
     private void clean() {
         this.doctor = new Doctor();
     }
-
-    public void create() throws DermaSistException{
-        doctorService.create(doctor);
+    
+    public void create() throws DermaSistException {
+        
+        try {
+            doctorService.create(doctor);
+            FacesUtil.addSuccessMessage("Médico Cadastrado com sucesso!");
+        }
+        catch(DermaSistException e){
+            FacesUtil.addErrorMessage("Erro ao tentar cadastrado Médico!!");
+        }
     }
+
     /**
      * @return the doctor
      */
@@ -60,5 +69,5 @@ public class DoctorBean   implements Serializable {
         doctors = doctorService.findAll();
         return doctors;
     }
-
+    
 }

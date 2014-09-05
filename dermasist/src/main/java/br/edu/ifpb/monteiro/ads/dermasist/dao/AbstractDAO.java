@@ -73,6 +73,7 @@ public abstract class AbstractDAO<T> {
         
         criteriaQuery.where(criteriaBuilder.equal(login.get("login"), user));
         criteriaQuery.where(criteriaBuilder.equal(login.get("password"), password));
+        
       
         return typedQuery.getSingleResult();
     }
