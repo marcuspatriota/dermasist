@@ -8,11 +8,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 
 /**
- * Controller to manage the communication between the page and the rest of project
- * 
+ * Controller to manage the communication between the page and the rest of
+ * project
+ *
  * @author cassio
  */
 @Model
@@ -22,22 +24,27 @@ public class ProductBean implements Serializable {
 
     @Inject
     private ProductService productService;
-    
-    //A list to storage the data come from database
     private List<Product> products;
     private Product product;
 
     public ProductBean() {
-        
+
     }
     
     @PostConstruct
     public void init(){
-        this.clean();
+        product = new Product();
     }
-    
-    private void clean() {
-        this.product = new Product();
+
+    public void refreshToEdit(ComponentSystemEvent event) {
+
+        try {
+            System.out.println(product.getID() + " PARAM");
+            product = productService.findById(product.getID());
+            System.err.println(product.getID());
+        } catch (DermaSistException ex) {
+            FacesUtil.addSuccessMessage(ex.getMessage());
+        }
     }
 
     public void create() {
@@ -62,8 +69,7 @@ public class ProductBean implements Serializable {
     public void setProduct(Product product) {
         this.product = product;
     }
-    
-    
+
     public List<Product> getProducts() {
         products = productService.findAll();
         return products;

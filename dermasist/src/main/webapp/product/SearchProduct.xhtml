@@ -70,7 +70,10 @@
                     </p:column>
 
                     <p:column headerText="Ações" width="30" style="text-align: center">
-                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
+                        <p:button outcome="/product/EditProduct" icon="ui-icon ui-icon-pencil" title="Editar">
+                            <f:param name="product" value="#{products.ID}"/>
+
+                        </p:button>
                         <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
                     </p:column>
 

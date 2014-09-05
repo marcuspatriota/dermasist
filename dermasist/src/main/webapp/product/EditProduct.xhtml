@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template/HeadFooterTemplate.xhtml"
+                xmlns:o="http://omnifaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+
+        <f:metadata>
+            <f:viewParam name="product" value="#{productBean.product.ID}"/>
+            <f:viewAction immediate="true"  action="#{productBean.refreshToEdit}"/>
+        </f:metadata>
+
+        <ui:define name="content">
+            <p:fieldset legend="CADASTRO DE PRODUTO" id="fieldSetFormTitle" >
+                <h:form id="formRegisterProduct">
+
+                    <!-- Show a gif image to loading ajax user requests -->
+                    <p:ajaxStatus>
+                        <f:facet name="start">
+                            <h:graphicImage library="images" name="loading.gif"/>
+                            <h:outputLabel value="Aguarde..."/>
+                        </f:facet>
+                        <f:facet name="complete">
+                            <h:outputText value=""/>
+                        </f:facet>
+                    </p:ajaxStatus>
+
+                    <p:growl/>
+                    <h:panelGrid columns="2" cellpadding="2" >
+
+                        <p:outputLabel for="name" value="Nome: "/>
+                        <p:inputText id="name" maxlength="50" placeholder="Nome do produto" value="#{productBean.product.name}"/>
+
+                        <p:outputLabel for="dateOfPurchase" value="Data de compra: "/>
+                        <p:calendar id="dateOfPurchase" pattern="dd/MM/yyyy" required="true" 
+                                    value="#{productBean.product.dateOfPurchase}" maxdate="#{personBean.dateToday}"/>
+
+                        <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
+                        <p:calendar id="expirationDate" pattern="dd/MM/yyyy" required="true" 
+                                    value="#{productBean.product.expirationDate}" mindate="#{personBean.dateToday}"/>
+
+                        <p:outputLabel for="value" value="Valor: "/>
+                        <p:inputText id="value" placeholder="Valor do produto" styleClass="money" maxlength="15" value="#{productBean.product.value}">
+                            <f:convertNumber type="number" locale="pt_BR"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="finality" value="Finalidade: "/>
+                        <p:inputText id="finality"  maxlength="40" placeholder="Finalidade do produto" value="#{productBean.product.finality}"/>
+
+                    </h:panelGrid>
+
+                    <p:toolbar id="panelButtonsProduct" style="margin-top: 10px;">
+                        <p:toolbarGroup>
+                            <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                             update="@form" icon="ui-icon ui-icon-disk" action="#{productBean.create}"/>
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right">
+                            <p:button value="Novo cadastro" id="newRegister" outcome="/product/CadastreProduct" icon="ui-icon ui-icon-pencil"/>
+                            <p:button style="font-size: 13px;" value="Pesquisar" outcome="/product/SearchProduct" id="search" icon="ui-icon ui-icon-search"/>
+                        </p:toolbarGroup>
+                    </p:toolbar> 
+                </h:form>
+            </p:fieldset>
+        </ui:define>
+</ui:composition>
