@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 
 /**
@@ -24,6 +23,7 @@ public class ProductBean implements Serializable {
 
     @Inject
     private ProductService productService;
+    
     private List<Product> products;
     private Product product;
 
@@ -36,7 +36,7 @@ public class ProductBean implements Serializable {
         product = new Product();
     }
 
-    public void refreshToEdit(ComponentSystemEvent event) {
+    public void refreshToEdit() {
 
         try {
             System.out.println(product.getID() + " PARAM");
