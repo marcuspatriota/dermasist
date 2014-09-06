@@ -39,16 +39,15 @@ public class ProductBean implements Serializable {
     public void refreshToEdit() {
 
         try {
-            System.out.println(product.getID() + " PARAM");
             product = productService.findById(product.getID());
-            System.err.println(product.getID());
+
         } catch (DermaSistException ex) {
             FacesUtil.addSuccessMessage(ex.getMessage());
         }
     }
 
     public void create() {
-        try {
+        try {   
             this.productService.create(product);
             FacesUtil.addSuccessMessage("Produto cadastrado com sucesso!");
         } catch (DermaSistException e) {
@@ -74,4 +73,17 @@ public class ProductBean implements Serializable {
         products = productService.findAll();
         return products;
     }
+    
+    private int paran;
+
+    public int getParan() {
+        return paran;
+    }
+
+    public void setParan(int paran) {
+        System.out.println(paran);
+        this.paran = paran;
+    }
+    
+    
 }
