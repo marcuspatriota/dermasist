@@ -31,7 +31,8 @@
                 <h:panelGrid columns="2" cellpadding="2" >
 
                     <p:outputLabel for="description" value="Descrição: "/>
-                    <p:inputText id="description" maxlength="100" placeholder="Descrição" value="#{patrimonyBean.patrimony.description}"/>
+                    <p:inputText id="description" maxlength="100" placeholder="Descrição" 
+                                 required="true" value="#{patrimonyBean.patrimony.description}"/>
 
                     <p:outputLabel for="observations" value="Observações: "/>
                     <p:inputText id="observations"  maxlength="150" placeholder="Observações" value="#{patrimonyBean.patrimony.observations}"/>

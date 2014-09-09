@@ -30,7 +30,8 @@
                 <h:panelGrid columns="2" cellpadding="2" >
 
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" maxlength="50" placeholder="Nome do produto" value="#{productBean.product.name}"/>
+                    <p:inputText id="name" maxlength="50" placeholder="Nome do produto" 
+                                 required="true" validatorMessage="O nome do produto é obrigatório"  value="#{productBean.product.name}"/>
 
                     <p:outputLabel for="dateOfPurchase" value="Data de compra: "/>
                     <p:calendar id="dateOfPurchase" pattern="dd/MM/yyyy" required="true" 

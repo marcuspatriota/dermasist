@@ -32,7 +32,7 @@
 
                     <p:outputLabel for="value" value="Valor: "/>
                     <p:inputText id="value" placeholder="Valor" styleClass="money" maxlength="15"
-                                 value="#{paymentBean.payment.value}">
+                                 value="#{paymentBean.payment.value}" required="true" validatorMessage="O valor é obrigatório">
                         <f:convertNumber type="number" locale="pt_BR"/>
                     </p:inputText>
 

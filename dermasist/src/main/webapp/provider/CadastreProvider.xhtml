@@ -32,7 +32,8 @@
 
                     <p:outputLabel for="name" value="Nome: "/>
                     <p:inputText id="name" size="50" placeholder="Nome fornecedor" value="#{providerBean.provider.name}"
-                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
+                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços"
+                                 required="true">
                         <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
                     </p:inputText>
 

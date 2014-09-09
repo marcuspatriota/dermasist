@@ -39,7 +39,7 @@ public class ProductBean implements Serializable {
     public void refreshToEdit() {
 
         try {
-            product = productService.findById(product.getID());
+            product = productService.findById(paran);
 
         } catch (DermaSistException ex) {
             FacesUtil.addSuccessMessage(ex.getMessage());
@@ -74,13 +74,13 @@ public class ProductBean implements Serializable {
         return products;
     }
     
-    private int paran;
+    private Long paran;
 
-    public int getParan() {
+    public Long getParan() {
         return paran;
     }
 
-    public void setParan(int paran) {
+    public void setParan(Long paran) {
         System.out.println(paran);
         this.paran = paran;
     }
