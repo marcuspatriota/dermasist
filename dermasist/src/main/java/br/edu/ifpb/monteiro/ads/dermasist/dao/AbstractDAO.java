@@ -30,11 +30,14 @@ public abstract class AbstractDAO<T> {
     }
 
     public void update(T entity) {
-        entityManager.refresh(entity);
+        entityManager.getTransaction().begin();
+        entityManager.merge(entity);
         entityManager.getTransaction().commit();
+        
     }
 
     public void delete(T entity) {
+        entityManager.getTransaction().begin();
         entityManager.remove(entity);
         entityManager.getTransaction().commit();
     }
@@ -63,7 +66,7 @@ public abstract class AbstractDAO<T> {
     }
     
    public T findByLoginl(String user, String password) {
-        //Criador de consultas baseadas em Criteria
+        //Criador de consultas b aseadas em Criteria
         CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
         //Query Criteria
         CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(entity);

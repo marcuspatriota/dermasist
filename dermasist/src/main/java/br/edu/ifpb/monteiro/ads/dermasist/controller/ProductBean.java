@@ -23,33 +23,44 @@ public class ProductBean implements Serializable {
 
     @Inject
     private ProductService productService;
-    
+
     private List<Product> products;
     private Product product;
+
+    private Product selectedProduct;
 
     public ProductBean() {
 
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         product = new Product();
-    }
-
-    public void refreshToEdit() {
-
-        try {
-            product = productService.findById(paran);
-
-        } catch (DermaSistException ex) {
-            FacesUtil.addSuccessMessage(ex.getMessage());
-        }
+        selectedProduct = new Product();
     }
 
     public void create() {
-        try {   
+        try {
             this.productService.create(product);
             FacesUtil.addSuccessMessage("Produto cadastrado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
+
+    public void update() {
+        try {
+            this.productService.update(selectedProduct);
+            FacesUtil.addSuccessMessage("Produto editado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
+
+    public void delete() {
+        try {
+            this.productService.delete(selectedProduct);
+            FacesUtil.addSuccessMessage("Produto deletado com sucesso!");
         } catch (DermaSistException e) {
             FacesUtil.addSuccessMessage(e.getMessage());
         }
@@ -73,17 +84,13 @@ public class ProductBean implements Serializable {
         products = productService.findAll();
         return products;
     }
-    
-    private Long paran;
 
-    public Long getParan() {
-        return paran;
+    public Product getSelectedProduct() {
+        return selectedProduct;
     }
 
-    public void setParan(Long paran) {
-        System.out.println(paran);
-        this.paran = paran;
+    public void setSelectedProduct(Product selectedProduct) {
+        this.selectedProduct = selectedProduct;
     }
-    
-    
+
 }

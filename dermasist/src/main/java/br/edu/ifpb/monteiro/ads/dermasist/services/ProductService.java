@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 /**
  *
+ * 
  * @author Wilde Arruda, modifield by Vanderlan Gomes
  */
 public class ProductService implements Serializable {

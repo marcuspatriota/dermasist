@@ -38,46 +38,83 @@
 
             <h:form id="formTableSearchProduct">
                 <p:growl id="msgTableSearchProduct"/>
-                <p:dataTable id="tableProductDB" value="#{productBean.products}" var="products" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
-                    <f:facet name="header">Lista de produtos</f:facet>
 
-                    <p:column headerText="ID" width="20" style="text-align: center">
-                        <h:outputText value="#{products.ID}"/>
+                <p:dataTable id="tableProduct" var="product" value="#{productBean.products}" selectionMode="single" 
+                             selection="#{productBean.selectedProduct}" rowKey="#{product.ID}">
+                    <f:facet name="header">
+                        Lista de produtos
+                    </f:facet>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{product.ID}" />
                     </p:column>
-
-                    <p:column headerText="Descrição" width="300" style="text-align: center">
-                        <h:outputText value="#{products.name}"/>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{product.name}" />
                     </p:column>
-
-                    <p:column headerText="Valor" width="50" style="text-align: center">
-                        <h:outputText value="#{products.value}">
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{product.value}" >
                             <f:convertNumber type="currency" locale="pt_BR"/>
                         </h:outputText>
                     </p:column>
+                    <p:column headerText="Data de compra">
+                        <h:outputText value="#{product.dateOfPurchase}" >
 
-                    <p:column headerText="Data de compra" width="50" style="text-align: center">
-                        <h:outputText value="#{products.dateOfPurchase}">
                             <f:convertDateTime dateStyle="default"/>
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Validade" width="50" style="text-align: center">
-                        <h:outputText value="#{products.expirationDate}">
+                    <p:column headerText="Validade">
+                        <h:outputText value="#{product.expirationDate}" >
                             <f:convertDateTime dateStyle="default"/>
                         </h:outputText>
                     </p:column>
-
-                    <p:column headerText="Ações" width="30" style="text-align: center">
-                        <p:button outcome="/product/EditProduct" icon="ui-icon ui-icon-pencil" title="Editar">
-                            <f:param name="product" value="#{products.ID}"/>
-
-                        </p:button>
-                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
-                    </p:column>
-
+                    <f:facet name="footer">
+                        <p:commandButton process="tableProduct" update=":formTableSearchProduct:productDetail" 
+                                         icon="ui-icon-search" 
+                                         value="Ver detalhes" oncomplete="PF('productDialog').show()" />
+                        <p:commandButton process="tableProduct" update="@form" 
+                                         icon="ui-icon-close" 
+                                         value="Deletar" actionListener="#{productBean.delete}"
+                                         >
+                             <p:confirm header="Alerta" message="Tem certeza que deseja deletar esse produto?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </f:facet>
                 </p:dataTable>
+
+                <p:dialog header="Informações do Produdo" widgetVar="productDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="productDetail" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty productBean.selectedProduct}" columnClasses="label,value">
+
+                            <p:outputLabel for="name" value="Nome: "/>
+                            <p:inputText id="name" maxlength="50" placeholder="Nome do produto" 
+                                         required="true" validatorMessage="O nome do produto é obrigatório"  value="#{productBean.selectedProduct.name}"/>
+
+                            <p:outputLabel for="dateOfPurchase" value="Data de compra: "/>
+                            <p:calendar id="dateOfPurchase" pattern="dd/MM/yyyy" required="true" 
+                                        value="#{productBean.selectedProduct.dateOfPurchase}" maxdate="#{personBean.dateToday}"/>
+
+                            <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
+                            <p:calendar id="expirationDate" pattern="dd/MM/yyyy" required="true" 
+                                        value="#{productBean.selectedProduct.expirationDate}" mindate="#{personBean.dateToday}"/>
+
+                            <p:outputLabel for="value" value="Valor: "/>
+                            <p:inputText id="value" placeholder="Valor do produto" styleClass="money" maxlength="15" value="#{productBean.selectedProduct.value}">
+                                <f:convertNumber type="number" locale="pt_BR"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="finality" value="Finalidade: "/>
+                            <p:inputText id="finality"  maxlength="40" placeholder="Finalidade do produto" value="#{productBean.selectedProduct.finality}"/>
+
+                            <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                             update="@form" icon="ui-icon ui-icon-disk" action="#{productBean.update}"/>
+
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
             </h:form>
 
         </p:fieldset>
