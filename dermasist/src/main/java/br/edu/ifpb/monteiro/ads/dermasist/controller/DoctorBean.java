@@ -25,9 +25,10 @@ public class DoctorBean implements Serializable {
     private DoctorService doctorService;
     private List<Doctor> doctors;
     
-    @Inject
     private Doctor doctor;
-    
+    private Doctor selectedDoctor;
+            
+            
     @PostConstruct
     public void init() {
         this.clean();
@@ -35,6 +36,7 @@ public class DoctorBean implements Serializable {
     
     private void clean() {
         this.doctor = new Doctor();
+        this.selectedDoctor = new Doctor();
     }
     
     public void create() throws DermaSistException {
@@ -47,7 +49,24 @@ public class DoctorBean implements Serializable {
             FacesUtil.addErrorMessage("Erro ao tentar cadastrado Médico!!");
         }
     }
+    
+    public void update() {
+        try {
+            this.doctorService.update(selectedDoctor);
+            FacesUtil.addSuccessMessage("Médico editado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
 
+    public void delete() {
+        try {
+            this.doctorService.delete(selectedDoctor);
+            FacesUtil.addSuccessMessage("Médico deletado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
     /**
      * @return the doctor
      */
@@ -68,6 +87,14 @@ public class DoctorBean implements Serializable {
     public List<Doctor> getDoctors() {
         doctors = doctorService.findAll();
         return doctors;
+    }
+
+    public Doctor getSelectedDoctor() {
+        return selectedDoctor;
+    }
+
+    public void setSelectedDoctor(Doctor selectedDoctor) {
+        this.selectedDoctor = selectedDoctor;
     }
     
 }

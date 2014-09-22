@@ -45,32 +45,88 @@
 
             </h:form>
 
-            <h:form id="formTableSearchPay">
-                <p:growl id="msgTableSearchPay"/>
+            <h:form id="formTableSearchPayment">
+                <p:growl id="msgTableSearchPayment"/>
 
-                <p:dataTable id="tablePaymentDB" value="#{paymentBean.payments}" var="payments" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" 
-                             paginatorAlwaysVisible="false">
-                    <f:facet name="header">Lista de contas</f:facet>
-
-                    <p:column headerText="Data">
-                        <h:outputText value="#{payments.dateOfPayment}">
-                            <f:convertDateTime dateStyle="default"/>
+                <p:dataTable id="tablePayment" var="payment" value="#{paymentBean.payments}" selectionMode="single" 
+                             selection="#{paymentBean.selectedPayment}" rowKey="#{payment.ID}">
+                    <f:facet name="header">
+                        Lista de pagamentos
+                    </f:facet>
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{payment.value}" >
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Tipo de pagamento">
+                        <h:outputText value="#{payment.typeOfPayment}" >
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Valor">
-                        <h:outputText value="#{payments.value}"/>
+                    <p:column headerText="Data de vencimento">
+                        <h:outputText value="#{payment.expirationDate}" >
+                             <f:convertDateTime dateStyle="default"/>
+                        </h:outputText>
                     </p:column>
-
-                    <p:column headerText="Ações" width="100" style="text-align: center">
-                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
-                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
-                    </p:column>
-
+                    <f:facet name="footer">
+                        <p:commandButton process="tablePayment" update=":formTableSearchPayment:paymentDetail" 
+                                         icon="ui-icon-search" 
+                                         value="Ver detalhes" oncomplete="PF('paymentDialog').show()" />
+                        <p:commandButton process="tablePayment" update="@form" 
+                                         icon="ui-icon-close" 
+                                         value="Deletar" actionListener="#{paymentBean.delete}"
+                                         >
+                            <p:confirm header="Alerta" message="Tem certeza que deseja deletar esse pagamento?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </f:facet>
                 </p:dataTable>
+
+                <p:dialog header="Informações do Pagamento" widgetVar="paymentDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="paymentDetail" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty paymentBean.selectedPayment}" columnClasses="label,value">
+                            <p:outputLabel for="value" value="Valor: "/>
+                            <p:inputText id="value" placeholder="Valor" styleClass="money" maxlength="15"
+                                         value="#{paymentBean.selectedPayment.value}" required="true" validatorMessage="O valor é obrigatório">
+                             </p:inputText>
+
+                            <p:outputLabel for="interest" value="Juros: "/>
+                            <p:inputMask id="interest" mask="999" placeholder="Juros" value="#{paymentBean.selectedPayment.interest}"/>
+
+                            <p:outputLabel for="expirationDate" value="Data de vencimento: "/>
+                            <p:calendar id="expirationDate" navigator="true" effect="explode" 
+                                        pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Expira em" 
+                                        readonly="true" mindate="#{personBean.dateToday}"  locale="pt"
+                                        value="#{paymentBean.payment.expirationDate}"/>
+
+                            <p:outputLabel for="dateOfPayment" value="Data de pagamento: "/>
+                            <p:calendar id="dateOfPayment" navigator="true" effect="explode" 
+                                        pattern="dd/MM/yyyy" yearRange="c-100:c+100" placeholder="Pagamento" 
+                                        readonly="true" mindate="#{personBean.dateToday}"  locale="pt"
+                                        value="#{paymentBean.selectedPayment.dateOfPayment}"/>
+
+                            <p:outputLabel for="typeOfPayment" value="Formas de pagamento: "/>
+                            <p:selectOneMenu id="typeOfPayment" label="Formas de pagamento: " effect="explode" 
+                                             editable="true" value="#{paymentBean.selectedPayment.typeOfPayment}">
+                                <f:selectItem itemLabel="Espécie" />
+                                <f:selectItem itemLabel="Cartão/Débito" />
+                                <f:selectItem itemLabel="Cartão/Crédito" />
+                                <f:selectItem itemLabel="Cheque" />
+                                <f:selectItem itemLabel="Boleto Bancário" />
+                                <f:selectItem itemLabel="Outro" />
+                            </p:selectOneMenu>
+                            <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                             update="@form" icon="ui-icon ui-icon-disk" action="#{paymentBean.update}"/>
+
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
             </h:form>
+
         </p:fieldset>
     </ui:define>
 </ui:composition>
