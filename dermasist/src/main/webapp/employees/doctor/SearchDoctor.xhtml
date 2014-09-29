@@ -51,33 +51,140 @@
 
             <h:form id="formTableSearchDoctor">
                 <p:growl id="msgTableSearchDoctor"/>
-                <p:dataTable id="tableDoctorDB" value="#{doctorBean.doctors}" var="doctors" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
-                    <f:facet name="header">Lista de médicos</f:facet>
 
-                    <p:column headerText="Matrícula" width="20" style="text-align: center">
-                        <h:outputText value="#{doctors.registrationCode}"/>
+                <p:dataTable id="tableDoctor" var="doctor" value="#{doctorBean.doctors}"  
+                             selection="#{doctorBean.selectedDoctor}" rowKey="#{doctor.ID}" 
+                             >
+                    <f:facet name="header">
+                        Lista de médicos
+                    </f:facet>
+                    <p:column headerText="Matrícula">
+                        <h:outputText value="#{doctor.registrationCode}" />
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{doctor.name}" />
+                    </p:column>
+                    <p:column headerText="Especialidade">
+                        <h:outputText value="#{doctor.speciality}" >
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Celular">
+                        <h:outputText value="#{doctor.phone}" />
                     </p:column>
 
-                    <p:column headerText="Nome" width="200" style="text-align: left">
-                        <h:outputText value="#{doctors.name}"/>
-                    </p:column>
-
-                    <p:column headerText="Especialidade" width="120" style="text-align: left">
-                        <h:outputText value="#{doctors.speciality}"/>
-                    </p:column>
-
-                    <p:column headerText="Celular" width="90" style="text-align: center">
-                        <h:outputText value="#{doctors.registrationCode}"/>
-                    </p:column>
-
-                    <p:column headerText="Ações" width="30" style="text-align: center">
-                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
-                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
-                    </p:column>
-
+                    <f:facet name="footer">
+                        <p:commandButton process="tableDoctor" update=":formTableSearchDoctor:doctorDetail" 
+                                         icon="ui-icon-search" 
+                                         value="Ver detalhes" oncomplete="PF('doctorDialog').show()" />
+                        <p:commandButton process="tableDoctor" update="@form" 
+                                         icon="ui-icon-close" 
+                                         value="Deletar" actionListener="#{doctorBean.delete}"
+                                         >
+                            <p:confirm header="Alerta" message="Tem certeza que deseja deletar esse médico?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </f:facet>
                 </p:dataTable>
+
+                <p:dialog header="Informações do Produdo" widgetVar="doctorDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="doctorDetail" style="text-align:center;">
+                        <h:panelGrid columns="2" cellpadding="2" >
+                            <p:outputLabel value="Campos com * são obrigatórios" id="labelRequiredInfo" 
+                                           style="color: #D20005; font-size: 12px; font-weight: bold;"/>
+                            <p:outputLabel/>
+
+                            <p:outputLabel/>
+                            <h:inputHidden id="idDoctor" value="#{doctorBean.doctor.ID}"/>
+
+                            <p:outputLabel for="registrationCode" value="Matrícula/CRM: "/>
+                            <p:inputText id="registrationCode" placeholder="Nº de matrícula ou CRM" 
+                                         value="#{doctorBean.selectedDoctor.registrationCode}" maxlength="5"/>
+
+                            <p:outputLabel for="name" value="Nome: "/>
+                            <p:inputText id="name" required="true" value="#{doctorBean.selectedDoctor.name}" size="50"
+                                         requiredMessage="O campo [Nome] é obrigatório." placeholder="Nome completo" 
+                                         validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços"
+                                         >
+                                <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="street" value="Rua: "/>
+                            <p:inputText id="street" required="true" requiredMessage="O campo [Rua] é obrigatório." size="30" 
+                                         placeholder="Nome da Rua"  value="#{doctorBean.selectedDoctor.street}"/>
+
+                            <p:outputLabel for="number" value="Nº: "/>
+                            <p:inputText id="number" required="true" requiredMessage="O campo [Nº] é obrigatório." 
+                                         size="30" placeholder="Nº da casa" value="#{doctorBean.selectedDoctor.number}"
+                                         validatorMessage="O campo [Nº] deve começar com números e pode conter letras">
+                                <f:validateRegex pattern="^\d+$|^\d+[aA-zZ]+$"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="neighborhood" value="Bairro: "/>
+                            <p:inputText id="neighborhood" required="true" placeholder="Nome do bairro"
+                                         requiredMessage="O campo [Bairro] é obrigatório." size="30" 
+                                         value="#{doctorBean.selectedDoctor.neighborhood}"/>
+
+                            <p:outputLabel for="state" value="Estado: "/>
+                            <p:selectOneMenu id="state" required="true" requiredMessage="O campo [Estado] é obrigatório." 
+                                             value="#{doctorBean.selectedDoctor.state}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{personBean.states}" itemLabel="#{state}" itemValue="#{state}" var="state"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="city" value="Cidade: "/>
+                            <p:inputText id="city" required="true" requiredMessage="O campo [Cidade] é obrigatório." 
+                                         size="30" placeholder="Nome da cidade" value="#{doctorBean.selectedDoctor.city}"/>
+
+                            <p:outputLabel for="mobile" value="Celular: "/>
+                            <p:inputText id="mobile" required="true" requiredMessage="O campo [Celular] é obrigatório." 
+                                         placeholder="Número do celular" maxlength="15" styleClass="phone" 
+                                         value="#{doctorBean.selectedDoctor.mobile}"/>
+
+                            <p:outputLabel for="phone" value="Telefone: "/>
+                            <p:inputText id="phone" placeholder="Telefone fixo ou outro celular" styleClass="phone"
+                                         value="#{doctorBean.selectedDoctor.phone}" maxlength="15"/>
+
+                            <p:outputLabel for="birthOfDate" value="Data de nascimento: "/>
+                            <p:calendar id="birthOfDate" pattern="dd/MM/yyyy" required="true" 
+                                        value="#{doctorBean.selectedDoctor.dateOfBirth}" maxdate="#{personBean.dateToday}"/>
+
+                            <p:outputLabel for="cpf" value="CPF: "/>
+                            <p:inputMask id="cpf" mask="999.999.999-99" required="true" value="#{doctorBean.selectedDoctor.cpf}"
+                                         requiredMessage="O campo [CPF] é obrigatório." placeholder="Número do CPF"/>
+
+                            <p:outputLabel for="rg" value="RG: "/>
+                            <p:inputText id="rg" required="true"  requiredMessage="O campo [RG] é obrigatório." 
+                                         placeholder="Número do RG" value="#{doctorBean.selectedDoctor.rg}"
+                                         validatorMessage="O compo [RG] deve conter apenas números ">
+                                <f:validateRegex pattern="^\d+$|^\d+[aA-zZ]+$"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="sex" value="Sexo: " />
+                            <p:selectOneMenu id="sex" label="Sexo: " effect="explode" editable="true" required="true" 
+                                             requiredMessage="O campo [Sexo] é obrigatório." value="#{doctorBean.selectedDoctor.sex}">
+                                <f:selectItem itemLabel="" itemDisabled="true"/>
+                                <f:selectItem itemLabel="M" />
+                                <f:selectItem itemLabel="F" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="speciality" value="Especialidade "/>
+                            <p:inputText id="speciality" placeholder="Especialidade" value="#{doctorBean.selectedDoctor.speciality}"/>
+
+                            <p:outputLabel for="salary" value="Salário: "/>
+                            <p:inputText id="salary" placeholder="Valor do salário" value="#{doctorBean.selectedDoctor.salary}"
+                                         styleClass="money" maxlength="15">
+                                <f:convertNumber type="number" locale="pt_BR"/>
+                            </p:inputText>
+
+                        </h:panelGrid>
+
+                    </p:outputPanel>
+                </p:dialog>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
             </h:form>
 
         </p:fieldset>
