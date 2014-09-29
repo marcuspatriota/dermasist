@@ -23,9 +23,9 @@ public class PatientBean implements Serializable {
     @Inject
     private PatientService patientService;
     
-    //A list to storage the data come from database
     private List<Patient> patients;
     private Patient patient;
+     private Patient selectPatient;
 
     public PatientBean() {
         
@@ -33,7 +33,8 @@ public class PatientBean implements Serializable {
     
     @PostConstruct
     public void init(){
-        this.clean();
+        patient = new Patient();
+        selectPatient = new Patient();
     }
     
     private void clean() {
@@ -49,6 +50,24 @@ public class PatientBean implements Serializable {
         }
     }
    
+       public void update() {
+        try {
+            this.patientService.update(selectPatient);
+            FacesUtil.addSuccessMessage("Paciente editado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
+
+    public void delete() {
+        try {
+            this.patientService.delete(selectPatient);
+            FacesUtil.addSuccessMessage("Paciente deletado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
+    
     /**
      * @return the patient
      */
@@ -67,5 +86,15 @@ public class PatientBean implements Serializable {
         patients = patientService.findAll();
         return patients;
     }
+
+    public Patient getSelectPatient() {
+        return selectPatient;
+    }
+
+    public void setSelectPatient(Patient selectPatient) {
+        this.selectPatient = selectPatient;
+    }
+    
+    
     
 }

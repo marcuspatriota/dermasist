@@ -38,6 +38,10 @@ public class ProductBean implements Serializable {
         product = new Product();
         selectedProduct = new Product();
     }
+    
+    public void clear() {
+        
+    }
 
     public void create() {
         try {

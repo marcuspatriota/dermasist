@@ -44,33 +44,34 @@
 
             <h:form id="formTableSearchPatient">
                 <p:growl id="msgTableSearchPatient"/>
-                <p:dataTable id="tablePatientDB" value="#{patientBean.patients}" var="patients" paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
-                    <f:facet name="header">Lista de pacientes</f:facet>
+                
+                <p:dataTable id="tablePatientDB" var="patient" value="#{patientBean.patients}" 
+                            selection="#{patientBean.selectPatient}"
+                            rowKey="#{patient.ID}"
+                             selectionMode="single"
+                             >
+                    <f:facet name="header">
+                        Lista de pacientes
+                    </f:facet>
 
                     <p:column headerText="Nome" width="250">
-                        <h:outputText value="#{patients.name}"/>
+                        <h:outputText value="#{patient.name}"/>
                     </p:column>
 
                     <p:column headerText="Celular" width="50">
-                        <h:outputText value="#{patients.mobile}"/>
+                        <h:outputText value="#{patient.mobile}"/>
                     </p:column>
 
                     <p:column headerText="Contato de Emergência" width="80">
-                        <h:outputText value="#{patients.emergencyContact}"/>
+                        <h:outputText value="#{patient.emergencyContact}"/>
                     </p:column>
 
-                    <p:column headerText="Ações" width="30" style="text-align: center">
-                        <p:button icon="ui-icon ui-icon-pencil" title="Editar" outcome="/patient/EditPatient.xhtml">
-                            <f:param name="id_patient" value="3" />
-                        </p:button>
-                        <p:commandButton icon="ui-icon ui-icon-trash" title="Excluir"                                   
-                                         process="@this" update="@form" action="#{patientBean.delete}"/>
-                    </p:column>
-
+                        
                 </p:dataTable>
             </h:form>
+            <p:dialog>
+                
+            </p:dialog>
 
         </p:fieldset>
     </ui:define>
