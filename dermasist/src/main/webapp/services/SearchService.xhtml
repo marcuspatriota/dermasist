@@ -37,13 +37,19 @@
 
             </h:form>
 
-
+            
             <h:form id="formTableSearchService">
+                <p:growl id="msgTableSearchService"/>
 
                 <p:dataTable value="#{serviceBean.services}" var="service" id="tableService"
                              selectionMode="single" selection="#{serviceBean.selectService}"
                              rowKey="#{service.ID}">
-
+                    <f:facet name="header">
+                        Lista de Serviços
+                    </f:facet>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{service.ID}" />
+                    </p:column>
                     <p:column headerText="Nome">
                         <h:outputText value="#{service.name}" />
                     </p:column>
@@ -57,9 +63,9 @@
                                          value="Ver detalhes" oncomplete="PF('serviceDialog').show()" />
                         <p:commandButton process="tableService" update="@form" 
                                          icon="ui-icon-close" 
-                                         value="Deletar" action="#{serviceBean.delete}"
+                                         value="Deletar" actionListener="#{serviceBean.delete}"
                                          >
-                             <p:confirm header="Alerta" message="Tem certeza que deseja deletar?" icon="ui-icon-alert" />
+                            <p:confirm header="Alerta" message="Tem certeza que deseja deletar?" icon="ui-icon-alert" />
                         </p:commandButton>
                     </f:facet>
                 </p:dataTable>
@@ -67,21 +73,26 @@
                 <p:dialog widgetVar="serviceDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                     <p:outputPanel id="serviceDetail" style="text-align:center;">
                         <p:panelGrid  columns="2" rendered="#{not empty serviceBean.selectService}" columnClasses="label,value">
-                            
+
                             <h:outputText value="Nome: " />
                             <p:inputText value="#{serviceBean.selectService.name}"/>
                             <h:outputText value="Valor: " />
                             <p:inputText value="#{serviceBean.selectService.value}"/>
-                            
-                             <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
-                                              update="@form" icon="ui-icon ui-icon-disk" action="#{serviceBean.update}"/>
-                            
+
+                            <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                             update="@form" icon="ui-icon ui-icon-disk" action="#{serviceBean.update}"/>
+
                         </p:panelGrid>
                     </p:outputPanel>
                 </p:dialog>
+
                 
-                
-                
+                 <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+
+
             </h:form>
 
 
