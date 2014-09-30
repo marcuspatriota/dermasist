@@ -26,7 +26,6 @@ public class ProductBean implements Serializable {
 
     private List<Product> products;
     private Product product;
-
     private Product selectedProduct;
 
     public ProductBean() {
@@ -38,9 +37,9 @@ public class ProductBean implements Serializable {
         product = new Product();
         selectedProduct = new Product();
     }
-    
+
     public void clear() {
-        
+
     }
 
     public void create() {

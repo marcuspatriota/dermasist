@@ -13,68 +13,77 @@
 
     <ui:define name="content">
         <p:fieldset legend="BUSCA DE SERVIÇO" id="fieldSetFormTitle">
-            <h:form id="formSearchPatient">
-                <p:growl id="growlService" showDetail="true" sticky="true" />
+            <h:form id="formSearchServico">
+                <p:growl id="msgServiceForm" showDetail="true" sticky="true" />
                 <h:panelGrid columns="2" cellpadding="2">
                     <p:outputLabel/>
-                    <h:inputHidden id="idPatient"/>
+                    <h:inputHidden id="idService"/>
 
                     <p:outputLabel for="name" value="Nome: "/>
-                    <p:inputText id="name" size="50" placeholder="Nome ou parte dele"
-                                 validatorMessage="O campo [Nome] deve conter apenas letras, letras  e/ou espaços">
-                        <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄ\s\'\-]+$"/>
-                    </p:inputText>
+                    <p:inputText id="name" maxlength="50" placeholder="Nome do serviço"/>
 
                 </h:panelGrid>
 
-                <p:toolbar id="panelButtonsPatient">
+                <p:toolbar id="panelButtonsService">
                     <p:toolbarGroup>
                         <p:button style="font-size: 13px;" value="Pesquisar" id="search" icon="ui-icon ui-icon-search"/>
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">
-                        <p:button value="Novo cadastro" id="newRegister" outcome="/services/CadastreService" icon="ui-icon ui-icon-pencil"/>
+                        <p:button value="Novo cadastro" id="newRegister" outcome="/services/CadastreService" 
+                                  icon="ui-icon ui-icon-pencil"/>
                     </p:toolbarGroup>
                 </p:toolbar>
 
             </h:form>
 
-            <h:form id="formTableSearchPatient">
-                <p:growl id="msgTableSearchPatient"/>
 
-                <p:dataTable id="tablePatientDB" value="#{serviceBean.services}" var="services" 
-                             paginator="true" rows="10" emptyMessage="Nenhum registro encontrado" 
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}  {PageLinks} 
-                             {NextPageLink}  {LastPageLink}  {RowsPerPageDropdown}" 
-                             rowsPerPageTemplate="5,10,20" paginatorAlwaysVisible="false">
-                    <f:facet name="header">Lista de serviços</f:facet>
+            <h:form id="formTableSearchService">
 
-                    <p:column headerText="Serviço" width="300" >
-                        <h:outputText value="#{services.name}"/>
+                <p:dataTable value="#{serviceBean.services}" var="service" id="tableService"
+                             selectionMode="single" selection="#{serviceBean.selectService}"
+                             rowKey="#{service.ID}">
+
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{service.name}" />
+                    </p:column>
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{service.value}" />
                     </p:column>
 
-                    <p:column headerText="Valor" width="50" style="text-align: right">
-                        <h:outputText value="#{services.value}">
-                            <f:convertNumber type="currency" locale="pt_BR"/>
-                        </h:outputText>
-                    </p:column>
-
-                    <p:column headerText="Ações" width="30" style="text-align: center">
-                        <p:button icon="ui-icon ui-icon-pencil" title="Editar"/>
-                        <p:button icon="ui-icon ui-icon-trash" title="Excluir"/>
-                    </p:column>
-
+                    <f:facet name="footer">
+                        <p:commandButton process="tableService" update=":formTableSearchService:serviceDetail" 
+                                         icon="ui-icon-search" 
+                                         value="Ver detalhes" oncomplete="PF('serviceDialog').show()" />
+                        <p:commandButton process="tableService" update="@form" 
+                                         icon="ui-icon-close" 
+                                         value="Deletar" action="#{serviceBean.delete}"
+                                         >
+                             <p:confirm header="Alerta" message="Tem certeza que deseja deletar?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </f:facet>
                 </p:dataTable>
 
-                <!-- ESTE DIALOG É PARA A CONFIRMAÇÃO DE EXCLUSÃO DE PRODUTO               
+                <p:dialog widgetVar="serviceDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="serviceDetail" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty serviceBean.selectService}" columnClasses="label,value">
+                            
+                            <h:outputText value="Nome: " />
+                            <p:inputText value="#{serviceBean.selectService.name}"/>
+                            <h:outputText value="Valor: " />
+                            <p:inputText value="#{serviceBean.selectService.value}"/>
+                            
+                             <p:commandButton style="font-size: 13px;" value="Salvar" id="saveButton" 
+                                              update="@form" icon="ui-icon ui-icon-disk" action="#{serviceBean.update}"/>
+                            
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
                 
-                <p:confirmDialog header="Exclusão de produto" widgetVar="confirmExclusion"
-                                                 message="Tem certeza que deseja excluir o produto?">
-                                    <p:commandButton value="Não" onclick="PF('confirmExclusion').hide();" type="button"/>
-                                    <p:commandButton value="Sim" onclick="PF('confirmExclusion').show();" update="growlService" type="button"/>
-                                </p:confirmDialog>-->
-
+                
+                
             </h:form>
+
 
         </p:fieldset>
     </ui:define>

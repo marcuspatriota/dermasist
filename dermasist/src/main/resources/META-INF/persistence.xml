@@ -2,21 +2,6 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="dermasist_PU" transaction-type="JTA">
     <jta-data-source>jdbc/dermasist</jta-data-source>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Administrator</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Consult</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Doctor</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Login</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Patient</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Patrimony</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Payment</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Person</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Product</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Provider</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Scheduling</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Secretary</class>
-    <class>br.edu.ifpb.monteiro.ads.dermasist.model.Service</class>
-    
-    
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

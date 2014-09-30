@@ -11,8 +11,9 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
 /**
- * Controller to manage the communication between the page and the rest of project
- * 
+ * Controller to manage the communication between the page and the rest of
+ * project
+ *
  * @author cassio
  */
 @Model
@@ -22,22 +23,25 @@ public class ServiceBean implements Serializable {
 
     @Inject
     private ServiceService serviceService;
-    
+
     //A list to storage the data come from database
     private List<Service> services;
     private Service service;
+    private Service selectService;
 
     public ServiceBean() {
+
+    }
+
+    @PostConstruct
+    public void init() {
+        service = new Service();
+        selectService = new Service();
         
     }
-    
-    @PostConstruct
-    public void init(){
-        this.clean();
-    }
-    
+
     private void clean() {
-        this.service = new Service();
+
     }
 
     public void create() {
@@ -49,6 +53,26 @@ public class ServiceBean implements Serializable {
         }
     }
 
+
+     public void update() {
+        try {
+            this.serviceService.update(selectService);
+            FacesUtil.addSuccessMessage("Serviço editado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
+
+    public void delete() {
+        try {
+            this.serviceService.delete(selectService);
+            FacesUtil.addSuccessMessage("Serviço deletado com sucesso!");
+        } catch (DermaSistException e) {
+            FacesUtil.addSuccessMessage(e.getMessage());
+        }
+    }
+    
+    
     /**
      * @return the service
      */
@@ -62,9 +86,18 @@ public class ServiceBean implements Serializable {
     public void setService(Service service) {
         this.service = service;
     }
-    
+
     public List<Service> getServices() {
         services = serviceService.findAll();
         return services;
     }
+
+    public Service getSelectService() {
+        return selectService;
+    }
+
+    public void setSelectService(Service selectService) {
+        this.selectService = selectService;
+    }
+
 }
