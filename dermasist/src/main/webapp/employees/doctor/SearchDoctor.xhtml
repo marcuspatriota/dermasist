@@ -53,10 +53,10 @@
                 <p:growl id="msgTableSearchDoctor"/>
 
                 <p:dataTable id="tableDoctor" var="doctor" value="#{doctorBean.doctors}"  
-                             selection="#{doctorBean.selectedDoctor}" rowKey="#{doctor.ID}" 
-                             >
+                               selection="#{doctorBean.selectedDoctor}" rowKey="#{doctor.ID}" 
+                              >
                     <f:facet name="header">
-                        Lista de médicos
+                        Lista de Médicos
                     </f:facet>
                     <p:column headerText="Matrícula">
                         <h:outputText value="#{doctor.registrationCode}" />

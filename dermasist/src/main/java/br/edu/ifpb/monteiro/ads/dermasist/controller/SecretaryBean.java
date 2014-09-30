@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import org.primefaces.model.SelectableDataModel;
 
 /**
  * Controller to manage the communication between the page and the rest of project
@@ -25,6 +26,8 @@ public class SecretaryBean implements Serializable{
     
     private Secretary secretary;
     
+    private Secretary selectSercretary;
+    
     public SecretaryBean(){
         
     }
@@ -40,11 +43,12 @@ public class SecretaryBean implements Serializable{
     
     @PostConstruct
     public void init(){
-        this.clean();
+        this.secretary = new Secretary();
+        this.selectSercretary = new Secretary();
     }
     
     private void clean() {
-        this.setSecretary(new Secretary());
+    
     }
 
     /**
@@ -65,5 +69,21 @@ public class SecretaryBean implements Serializable{
         secretaries = secretaryService.findAll();
         return secretaries;
     }
-    
+
+    public Secretary getSelectSercretary() {
+        return selectSercretary;
+    }
+
+    public void setSelectSercretary(Secretary selectSercretary) {
+        this.selectSercretary = selectSercretary;
+    }
+
+    public SecretaryService getSecretaryService() {
+        return secretaryService;
+    }
+
+    public void setSecretaries(List<Secretary> secretaries) {
+        this.secretaries = secretaries;
+    }
+     
 }

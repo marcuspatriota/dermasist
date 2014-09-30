@@ -18,38 +18,36 @@ import javax.inject.Inject;
  */
 @Model
 public class DoctorBean implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Inject
     private DoctorService doctorService;
-    private List<Doctor> doctors;
     
+    private List<Doctor> doctors;
     private Doctor doctor;
     private Doctor selectedDoctor;
-            
-            
+
     @PostConstruct
     public void init() {
-        this.clean();
+        doctor = new Doctor();
+        selectedDoctor = new Doctor();
     }
-    
+
     private void clean() {
-        this.doctor = new Doctor();
-        this.selectedDoctor = new Doctor();
+
     }
-    
+
     public void create() throws DermaSistException {
-        
+
         try {
             doctorService.create(doctor);
             FacesUtil.addSuccessMessage("Médico Cadastrado com sucesso!");
-        }
-        catch(DermaSistException e){
+        } catch (DermaSistException e) {
             FacesUtil.addErrorMessage("Erro ao tentar cadastrado Médico!!");
         }
     }
-    
+
     public void update() {
         try {
             this.doctorService.update(selectedDoctor);
@@ -67,6 +65,7 @@ public class DoctorBean implements Serializable {
             FacesUtil.addSuccessMessage(e.getMessage());
         }
     }
+
     /**
      * @return the doctor
      */
@@ -96,5 +95,5 @@ public class DoctorBean implements Serializable {
     public void setSelectedDoctor(Doctor selectedDoctor) {
         this.selectedDoctor = selectedDoctor;
     }
-    
+
 }
